@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer'
 import jwt from 'jsonwebtoken';
+
 const sendEmail = (emailID) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -13,6 +14,7 @@ const sendEmail = (emailID) => {
         data: 'Token Data'
     }, process.env.SECRET_KEY, { expiresIn: '5m' }
     );
+    
     // console.log('token sent :>> ', token);
     const mailConfigurations = {
         from: 'hadi@itobuz.com',

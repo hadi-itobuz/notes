@@ -12,7 +12,7 @@ const createUser = (req, res) => {
     const token = sendEmail("hadi@itobuz.com");
     //sending verification email
     
-    const user = new User({ name, email, password: bcrypt.hashSync('bacon', salt), token, isVerified })
+    const user = new User({ name, email, password: bcrypt.hashSync(password, salt), token, isVerified })
     user.save();
     res.status(200).send("Email sent");
 }

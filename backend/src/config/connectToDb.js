@@ -1,4 +1,5 @@
-import mongoose, { connect } from "mongoose";
+import mongoose from "mongoose";
+
 const connectToDb=()=>{
         mongoose.connect(process.env.CONNECTION_STRING)
         .then(res=>console.log("Connected to data base"))
