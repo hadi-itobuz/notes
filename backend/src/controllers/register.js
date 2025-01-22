@@ -1,6 +1,9 @@
 import User from "../models/user.js";
 import sendEmail from "../helper/sendVerificationEmail.js";
-import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
+
+const salt = bcrypt.genSaltSync(5);
 //creating new user
 const createUser = (req, res) => {
     //fetching user data
@@ -8,7 +11,8 @@ const createUser = (req, res) => {
     const isVerified = false;
     const token = sendEmail("hadi@itobuz.com");
     //sending verification email
-    const user = new User({ name, email, password, token, isVerified })
+    
+    const user = new User({ name, email, password: bcrypt.hashSync('bacon', salt), token, isVerified })
     user.save();
     res.status(200).send("Email sent");
 }
