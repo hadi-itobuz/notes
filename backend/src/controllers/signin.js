@@ -8,9 +8,16 @@ const verifyCredential= async (req,res)=>{
         if(user.isVerified && bcrypt.compareSync(password, user.password)){
             user.isLoggedIn=true;
             user.save();
-            res.status(200).send("Success")
+            res.status(200).send({
+                success:true,
+                message:"successfully logged in",
+                id:user._id
+            })
         }else{
-            res.status(400).send("Can't loggin");
+            res.status(400).send({
+                success:false,
+                message: "Unable to login",
+            });
         }
     }catch (error) {
         res.status(500).send("Unable to fetch user")

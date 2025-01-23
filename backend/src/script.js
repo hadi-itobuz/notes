@@ -3,6 +3,7 @@ import 'dotenv/config';
 import connectToDb from "./config/connectToDb.js";
 import registerRoute from "./routes/registerRoute.js";
 import signinRoute from "./routes/signinRoute.js";
+import logoutRoute from "./routes/logoutRoute.js";
 const app = express()
 
 connectToDb();
@@ -10,6 +11,7 @@ connectToDb();
 app.use(express.json());
 app.use('/register', registerRoute);
 app.use('/signin',signinRoute);
+app.use('/logout',logoutRoute)
 app.listen(process.env.PORT, () => {
     console.log(`Listening at port: http://localhost:${process.env.PORT}/`);
 })

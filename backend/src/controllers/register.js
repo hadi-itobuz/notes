@@ -14,7 +14,10 @@ const createUser = (req, res) => {
     
     const user = new User({ name, email, password: bcrypt.hashSync(password, salt), token, isVerified })
     user.save();
-    res.status(200).send("Email sent");
+    res.status(200).send({
+        success:true,
+        message: "User registred, Verification email sent",
+    });
 }
 //verifying user 
 const verifyUser = async (req, res) => {
@@ -22,14 +25,20 @@ const verifyUser = async (req, res) => {
     jwt.verify(token, process.env.SECRET_KEY, function (err, decoded) {
         if (err) {
             console.log(err);
-            res.send("Email verification failed, possibly the link is invalid or expired");
+            res.status(400).send({
+                message:"Email verification failed, possibly the link is invalid or expired",
+                success:false
+            });
         }
         else {
             User.findOneAndUpdate({ token: token },
                 { $set: { isVerified: 'true', token: null } },
                 { new: true }
             )
-                .then(res.status(200).send("Email verifified successfully"))
+                .then(res.status(200).send({
+                    message:"Email verification Successfull",
+                    success:true
+                }))
                 .catch(err => res.status(400).send("Couldn't verify"))
         }
     });
