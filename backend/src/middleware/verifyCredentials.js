@@ -2,7 +2,17 @@ import { z, ZodError } from 'zod';
 const userRegistrationSchema = z.object({
     name: z.string(),
     email: z.string().email("Invalid Email"),
-    password: z.string().min(8, "too short"),
+    password: z.string().min(8, "too short")
+        .refine((password) => /[A-Z]/.test(password), {
+            message: "Should contain upper case",
+        })
+        .refine((password) => /[a-z]/.test(password), {
+            message: "Should contain lower case",
+        })
+        .refine((password) => /[0-9]/.test(password), { message: "Should contain number" })
+        .refine((password) => /[!@#$%^&*]/.test(password), {
+            message: "Should contain special character",
+        })
 });
 
 const userLoginSchema = z.object({
