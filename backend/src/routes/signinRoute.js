@@ -1,6 +1,8 @@
 import express from "express";
-import { verifyCredential } from "../controllers/signin.js"; 
+import { verifyCredential } from "../controllers/signin.js";
 const signinRoute = express.Router();
-signinRoute.get('/verify',verifyCredential);
+import { userLoginSchema, validateData } from "../middleware/verifyCredentials.js";
+
+signinRoute.get('/verify', validateData(userLoginSchema), verifyCredential);
 
 export default signinRoute;

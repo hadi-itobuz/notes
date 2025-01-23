@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 import User from '../models/user.js';
-const verifyCredential= async (req,res)=>{
 
+const verifyCredential= async (req,res)=>{
     const {email,password}=req.body;
     try{
         const user= await User.findOne({email:email})
