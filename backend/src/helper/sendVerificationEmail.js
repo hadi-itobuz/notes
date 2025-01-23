@@ -19,7 +19,7 @@ const sendEmail = (emailID) => {
     const mailConfigurations = {
         from: 'hadi@itobuz.com',
         to: `hadi@itobuz.com`,//replace with ${emailID}
-        subject: 'Email Verification',
+        subject: `Email Verification: ${emailID}`,
         text: `Hi! There, You have recently visited 
                our website and entered your email.
                Please follow the given link to verify your email

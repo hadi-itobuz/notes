@@ -6,6 +6,8 @@ const verifyCredential= async (req,res)=>{
     try{
         const user= await User.findOne({email:email})
         if(user.isVerified && bcrypt.compareSync(password, user.password)){
+            user.isLoggedIn=true;
+            user.save();
             res.status(200).send("Success")
         }else{
             res.status(400).send("Can't loggin");
