@@ -1,28 +1,23 @@
 import mongoose from "mongoose";
 
 const notesSchema = new mongoose.Schema({
-    ownerID: {
+    userId: {
         type: String,
         required: true
     },
     title: {
         type: String,
-        required:true
+        required: true
     },
-    body:{
-        type:String,
-        require:true
+    body: {
+        type: String,
+        require: true
     },
-    isDone:{
-        type:Boolean,
-        require:true,
-        default:false
-    },
-    createdOn:{
-        type:Date,
-        required:true,
-        default:date.now
+    createdOn: {
+        type: Date,
+        required: true,
+        default: Date.now
     }
 })
-const Note= mongoose.model("Note",notesSchema);
+const Note = mongoose.model("Note", notesSchema);
 export default Note;
