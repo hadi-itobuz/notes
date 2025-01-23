@@ -36,6 +36,55 @@ const getAll = async (req, res) => {
         })
     }
 }
+//search note
 
+const getById=async (req,res)=>{
+    const {id}=req.body;
+    try{
+        const note=await Note.findById(id);
+        console.log('note :>> ', note);
+        if(note){
+            res.status(200).send({
+                success:true,
+                note
+            })
+        }else{
+            res.status(404).send({
+                success:false,
+                message:"Note not found"
+            })
+        }
+    }catch(err){
+        res.status(500).send({
+            success:false,
+            message:"Can't get note"
+        })
+    }
+}
 
-export { addNote, getAll };
+const deleteById=async (req,res)=>{
+    const {id}=req.body;
+    try{
+        const note=await Note.findByIdAndDelete(id);
+        console.log('note :>> ', note);
+        if(note){
+            res.status(200).send({
+                success:true,
+                message:"Note deleted sucess fully"
+            })
+        }else{
+            res.status(404).send({
+                success:false,
+                message:"Note not found"
+            })
+        }
+
+    }catch(err){
+        res.status(500).send({
+            success:false,
+            message:"Can't delete note"
+        })
+    }
+}
+
+export { addNote, getAll ,getById, deleteById};
