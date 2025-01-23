@@ -20,6 +20,12 @@ const userLoginSchema = z.object({
     password: z.string().min(8),
 });
 
+const noteSchema = z.object({
+    userId: z.string(),
+    title: z.string().max(100, "too long"),
+    body: z.string()
+})
+
 const validateData = (schema) => {
     return (req, res, next) => {
         try {
@@ -38,4 +44,4 @@ const validateData = (schema) => {
     };
 }
 
-export { userRegistrationSchema, userLoginSchema, validateData };
+export { userRegistrationSchema, userLoginSchema, noteSchema, validateData };
