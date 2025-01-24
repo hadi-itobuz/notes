@@ -1,5 +1,5 @@
 import express from "express"
-import { addNote,getAll,getById,deleteById } from "../controllers/note.js";
+import { addNote,getAll,getById,deleteById,editNote } from "../controllers/note.js";
 import { noteSchema, validateData } from "../middleware/verifyCredentials.js";
 
 const noteRoute = express.Router();
@@ -14,5 +14,6 @@ noteRoute.post('/add',validateData(noteSchema) ,addNote);
 noteRoute.get('/getAll',getAll);
 noteRoute.get('/getId',getById);
 noteRoute.delete('/deleteId',deleteById);
+noteRoute.put('/edit',editNote)
 
 export default noteRoute;
