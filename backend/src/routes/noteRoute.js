@@ -1,6 +1,7 @@
 import express from "express"
 import { addNote,getAll,getById,deleteById,editNote } from "../controllers/note.js";
 import { noteSchema, validateData } from "../middleware/verifyCredentials.js";
+import isLoggedIn from "../middleware/isLoggedIn.js";
 
 const noteRoute = express.Router();
 
@@ -12,8 +13,8 @@ noteRoute.get('/', (req, res) => {
 })
 noteRoute.post('/add',validateData(noteSchema) ,addNote);
 noteRoute.get('/getAll',getAll);
-noteRoute.get('/getId',getById);
-noteRoute.delete('/deleteId',deleteById);
-noteRoute.put('/edit',editNote)
+noteRoute.get('/getId',isLoggedIn,getById);
+noteRoute.delete('/deleteId',isLoggedIn,deleteById);
+noteRoute.put('/edit',isLoggedIn,editNote);
 
 export default noteRoute;
