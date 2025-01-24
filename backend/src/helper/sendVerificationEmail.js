@@ -23,7 +23,7 @@ const sendEmail = (emailID) => {
         text: `Hi! There, You have recently visited 
                our website and entered your email.
                Please follow the given link to verify your email
-               http://localhost:3000/register/${token} 
+               http://localhost:3000/user/verify/${token} 
                Thanks`
     };
 
