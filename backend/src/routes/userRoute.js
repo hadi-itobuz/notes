@@ -14,9 +14,9 @@ userRoute.patch('/logout',(req,res)=>{
     const {id}=req.body;
     User.findByIdAndUpdate(id,{isLoggedIn:false},{new:true}).then((user)=>{
         (user)?res.status(200).send({success:true,message:`${user.name} was loggedout`})
-        :res.status(400).send({success:true, message:"Unable to loggout"});
+        :res.status(400).send({success:false, message:"Unable to loggout"});
     }).catch((err)=>{
-        res.status(400).send({success:true, message:"Unable to loggout"});
+        res.status(400).send({success:false, message:"Unable to loggout"});
     })
 })
 export default userRoute;

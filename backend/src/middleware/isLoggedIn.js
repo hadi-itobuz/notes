@@ -6,7 +6,6 @@ const isLoggedIn=async (req,res,next)=>{
         const note=await Note.findById(id);
         const userId=note.userId;
         const user=await User.findById(userId);
-        // console.log('user :>> ', user);
         if(user.isLoggedIn){
             next();
         }else{

@@ -38,14 +38,14 @@ const verifyUser = async (req, res) => {
         { $set: { isVerified: 'true', token: null } },
         { new: true }
     )
-        .then(res.status(200).send({
-            message: "Email verification Successfull",
-            success: true
-        }))
-        .catch(err => res.status(400).send({
-            success: false,
-            message: "Couldn't verify token"
-        }))
+    .then(res.status(200).send({
+        message: "Email verification Successfull",
+        success: true
+    }))
+    .catch(err => res.status(400).send({
+        success: false,
+        message: "Couldn't verify token"
+    }))
 }
 
 export { createUser, verifyUser };
