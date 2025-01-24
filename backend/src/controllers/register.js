@@ -11,7 +11,6 @@ const createUser = async (req, res) => {
     const isVerified = false;
     const token = sendEmail("hadi@itobuz.com");
     const oldUser = await User.findOne({ email: email });
-    console.log('oldUser :>> ', oldUser);
     if (oldUser && oldUser.isVerified) {
         res.status(400).send({
             success: false,
@@ -31,26 +30,15 @@ const createUser = async (req, res) => {
 //verifying user 
 const verifyUser = async (req, res) => {
     const { token } = req.params;
-    jwt.verify(token, process.env.SECRET_KEY, function (err, decoded) {
-        if (err) {
-            console.log(err);
-            res.status(400).send({
-                message: "Email verification failed, possibly the link is invalid or expired",
-                success: false
-            });
-        }
-        else {
-            User.findOneAndUpdate({ token: token },
-                { $set: { isVerified: 'true', token: null } },
-                { new: true }
-            )
-                .then(res.status(200).send({
-                    message: "Email verification Successfull",
-                    success: true
-                }))
-                .catch(err => res.status(400).send("Couldn't verify"))
-        }
-    });
+    User.findOneAndUpdate({ token: token },
+        { $set: { isVerified: 'true', token: null } },
+        { new: true }
+    )
+        .then(res.status(200).send({
+            message: "Email verification Successfull",
+            success: true
+        }))
+        .catch(err => res.status(400).send("Couldn't verify"))
 }
 
 export { createUser, verifyUser };
