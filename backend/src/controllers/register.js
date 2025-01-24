@@ -1,30 +1,34 @@
 import User from "../models/user.js";
 import sendEmail from "../helper/sendVerificationEmail.js";
-import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 
-const salt = bcrypt.genSaltSync(5);
-//creating new user
 const createUser = async (req, res) => {
-    //fetching user data
-    const { name, email, password } = req.body;
-    const isVerified = false;
-    const token = sendEmail("hadi@itobuz.com");
-    const oldUser = await User.findOne({ email: email });
-    if (oldUser && oldUser.isVerified) {
-        res.status(400).send({
+    try {
+        const { name, email, password } = req.body;
+        const isVerified = false;
+        const token = sendEmail("hadi@itobuz.com");
+        const oldUser = await User.findOne({ email: email });
+        if (oldUser && oldUser.isVerified) {
+            res.status(400).send({
+                success: false,
+                message: "User already present"
+            })
+        } else {
+            const user = new User({ name, email, password: bcrypt.hashSync(password, 10), token, isVerified })
+            user.save();
+            res.status(200).send({
+                success: true,
+                message: "User registred, Verification email sent",
+            });
+        }
+    } catch (error) {
+        res.status(500).send({
             success: false,
-            message: "User already present"
+            message: "Couldn't register"
         })
-    } else {
-        //sending verification email
-        const user = new User({ name, email, password: bcrypt.hashSync(password, salt), token, isVerified })
-        user.save();
-        res.status(200).send({
-            success: true,
-            message: "User registred, Verification email sent",
-        });
     }
+    //fetching user data
+
 
 }
 //verifying user 
@@ -38,7 +42,10 @@ const verifyUser = async (req, res) => {
             message: "Email verification Successfull",
             success: true
         }))
-        .catch(err => res.status(400).send("Couldn't verify"))
+        .catch(err => res.status(400).send({
+            success: false,
+            message: "Couldn't verify token"
+        }))
 }
 
 export { createUser, verifyUser };

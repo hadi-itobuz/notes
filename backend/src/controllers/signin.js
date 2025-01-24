@@ -14,6 +14,17 @@ const verifyCredential= async (req,res)=>{
                 id:user._id
             })
         }else{
+            if(!bcrypt.compareSync(password, user.password)){
+                res.status(401).send({
+                    success:false,
+                    message: "Unable to login: Incorrect password",
+                });
+            }else if(!user.isVerified){
+                res.status(403).send({
+                    success:false,
+                    message: "Unable to login: User not verified",
+                });
+            }
             res.status(400).send({
                 success:false,
                 message: "Unable to login",

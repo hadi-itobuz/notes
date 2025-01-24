@@ -6,7 +6,7 @@ const addNote = async (req, res) => {
     try {
         const note = new Note({ userId, title, body });
         await note.save();
-        res.status(200).send({
+        res.status(201).send({
             success: true,
             message: "New note Created"
         })
@@ -82,7 +82,7 @@ const deleteById = async (req, res) => {
     } catch (err) {
         res.status(500).send({
             success: false,
-            message: "Can't delete note"
+            message: "Coudn't delete note"
         })
     }
 }
@@ -92,7 +92,7 @@ const editNote = async (req, res) => {
     try {
 
         await Note.findByIdAndUpdate(id, { title, body }, { new: true });
-        res.status(200).send({
+        res.status(201).send({
             success: true,
             message: "Note edited"
         })

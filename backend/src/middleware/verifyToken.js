@@ -9,9 +9,7 @@ const verifyToken = (req, res, next) => {
                 success: false
             });
         }
-        else {
-            next();
-        }
+        else next();
     });
 }
 export default verifyToken;
