@@ -21,7 +21,8 @@ const addNote = async (req, res) => {
 }
 //function to get all notes
 const getAll = async (req, res) => {
-    const { userId } = req.body;
+    const userId = req.params.userId;
+    console.log('userId :>> ', userId);
     try {
         const notes = await Note.find({ userId: userId });
         res.status(200).send({
@@ -40,7 +41,7 @@ const getAll = async (req, res) => {
 //search note:pending
 //get note using id
 const getById = async (req, res) => {
-    const { id } = req.body;
+    const id = req.params.id;
     try {
         const note = await Note.findById(id);
         console.log('note :>> ', note);
@@ -64,10 +65,9 @@ const getById = async (req, res) => {
 }
 //delete note useing id
 const deleteById = async (req, res) => {
-    const { id } = req.body;
+    const id = req.params.id;
     try {
         const note = await Note.findByIdAndDelete(id);
-        console.log('note :>> ', note);
         if (note) {
             res.status(200).send({
                 success: true,
@@ -91,7 +91,6 @@ const deleteById = async (req, res) => {
 const editNote = async (req, res) => {
     const { id, title, body } = req.body;
     try {
-
         await Note.findByIdAndUpdate(id, { title, body }, { new: true });
         res.status(201).send({
             success: true,
@@ -110,7 +109,7 @@ const editNote = async (req, res) => {
 const searchNote = async (req, res) => {
     try {
         const { userId, searchText } = req.body;
-        const user=await User.findById(userId);
+        const user = await User.findById(userId);
         const notes = await Note.find({
             userId,
             '$or': [
@@ -119,17 +118,17 @@ const searchNote = async (req, res) => {
             ]
         })
         res.status(200).send({
-            success:true,
+            success: true,
             message: `${notes.length} notes found`,
             notes
         });
-    }catch(err){
+    } catch (err) {
         res.status(500).send({
-            success:false,
-            message:"Unable to search notes"
+            success: false,
+            message: "Unable to search notes"
         })
     }
-   
+
 }
 
 export { addNote, getAll, getById, deleteById, editNote, searchNote };

@@ -2,7 +2,7 @@ import Note from "../models/note.js";
 import User from "../models/user.js"
 const isLoggedIn=async (req,res,next)=>{
     try{
-        const {id}=req.body;
+        const id=req.params.id;
         const note=await Note.findById(id);
         const userId=note.userId;
         const user=await User.findById(userId);
