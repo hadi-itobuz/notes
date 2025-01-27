@@ -1,6 +1,14 @@
 import Note from "../models/note.js";
 import User from "../models/user.js";
 
+const extractToken = (req) => {
+    if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+        return req.headers.authorization.split(' ')[1];
+    } else if (req.query && req.query.token) {
+        return req.query.token;
+    }
+    return null;
+}
 //function to add new note
 const addNote = async (req, res) => {
     const { userId, title, body } = req.body;
