@@ -9,7 +9,8 @@ const addNote = async (req, res) => {
         await note.save();
         res.status(201).send({
             success: true,
-            message: "New note Created"
+            message: "New note Created",
+            noteId:note._id
         })
     } catch (err) {
         console.log('err :>> ', err);
