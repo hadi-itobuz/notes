@@ -15,7 +15,7 @@ const createUser = async (req, res) => {
         } else {
             const user = new User({ name, email, password: bcrypt.hashSync(password, 10), isVerified })
             user.save();
-            const token = sendEmail("hadi@itobuz.com",user._id);
+            const token = sendEmail("hadi@itobuz.com", user._id);
             res.status(200).send({
                 success: true,
                 message: "User registred, Verification email sent",
@@ -34,19 +34,18 @@ const createUser = async (req, res) => {
 }
 //verifying user 
 const verifyUser = async (req, res) => {
-    const { token } = req.params;
-    User.findByIdAndUpdate(req.id,
+    User.findByIdAndUpdate(req.body.id,
         { $set: { isVerified: 'true', token: null } },
         { new: true }
     )
-    .then(res.status(200).send({
-        message: "Email verification Successfull",
-        success: true
-    }))
-    .catch(err => res.status(400).send({
-        success: false,
-        message: "Couldn't verify token"
-    }))
+        .then(res.status(200).send({
+            message: "Email verification Successfull",
+            success: true
+        }))
+        .catch(err => res.status(400).send({
+            success: false,
+            message: "Couldn't verify token"
+        }))
 }
 
 export { createUser, verifyUser };

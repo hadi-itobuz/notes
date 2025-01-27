@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs';
 import User from '../models/user.js';
+import generateToken from '../helper/genrateToken.js';
 
 const verifyCredential = async (req, res) => {
     const { email, password } = req.body;
@@ -11,7 +12,8 @@ const verifyCredential = async (req, res) => {
             res.status(200).send({
                 success: true,
                 message: "successfully logged in",
-                id: user._id
+                id: user._id,
+                token: generateToken(user._id)
             })
         } else {
             if (!bcrypt.compareSync(password, user.password)) {

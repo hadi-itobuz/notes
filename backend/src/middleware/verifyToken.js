@@ -10,7 +10,7 @@ const verifyToken = (req, res, next) => {
             });
         }
         else{
-            req.id=decoded.id;
+            req.body.id=decoded.id;
             next();
         }
     });
