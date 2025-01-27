@@ -9,7 +9,10 @@ const verifyToken = (req, res, next) => {
                 success: false
             });
         }
-        else next();
+        else{
+            req.id=decoded.id;
+            next();
+        }
     });
 }
 export default verifyToken;

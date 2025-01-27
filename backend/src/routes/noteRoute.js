@@ -13,7 +13,7 @@ noteRoute.get('/', (req, res) => {
 })
 noteRoute.post('/add', validateData(noteSchema), addNote);
 noteRoute.get('/getAll/:userId', getAll);
-noteRoute.get('/search',searchNote);
+noteRoute.get('/search', searchNote);
 
 noteRoute.get('/getId/:id', isLoggedIn, getById);
 noteRoute.delete('/deleteId/:id', isLoggedIn, deleteById);

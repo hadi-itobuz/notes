@@ -6,7 +6,6 @@ const createUser = async (req, res) => {
     try {
         const { name, email, password } = req.body;
         const isVerified = false;
-        const token = sendEmail("hadi@itobuz.com");
         const oldUser = await User.findOne({ email: email });
         if (oldUser && oldUser.isVerified) {
             res.status(400).send({
@@ -14,14 +13,16 @@ const createUser = async (req, res) => {
                 message: "User already present"
             })
         } else {
-            const user = new User({ name, email, password: bcrypt.hashSync(password, 10), token, isVerified })
+            const user = new User({ name, email, password: bcrypt.hashSync(password, 10), isVerified })
             user.save();
+            const token = sendEmail("hadi@itobuz.com",user._id);
             res.status(200).send({
                 success: true,
                 message: "User registred, Verification email sent",
             });
         }
     } catch (error) {
+        console.log('error :>> ', error);
         res.status(500).send({
             success: false,
             message: "Couldn't register"
@@ -34,7 +35,7 @@ const createUser = async (req, res) => {
 //verifying user 
 const verifyUser = async (req, res) => {
     const { token } = req.params;
-    User.findOneAndUpdate({ token: token },
+    User.findByIdAndUpdate(req.id,
         { $set: { isVerified: 'true', token: null } },
         { new: true }
     )
