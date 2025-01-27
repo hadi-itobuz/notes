@@ -1,14 +1,6 @@
 import Note from "../models/note.js";
 import User from "../models/user.js";
 
-const extractToken = (req) => {
-    if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
-        return req.headers.authorization.split(' ')[1];
-    } else if (req.query && req.query.token) {
-        return req.query.token;
-    }
-    return null;
-}
 //function to add new note
 const addNote = async (req, res) => {
     const { userId, title, body } = req.body;
@@ -27,9 +19,10 @@ const addNote = async (req, res) => {
         })
     }
 }
+
 //function to get all notes
 const getAll = async (req, res) => {
-    const userId = req.params.userId;
+    const userId = req.body.userId;
     console.log('userId :>> ', userId);
     try {
         const notes = await Note.find({ userId: userId });
@@ -46,7 +39,31 @@ const getAll = async (req, res) => {
         })
     }
 }
-//search note:pending
+//search note:
+const searchNote = async (req, res) => {
+    try {
+        const { userId, searchText } = req.body;
+        const user = await User.findById(userId);
+        const notes = await Note.find({
+            userId,
+            '$or': [
+                { 'title': { '$regex': `${searchText}`, '$options': 'i' } },
+                { 'body': { '$regex': `${searchText}`, '$options': 'i' } }
+            ]
+        })
+        res.status(200).send({
+            success: true,
+            message: `${notes.length} notes found`,
+            notes
+        });
+    } catch (err) {
+        res.status(500).send({
+            success: false,
+            message: "Unable to search notes"
+        })
+    }
+
+}
 //get note using id
 const getById = async (req, res) => {
     const id = req.params.id;
@@ -97,7 +114,8 @@ const deleteById = async (req, res) => {
 }
 //update note
 const editNote = async (req, res) => {
-    const { id, title, body } = req.body;
+    const id=req.params.id;
+    const {title, body } = req.body;
     try {
         await Note.findByIdAndUpdate(id, { title, body }, { new: true });
         res.status(201).send({
@@ -113,30 +131,5 @@ const editNote = async (req, res) => {
     }
 }
 
-//search note:
-const searchNote = async (req, res) => {
-    try {
-        const { userId, searchText } = req.body;
-        const user = await User.findById(userId);
-        const notes = await Note.find({
-            userId,
-            '$or': [
-                { 'title': { '$regex': `${searchText}`, '$options': 'i' } },
-                { 'body': { '$regex': `${searchText}`, '$options': 'i' } }
-            ]
-        })
-        res.status(200).send({
-            success: true,
-            message: `${notes.length} notes found`,
-            notes
-        });
-    } catch (err) {
-        res.status(500).send({
-            success: false,
-            message: "Unable to search notes"
-        })
-    }
-
-}
 
 export { addNote, getAll, getById, deleteById, editNote, searchNote };

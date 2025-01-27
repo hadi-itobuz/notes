@@ -34,7 +34,7 @@ const createUser = async (req, res) => {
 }
 //verifying user 
 const verifyUser = async (req, res) => {
-    User.findByIdAndUpdate(req.body.id,
+    User.findByIdAndUpdate(req.body.userId,
         { $set: { isVerified: 'true', token: null } },
         { new: true }
     )

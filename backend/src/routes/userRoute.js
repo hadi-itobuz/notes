@@ -1,11 +1,9 @@
 import express from 'express';
 import { createUser, verifyUser } from "../controllers/register.js";
 import { userRegistrationSchema,userLoginSchema,validateData } from "../middleware/verifyCredentials.js";
-// import verifyToken from "../middleware/verifyToken.js";
 import { verifyRegistrationToken } from '../middleware/verifyToken.js';
 import { verifyCredential } from "../controllers/signin.js";
 import User from '../models/user.js';
-// import { verify } from 'jsonwebtoken';
 
 const userRoute=express.Router();
 
