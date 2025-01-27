@@ -1,4 +1,5 @@
 import { z, ZodError } from 'zod';
+
 const userRegistrationSchema = z.object({
     name: z.string(),
     email: z.string().email("Invalid Email"),
@@ -26,7 +27,7 @@ const noteSchema = z.object({
     body: z.string()
 })
 
-const validateData = (schema) => {
+const validateData = (schema) => {//function to validate req based on schema
     return (req, res, next) => {
         try {
             schema.parse(req.body);

@@ -12,10 +12,13 @@ noteRoute.get('/', (req, res) => {
         message: "this is the notes route"
     })
 })
-noteRoute.post('/add', verifyAcessToken, isLoggedIn, validateData(noteSchema), addNote);
-noteRoute.get('/getAll', verifyAcessToken, isLoggedIn, getAll);
-noteRoute.get('/search', verifyAcessToken, searchNote);
 
+//operations wrt to user id
+noteRoute.post('/add', verifyAcessToken, isLoggedIn, validateData(noteSchema), addNote);
+noteRoute.get('/getAll', verifyAcessToken, isLoggedIn, getAll); //get all notes pertaining to a user
+noteRoute.get('/search', verifyAcessToken, isLoggedIn, searchNote);
+
+//operations wrt to note id
 noteRoute.get('/getId/:id', verifyAcessToken, isLoggedIn, getById);
 noteRoute.delete('/deleteId/:id', verifyAcessToken, isLoggedIn, deleteById);
 noteRoute.put('/edit/:id', verifyAcessToken, isLoggedIn, editNote);

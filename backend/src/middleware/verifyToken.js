@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken"
 
+//function to verify token and add userId to req
 const verifyToken = (req, res, next, token) => {//this isn't a middleware
     jwt.verify(token, process.env.SECRET_KEY, function (err, decoded) {
         if (err) {
@@ -15,7 +16,7 @@ const verifyToken = (req, res, next, token) => {//this isn't a middleware
     });
 }
 
-const extractToken = (req) => {
+const extractToken = (req) => { //function to extract token from header
     if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
         return req.headers.authorization.split(' ')[1];
     } else if (req.query && req.query.token) {

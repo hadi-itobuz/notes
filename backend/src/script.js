@@ -7,7 +7,7 @@ import userRoute from "./routes/userRoute.js";
 const app = express()
 app.use(express.json());
 
-connectToDb();
+connectToDb();//connectong to mongo db data base
 
 app.use('/notes', noteRoute);
 app.use('/user',userRoute)
