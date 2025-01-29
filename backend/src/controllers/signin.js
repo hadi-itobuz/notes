@@ -16,7 +16,7 @@ const verifyCredential = async (req, res) => {
                 success: true,
                 message: "successfully logged in",
                 id: user._id,
-                accessToken: generateToken('accessToken', user._id, '15m'),
+                accessToken: generateToken('accessToken', user._id, '30s'),
                 refreshToken: generateToken('refreshToken', user._id, '2h')
             })
         } else {

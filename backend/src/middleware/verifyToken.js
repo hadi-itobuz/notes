@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken"
 
 //function to verify token and add userId to req
-const verifyToken = (req, res, next, token,type) => {//this isn't a middleware
+const verifyToken = (req, res, next, token, type) => {//this isn't a middleware
     jwt.verify(token, process.env.SECRET_KEY, function (err, decoded) {
         if (err) {
             console.log('err :>> ', err);
@@ -11,16 +11,16 @@ const verifyToken = (req, res, next, token,type) => {//this isn't a middleware
             });
         }
         else {
-            if(decoded.type===type){
+            if (decoded.type === type) {
                 req.body.userId = decoded.id;//
                 next();
-            }else{
+            } else {
                 res.send({
-                    success:false,
-                    message:"Invalid Token Type"
+                    success: false,
+                    message: "Invalid Token Type"
                 })
             }
-            
+
         }
     });
 }
@@ -36,12 +36,17 @@ const extractToken = (req) => { //function to extract token from header
 
 const verifyRegistrationToken = (req, res, next) => {
     const { token } = req.params;
-    verifyToken(req, res, next, token,"registrationToken");
+    verifyToken(req, res, next, token, 'registrationToken');
 }
 
 const verifyAccessToken = (req, res, next) => {
     const token = extractToken(req);
-    verifyToken(req, res, next, token,"accessToken");
+    verifyToken(req, res, next, token, "accessToken");
 }
 
-export { verifyRegistrationToken, verifyAccessToken };
+const verifyRefreshToken = (req, res, next) => {
+    const token = extractToken(req);
+    verifyToken(req, res, next, token, 'refreshToken');
+}
+
+export { verifyRegistrationToken, verifyAccessToken, verifyRefreshToken };
