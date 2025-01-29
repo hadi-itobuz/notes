@@ -1,17 +1,26 @@
 import jwt from "jsonwebtoken"
 
 //function to verify token and add userId to req
-const verifyToken = (req, res, next, token) => {//this isn't a middleware
+const verifyToken = (req, res, next, token, type) => {//this isn't a middleware
     jwt.verify(token, process.env.SECRET_KEY, function (err, decoded) {
         if (err) {
+            console.log('err :>> ', err);
             res.status(400).send({
-                message: "Email verification failed, possibly the link is invalid or expired",
+                message: "Token verification failed, possibly the link is invalid or expired",
                 success: false
             });
         }
         else {
-            req.body.userId = decoded.id;//
-            next();
+            if (decoded.type === type) {
+                req.body.userId = decoded.id;//
+                next();
+            } else {
+                res.send({
+                    success: false,
+                    message: "Invalid Token Type"
+                })
+            }
+
         }
     });
 }
@@ -27,12 +36,17 @@ const extractToken = (req) => { //function to extract token from header
 
 const verifyRegistrationToken = (req, res, next) => {
     const { token } = req.params;
-    verifyToken(req, res, next, token);
+    verifyToken(req, res, next, token, 'registrationToken');
 }
 
-const verifyAcessToken = (req, res, next) => {
+const verifyAccessToken = (req, res, next) => {
     const token = extractToken(req);
-    verifyToken(req, res, next, token);
+    verifyToken(req, res, next, token, "accessToken");
 }
 
-export { verifyRegistrationToken, verifyAcessToken };
+const verifyRefreshToken = (req, res, next) => {
+    const token = extractToken(req);
+    verifyToken(req, res, next, token, 'refreshToken');
+}
+
+export { verifyRegistrationToken, verifyAccessToken, verifyRefreshToken };
