@@ -1,7 +1,7 @@
 import Note from "../models/note.js";
 import User from "../models/user.js";
 
-//function to add new note
+//add new note
 const addNote = async (req, res) => {
     const { userId, title, body } = req.body;
     try {
@@ -10,7 +10,7 @@ const addNote = async (req, res) => {
         res.status(201).send({
             success: true,
             message: "New note Created",
-            noteId:note._id
+            noteId: note._id
         })
     } catch (err) {
         console.log('err :>> ', err);
@@ -20,11 +20,9 @@ const addNote = async (req, res) => {
         })
     }
 }
-
-//function to get all notes
+//get all notes
 const getAll = async (req, res) => {
     const userId = req.body.userId;
-    console.log('userId :>> ', userId);
     try {
         const notes = await Note.find({ userId: userId });
         res.status(200).send({
@@ -39,6 +37,30 @@ const getAll = async (req, res) => {
             message: "Unable to get notes"
         })
     }
+}
+//get all notes sorted
+const getSorted = async (req, res) => {
+    try {
+        let { userId, page, sortBy } = req.body;
+        const fields = ["title", "body", "createdOn"];
+        if(!page) page=1;
+        if(!sortBy) sortBy=title;
+        if (page <= 0) res.status(400).send({success:false,message:"Invalid page count"})
+        else if(!fields.includes(sortBy)) res.status(400).send({ success:false, message:"Invalid sortBy field"})
+        else{
+            const notes = await Note.find({ userId }, null).skip(page * 4 - 4).limit(4).sort({ [sortBy]: 1 });
+            res.status(200).send({
+                success:true,
+                notes
+            })
+        }
+    }catch(err){
+        res.status(500).send({
+            success:false,
+            message:"Unable to sort message"
+        })
+    }
+    
 }
 //search note:
 const searchNote = async (req, res) => {
@@ -115,8 +137,8 @@ const deleteById = async (req, res) => {
 }
 //update note
 const editNote = async (req, res) => {
-    const id=req.params.id;
-    const {title, body } = req.body;
+    const id = req.params.id;
+    const { title, body } = req.body;
     try {
         await Note.findByIdAndUpdate(id, { title, body }, { new: true });
         res.status(201).send({
@@ -132,5 +154,4 @@ const editNote = async (req, res) => {
     }
 }
 
-
-export { addNote, getAll, getById, deleteById, editNote, searchNote };
+export { addNote, getAll, getById, deleteById, editNote, searchNote, getSorted };

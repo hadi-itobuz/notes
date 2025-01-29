@@ -14,5 +14,5 @@ userRoute.post('/addUser', validateData(userRegistrationSchema), createUser);
 userRoute.get('/verify/:token', verifyRegistrationToken, verifyUser);
 userRoute.post('/login', validateData(userLoginSchema), verifyCredential);
 userRoute.patch('/logout', verifyAccessToken, logout)
-userRoute.get('/getAccessToken', isLoggedIn, verifyRefreshToken, genrateAcessToken)
+userRoute.get('/getAccessToken', verifyRefreshToken, isLoggedIn, genrateAcessToken)
 export default userRoute;
