@@ -17,7 +17,7 @@ noteRoute.get('/', (req, res) => {
 noteRoute.post('/add', verifyAccessToken, isLoggedIn, validateData(noteSchema), addNote);
 noteRoute.get('/getAll', verifyAccessToken, isLoggedIn, getAll); //get all notes pertaining to a user
 noteRoute.get('/search', verifyAccessToken, isLoggedIn, searchNote);
-noteRoute.get('/getSorted', verifyAccessToken, isLoggedIn, getSorted)
+noteRoute.post('/getSorted', verifyAccessToken, isLoggedIn, getSorted)
 
 //operations wrt to note id
 noteRoute.get('/getId/:id', verifyAccessToken, isLoggedIn, getById);
