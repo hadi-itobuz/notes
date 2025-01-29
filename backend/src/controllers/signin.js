@@ -16,7 +16,8 @@ const verifyCredential = async (req, res) => {
                 success: true,
                 message: "successfully logged in",
                 id: user._id,
-                token: generateToken(user._id)
+                acessToken: generateToken(user._id,'15m'),
+                refreshToken: generateToken(user._id,'2h')
             })
         } else {
             if (!bcrypt.compareSync(password, user.password)) {

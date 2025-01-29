@@ -9,17 +9,15 @@ const sendEmail = (emailID, userId) => {
         }
     });
 
-    const token = generateToken(userId);
+    const registerToken = generateToken(userId,);
 
     // console.log('token sent :>> ', token);
     const mailConfigurations = {
         from: 'hadi@itobuz.com',
         to: `hadi@itobuz.com`,//replace with ${emailID}
         subject: `Email Verification: ${emailID}`,
-        text: `Hi! There, You have recently visited 
-               our website and entered your email.
-               Please follow the given link to verify your email
-               http://localhost:3000/user/verify/${token} 
+        text: `Please follow the given link to verify your email
+               http://localhost:3000/user/verify/${registerToken} 
                Thanks`
     };
 
