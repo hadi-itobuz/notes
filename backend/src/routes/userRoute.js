@@ -4,12 +4,12 @@ import { userRegistrationSchema, userLoginSchema, validateData } from "../middle
 import { verifyRegistrationToken } from '../middleware/verifyToken.js';
 import { verifyCredential } from "../controllers/signin.js";
 import logout from '../controllers/logout.js';
-import { verifyAcessToken } from '../middleware/verifyToken.js';
+import { verifyAccessToken } from '../middleware/verifyToken.js';
 
 const userRoute = express.Router();
 
 userRoute.post('/addUser', validateData(userRegistrationSchema), createUser);
 userRoute.get('/verify/:token', verifyRegistrationToken, verifyUser);
 userRoute.get('/login', validateData(userLoginSchema), verifyCredential);
-userRoute.patch('/logout', verifyAcessToken, logout)
+userRoute.patch('/logout', verifyAccessToken, logout)
 export default userRoute;

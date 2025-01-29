@@ -1,7 +1,7 @@
 import express from "express"
 import { addNote, getAll, getById, deleteById, editNote, searchNote } from "../controllers/note.js";
 import { noteSchema, validateData } from "../middleware/verifyCredentials.js";
-import { verifyAcessToken } from "../middleware/verifyToken.js";
+import { verifyAccessToken } from "../middleware/verifyToken.js";
 import isLoggedIn from "../middleware/isLoggedIn.js";
 
 const noteRoute = express.Router();
@@ -14,13 +14,13 @@ noteRoute.get('/', (req, res) => {
 })
 
 //operations wrt to user id
-noteRoute.post('/add', verifyAcessToken, isLoggedIn, validateData(noteSchema), addNote);
-noteRoute.get('/getAll', verifyAcessToken, isLoggedIn, getAll); //get all notes pertaining to a user
-noteRoute.get('/search', verifyAcessToken, isLoggedIn, searchNote);
+noteRoute.post('/add', verifyAccessToken, isLoggedIn, validateData(noteSchema), addNote);
+noteRoute.get('/getAll', verifyAccessToken, isLoggedIn, getAll); //get all notes pertaining to a user
+noteRoute.get('/search', verifyAccessToken, isLoggedIn, searchNote);
 
 //operations wrt to note id
-noteRoute.get('/getId/:id', verifyAcessToken, isLoggedIn, getById);
-noteRoute.delete('/deleteId/:id', verifyAcessToken, isLoggedIn, deleteById);
-noteRoute.put('/edit/:id', verifyAcessToken, isLoggedIn, editNote);
+noteRoute.get('/getId/:id', verifyAccessToken, isLoggedIn, getById);
+noteRoute.delete('/deleteId/:id', verifyAccessToken, isLoggedIn, deleteById);
+noteRoute.put('/edit/:id', verifyAccessToken, isLoggedIn, editNote);
 
 export default noteRoute;

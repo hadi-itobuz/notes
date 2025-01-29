@@ -10,14 +10,14 @@ const verifyCredential = async (req, res) => {
         const user = await User.findOne({ email: email })
         if (user.isVerified && bcrypt.compareSync(password, user.password)) {
             //genrate session
-            const session=await new Session({userId:user._id});
+            const session = new Session({ userId: user._id });
             session.save();
             res.status(200).send({
                 success: true,
                 message: "successfully logged in",
                 id: user._id,
-                acessToken: generateToken(user._id,'15m'),
-                refreshToken: generateToken(user._id,'2h')
+                accessToken: generateToken('accessToken', user._id, '15m'),
+                refreshToken: generateToken('refreshToken', user._id, '2h')
             })
         } else {
             if (!bcrypt.compareSync(password, user.password)) {

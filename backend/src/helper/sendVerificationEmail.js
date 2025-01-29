@@ -9,7 +9,7 @@ const sendEmail = (emailID, userId) => {
         }
     });
 
-    const registerToken = generateToken(userId,);
+    const registerToken = generateToken('registrationToken',userId,'15m');
 
     // console.log('token sent :>> ', token);
     const mailConfigurations = {
