@@ -40,16 +40,10 @@ const getAll = async (req, res) => {
 }
 //get all notes sorted
 const getSorted = async (req, res) => {
-    const { userId, page } = req.body;
-    const notes = await Note.find({userId:userId },
-        [],{
-            skip: (page - 1) * 4, // Starting Row
-            limit: 4, // Ending Row
-            sort: {
-                title: 1 //Sort by Date Added DESC
-            }
-        },
-    )
+    let { userId, page,sortBy } = req.body;
+    if(!page) page=1;
+    if(!sortBy) sortBy="title";
+    const notes = await Note.find({userId},null).skip(page*4-4).limit(4).sort({[sortBy]: 1});
     res.send(notes)
 }
 //search note:
