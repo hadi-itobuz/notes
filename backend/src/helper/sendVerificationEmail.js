@@ -26,6 +26,6 @@ const sendEmail = (emailID, userId) => {
         console.log('Email Sent Successfully');
     });
 
-    return token;
+    return registerToken;
 }
 export default sendEmail;
