@@ -18,11 +18,6 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         required: true,
         default: false
-    },
-    isLoggedIn: {
-        type: Boolean,
-        required: true,
-        default: false
     }
 })
 

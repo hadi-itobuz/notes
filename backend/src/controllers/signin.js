@@ -1,14 +1,17 @@
 import bcrypt from 'bcryptjs';
 import User from '../models/user.js';
+import Session from '../models/session.js';
 import generateToken from '../helper/genrateToken.js';
+
 
 const verifyCredential = async (req, res) => {
     const { email, password } = req.body;
     try {
         const user = await User.findOne({ email: email })
         if (user.isVerified && bcrypt.compareSync(password, user.password)) {
-            user.isLoggedIn = true;
-            user.save();
+            //genrate session
+            const session=await new Session({userId:user._id});
+            session.save();
             res.status(200).send({
                 success: true,
                 message: "successfully logged in",
