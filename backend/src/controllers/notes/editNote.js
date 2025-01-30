@@ -9,6 +9,7 @@ const editNote = async (req, res) => {
             message: "Note edited"
         })
     } catch (err) {
+        console.log('err :>> ', err);
         res.status(400).send({
             success: false,
             message: "Unable to edit note"

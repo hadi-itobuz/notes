@@ -15,6 +15,7 @@ const getById = async (req, res) => {
             })
         }
     } catch (err) {
+        console.log('err :>> ', err);
         res.status(500).send({
             success: false,
             message: "Can't get note"

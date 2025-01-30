@@ -7,6 +7,7 @@ const genrateAcessToken = (req, res) => {
             accessToken: generateToken('accessToken', req.body.userId, '1h'),
         })
     } catch (err) {
+        console.log('err :>> ', err);
         res.status(500).send({
             success: false,
             message: " can't create access token",

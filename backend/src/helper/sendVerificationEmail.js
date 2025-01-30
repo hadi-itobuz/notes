@@ -35,11 +35,9 @@ const sendEmail = (emailID, userId) => {
         }
     };
 
-    transporter.sendMail(mailConfigurations, function (error, info) {
+    transporter.sendMail(mailConfigurations, function (error) {
         if (error) throw Error(error);
         console.log('Email Sent Successfully');
     });
-
-    return registerToken;
 }
 export default sendEmail;

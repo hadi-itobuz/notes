@@ -16,6 +16,7 @@ const deleteById = async (req, res) => {
         }
 
     } catch (err) {
+        console.log('err :>> ', err);
         res.status(500).send({
             success: false,
             message: "Coudn't delete note"

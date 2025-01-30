@@ -1,7 +1,8 @@
 import Note from "../../models/note.js";
 const getSorted = async (req, res) => {
     try {
-        let { userId, page, sortBy } = req.body;
+        const {userId}=req.body;
+        let { page, sortBy } = req.body;
         const fields = ["title", "body", "createdOn"];
         if(!page) page=1;
         if(!sortBy) sortBy=title;
@@ -15,6 +16,8 @@ const getSorted = async (req, res) => {
             })
         }
     }catch(err){
+        console.log('err :>> ', err);
+
         res.status(500).send({
             success:false,
             message:"Unable to sort message"

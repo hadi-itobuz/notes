@@ -11,6 +11,7 @@ const isLoggedIn = async (req, res, next) => {
             });
         }
     } catch (err) {
+        console.log('err :>> ', err);
         res.status(500).send({
             success: false,
             message: "Internal Error"
