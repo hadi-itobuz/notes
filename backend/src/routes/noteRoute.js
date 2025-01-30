@@ -9,7 +9,7 @@ import searchNote from "../controllers/notes/searchNote.js";
 import { noteSchema, validateData } from "../middleware/verifyCredentials.js";
 import { verifyAccessToken } from "../middleware/verifyToken.js";
 import isLoggedIn from "../middleware/isLoggedIn.js";
-import attachFile from "../controllers/notes/attachFile.js";
+import {attachFile,upload} from "../controllers/notes/attachFile.js";
 
 const noteRoute = express.Router();
 
@@ -30,6 +30,6 @@ noteRoute.post('/getSorted', verifyAccessToken, isLoggedIn, getSorted)
 noteRoute.get('/getId/:id', verifyAccessToken, isLoggedIn, getById);
 noteRoute.delete('/deleteId/:id', verifyAccessToken, isLoggedIn, deleteById);
 noteRoute.put('/edit/:id', verifyAccessToken, isLoggedIn, editNote);
-noteRoute.put('/upload',verifyAccessToken,isLoggedIn,attachFile);
+noteRoute.put('/upload',verifyAccessToken,isLoggedIn,upload.single('file'),attachFile);
 
 export default noteRoute;
