@@ -17,6 +17,9 @@ const notesSchema = new mongoose.Schema({
         type: Date,
         required: true,
         default: Date.now
+    },
+    fileName: {
+        type: String
     }
 })
 const Note = mongoose.model("Note", notesSchema);

@@ -1,0 +1,490 @@
+{
+	"info": {
+		"_postman_id": "4dc7bae8-1853-4d36-a278-53e353f3cffc",
+		"name": "Notes app",
+		"description": "APIs for notes app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41318315"
+	},
+	"item": [
+		{
+			"name": "notes",
+			"item": [
+				{
+					"name": "Notes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/notes/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"notes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addNote",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTliOGE3NTdiMjkyY2JmNzYxMzdlZSIsImlhdCI6MTczODEyNzU2MiwiZXhwIjoxNzM4MTMxMTYyfQ.a53oOelJJi4lrfwm-hQrxvF-MreE2grkSXTTMstFm6g",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\":\"note3\",\n    \"body\":\"note 2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/notes/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"notes",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/notes/getAll",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"notes",
+								"getAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTc1MjgyODBiODkxZGFmNGFhYWM5OSIsImlhdCI6MTczNzk3MTAyMSwiZXhwIjoxNzM3OTc0NjIxfQ.lA8CDa5tkc-qcpH04bwdeDeYObXfT4tcD4OU8QgHreM",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"searchText\":\"note\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/notes/search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"notes",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTc1MjgyODBiODkxZGFmNGFhYWM5OSIsImlhdCI6MTczNzk3MTAyMSwiZXhwIjoxNzM3OTc0NjIxfQ.lA8CDa5tkc-qcpH04bwdeDeYObXfT4tcD4OU8QgHreM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/notes/getId/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"notes",
+								"getId",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/notes/deleteId/679378e3a0c85b28a8556120",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"notes",
+								"deleteId",
+								"679378e3a0c85b28a8556120"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit note",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTc1MjgyODBiODkxZGFmNGFhYWM5OSIsImlhdCI6MTczNzk3MTAyMSwiZXhwIjoxNzM3OTc0NjIxfQ.lA8CDa5tkc-qcpH04bwdeDeYObXfT4tcD4OU8QgHreM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\":\"updated title\",\n    \"body\":\"this is an updated note\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/notes/edit/?id=679753d680b891daf4aaaca1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"notes",
+								"edit",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "id",
+									"value": "679753d680b891daf4aaaca1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get sorted",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"page\":1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/notes/getSorted",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"notes",
+								"getSorted"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "register user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"User1@123\",\n    \"email\":\"user1@itobuz.com\",\n    \"password\":\"User1@123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/addUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"addUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sendEmail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/verify/sendEmail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"verify",
+								"sendEmail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTliOGE3NTdiMjkyY2JmNzYxMzdlZSIsImlhdCI6MTczODEyODk4MCwiZXhwIjoxNzM4MTMyNTgwfQ.2JfbH_o84KMpbqggerpxRDBcuk7wRUoSmzTKEjWA7Vs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data=pm.response.json();",
+									"pm.environment.set('accessToken',data.accessToken);",
+									"pm.environment.set('refreshToken',data.refreshToken);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"user1@itobuz.com\",\n    \"password\":\"User1@123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAccessToken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data=pm.response.json();",
+									"pm.environment.set('accessToken',data.accessToken);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{refreshToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/user/getAccessToken",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"getAccessToken"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
