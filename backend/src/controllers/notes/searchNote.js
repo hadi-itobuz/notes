@@ -2,8 +2,9 @@ import Note from "../../models/note.js";
 import User from "../../models/user.js"
 const searchNote = async (req, res) => {
     try {
-        const { userId, searchText } = req.body;
-        const user = await User.findById(userId);
+        const { userId } = req.body;
+        const searchText=req.query.searchText;
+        // const user = await User.findById(userId);
         const notes = await Note.find({
             userId,
             '$or': [
