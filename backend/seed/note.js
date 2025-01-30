@@ -6,7 +6,7 @@ const genrateNote =async (num) => {
     const l = users.length;
     console.log('l :>> ', l);
     for (let index = 0; index < num; index++) {
-        const userId = users[Math.floor(Math.random(l))]._id;
+        const userId = users[Math.floor(Math.random()*l)]._id;
         const title = faker.science.chemicalElement().name;
         const body = faker.lorem.lines({ min: 1, max: 5 });
         const note = new Note({ userId, title, body });

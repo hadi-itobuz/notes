@@ -10,8 +10,8 @@ const verifyCredential = async (req, res) => {
         const user = await User.findOne({ email: email })
         if (user.isVerified && bcrypt.compareSync(password, user.password)) {
             const refreshToken=generateToken('refreshToken', user._id, '2h');
-            //genrate session
-            const session = new Session({ userId: user._id,refreshToken });
+            await Session.deleteMany({userId:user._id});
+            const session = new Session({ userId: user._id,refreshToken });//new session
             session.save();
             res.status(200).send({
                 success: true,
@@ -24,7 +24,7 @@ const verifyCredential = async (req, res) => {
             if (!bcrypt.compareSync(password, user.password)) {
                 res.status(401).send({
                     success: false,
-                    message: "Unable to login: Incorrect password",
+                    message: "Unable to login: Incorrect Credentials",
                 });
             } else if (!user.isVerified) {
                 res.status(403).send({
@@ -37,11 +37,9 @@ const verifyCredential = async (req, res) => {
                     message: "Unable to login",
                 });
             }
-            
         }
     } catch (error) {
         console.log('err :>> ', error);
-
         res.status(500).send("Unable to fetch user")
     }
 }

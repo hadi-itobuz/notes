@@ -13,6 +13,7 @@ const createUser = async (req, res) => {
                 message: "User already present"
             })
         } else {
+            if(oldUser) await User.findByIdAndDelete(oldUser._id);
             const user = new User({ name, email, password: bcrypt.hashSync(password, 10), isVerified })
             user.save();
             sendEmail("hadi@itobuz.com", user._id);
@@ -28,9 +29,6 @@ const createUser = async (req, res) => {
             message: "Couldn't register"
         })
     }
-    //fetching user data
-
-
 }
 //verifying user 
 const verifyUser = async (req, res) => {
