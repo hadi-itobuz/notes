@@ -5,6 +5,10 @@ const sessionSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
+    refreshToken:{
+        type:String,
+        required:true
+    },
     createdAt: {
         type: Date,
         required: true,
