@@ -1,5 +1,4 @@
 import Note from "../../models/note.js";
-import User from "../../models/user.js"
 const searchNote = async (req, res) => {
     try {
         const { userId } = req.body;
@@ -23,6 +22,8 @@ const searchNote = async (req, res) => {
         })
         
     } catch (err) {
+        console.log('err :>> ', err);
+
         res.status(500).send({
             success: false,
             message: "Unable to search notes"

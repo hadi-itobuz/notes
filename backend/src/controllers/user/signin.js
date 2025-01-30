@@ -40,6 +40,8 @@ const verifyCredential = async (req, res) => {
             
         }
     } catch (error) {
+        console.log('err :>> ', error);
+
         res.status(500).send("Unable to fetch user")
     }
 }
