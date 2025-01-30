@@ -6,10 +6,10 @@ import editNote from "../controllers/notes/editNote.js";
 import deleteById from "../controllers/notes/deleteNoteById.js";
 import getSorted from "../controllers/notes/getSortedNotes.js";
 import searchNote from "../controllers/notes/searchNote.js";
-// import {searchNote} from "../controllers/note.js";
 import { noteSchema, validateData } from "../middleware/verifyCredentials.js";
 import { verifyAccessToken } from "../middleware/verifyToken.js";
 import isLoggedIn from "../middleware/isLoggedIn.js";
+import attachFile from "../controllers/notes/attachFile.js";
 
 const noteRoute = express.Router();
 
@@ -30,5 +30,6 @@ noteRoute.post('/getSorted', verifyAccessToken, isLoggedIn, getSorted)
 noteRoute.get('/getId/:id', verifyAccessToken, isLoggedIn, getById);
 noteRoute.delete('/deleteId/:id', verifyAccessToken, isLoggedIn, deleteById);
 noteRoute.put('/edit/:id', verifyAccessToken, isLoggedIn, editNote);
+noteRoute.put('/upload',verifyAccessToken,isLoggedIn,attachFile);
 
 export default noteRoute;
