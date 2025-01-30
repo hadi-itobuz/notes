@@ -1,4 +1,4 @@
-import generateToken from "../helper/genrateToken.js";
+import generateToken from "../../helper/genrateToken.js";
 const genrateAcessToken = (req, res) => {
     try {
         res.status(200).send({

@@ -1,11 +1,11 @@
 import express from 'express';
-import { createUser, verifyUser } from "../controllers/register.js";
+import { createUser, verifyUser } from "../controllers/user/register.js";
 import { userRegistrationSchema, userLoginSchema, validateData } from "../middleware/verifyCredentials.js";
 import { verifyRegistrationToken } from '../middleware/verifyToken.js';
-import { verifyCredential } from "../controllers/signin.js";
-import logout from '../controllers/logout.js';
+import { verifyCredential } from "../controllers/user/signin.js";
+import logout from '../controllers/user/logout.js';
 import { verifyAccessToken, verifyRefreshToken } from '../middleware/verifyToken.js';
-import genrateAcessToken from '../controllers/genrateAcessToken.js';
+import genrateAcessToken from '../controllers/user/genrateAcessToken.js';
 import isLoggedIn from '../middleware/isLoggedIn.js';
 
 const userRoute = express.Router();

@@ -1,5 +1,5 @@
-import User from "../models/user.js";
-import sendEmail from "../helper/sendVerificationEmail.js";
+import User from "../../models/user.js";
+import sendEmail from "../../helper/sendVerificationEmail.js";
 import bcrypt from 'bcryptjs';
 
 const createUser = async (req, res) => {

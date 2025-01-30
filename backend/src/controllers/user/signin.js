@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
-import User from '../models/user.js';
-import Session from '../models/session.js';
-import generateToken from '../helper/genrateToken.js';
+import User from '../../models/user.js';
+import Session from '../../models/session.js';
+import generateToken from '../../helper/genrateToken.js';
 
 
 const verifyCredential = async (req, res) => {
