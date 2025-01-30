@@ -5,7 +5,7 @@ const getSorted = async (req, res) => {
         let { page, sortBy } = req.body;
         const fields = ["title", "body", "createdOn"];
         if(!page) page=1;
-        if(!sortBy) sortBy=title;
+        if(!sortBy) sortBy="title";
         if (page <= 0) res.status(400).send({success:false,message:"Invalid page count"})
         else if(!fields.includes(sortBy)) res.status(400).send({ success:false, message:"Invalid sortBy field"})
         else{

@@ -10,15 +10,12 @@ import { noteSchema, validateData } from "../middleware/verifyCredentials.js";
 import { verifyAccessToken } from "../middleware/verifyToken.js";
 import isLoggedIn from "../middleware/isLoggedIn.js";
 import {attachFile,upload} from "../controllers/notes/attachFile.js";
+import getNotes from "../controllers/notes/getNotes.js";
 
 const noteRoute = express.Router();
 
-noteRoute.get('/', (req, res) => {
-    res.send({
-        sucess: true,
-        message: "this is the notes route"
-    })
-})
+noteRoute.get('/', verifyAccessToken,isLoggedIn,getNotes);//this route can get,search,sort and paginate notes
+//pageNumber(>0), notePerPage(>0), sortBy(title,body,createdOn), order(+1 or -1), searchText
 
 //operations wrt to user id
 noteRoute.post('/add', verifyAccessToken, isLoggedIn, validateData(noteSchema), addNote);
