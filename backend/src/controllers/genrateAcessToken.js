@@ -4,7 +4,7 @@ const genrateAcessToken = (req, res) => {
         res.status(200).send({
             success: true,
             message: "acess token genrated sucessfully",
-            accessToken: generateToken('accessToken', req.body.userId, '45m'),
+            accessToken: generateToken('accessToken', req.body.userId, '1h'),
         })
     } catch (err) {
         res.status(500).send({
