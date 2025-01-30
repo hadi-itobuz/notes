@@ -30,6 +30,6 @@ noteRoute.post('/getSorted', verifyAccessToken, isLoggedIn, getSorted)
 noteRoute.get('/getId/:id', verifyAccessToken, isLoggedIn, getById);
 noteRoute.delete('/deleteId/:id', verifyAccessToken, isLoggedIn, deleteById);
 noteRoute.put('/edit/:id', verifyAccessToken, isLoggedIn, editNote);
-noteRoute.put('/upload',verifyAccessToken,isLoggedIn,upload.single('file'),attachFile);
+noteRoute.put('/upload/:id',verifyAccessToken,isLoggedIn,upload.single('file'),attachFile);
 
 export default noteRoute;

@@ -18,7 +18,7 @@ const notesSchema = new mongoose.Schema({
         required: true,
         default: Date.now
     },
-    file: {
+    fileName: {
         type: String
     }
 })
