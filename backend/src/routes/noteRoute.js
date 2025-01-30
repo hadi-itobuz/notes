@@ -1,5 +1,12 @@
 import express from "express"
-import { addNote, getAll, getById, deleteById, editNote, searchNote, getSorted } from "../controllers/note.js";
+import addNote from "../controllers/notes/addNote.js";
+import getAll from "../controllers/notes/getAllNotes.js";
+import getById from "../controllers/notes/getNoteById.js";
+import editNote from "../controllers/notes/editNote.js";
+import deleteById from "../controllers/notes/deleteNoteById.js";
+import getSorted from "../controllers/notes/getSortedNotes.js";
+import searchNote from "../controllers/notes/searchNote.js";
+// import {searchNote} from "../controllers/note.js";
 import { noteSchema, validateData } from "../middleware/verifyCredentials.js";
 import { verifyAccessToken } from "../middleware/verifyToken.js";
 import isLoggedIn from "../middleware/isLoggedIn.js";
