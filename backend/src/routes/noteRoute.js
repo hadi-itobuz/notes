@@ -11,7 +11,7 @@ import { verifyAccessToken } from "../middleware/verifyToken.js";
 import isLoggedIn from "../middleware/isLoggedIn.js";
 import {attachFile,upload} from "../controllers/notes/attachFile.js";
 import getNotes from "../controllers/notes/getNotes.js";
-
+import getFile from "../controllers/notes/getFile.js";
 const noteRoute = express.Router();
 
 noteRoute.get('/', verifyAccessToken,isLoggedIn,getNotes);//this route can get,search,sort and paginate notes
@@ -27,6 +27,7 @@ noteRoute.post('/getSorted', verifyAccessToken, isLoggedIn, getSorted)
 noteRoute.get('/getId/:id', verifyAccessToken, isLoggedIn, getById);
 noteRoute.delete('/deleteId/:id', verifyAccessToken, isLoggedIn, deleteById);
 noteRoute.put('/edit/:id', verifyAccessToken, isLoggedIn, editNote);
-noteRoute.put('/upload/:id',verifyAccessToken,isLoggedIn,upload.single('file'),attachFile);
+noteRoute.put('/upload/:id',verifyAccessToken,isLoggedIn,upload.single('filename'),attachFile);
+noteRoute.get('/getFile/:id',getFile);
 
 export default noteRoute;
