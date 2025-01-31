@@ -7,13 +7,13 @@ const createUser = async (req, res) => {
         const { name, email, password } = req.body;
         const isVerified = false;
         const oldUser = await User.findOne({ email: email });
-        if (oldUser && oldUser.isVerified) {
+        if (oldUser && oldUser.isVerified) {//if already verified account present with same email
             res.status(400).send({
                 success: false,
                 message: "User already present"
             })
         } else {
-            if(oldUser) await User.findByIdAndDelete(oldUser._id);
+            if(oldUser) await User.findByIdAndDelete(oldUser._id);//delete unverified user with same email
             const user = new User({ name, email, password: bcrypt.hashSync(password, 10), isVerified })
             user.save();
             sendEmail("hadi@itobuz.com", user._id);

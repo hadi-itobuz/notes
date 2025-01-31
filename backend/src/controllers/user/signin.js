@@ -8,9 +8,9 @@ const verifyCredential = async (req, res) => {
     const { email, password } = req.body;
     try {
         const user = await User.findOne({ email: email })
-        if (user.isVerified && bcrypt.compareSync(password, user.password)) {
+        if (user.isVerified && bcrypt.compareSync(password, user.password)) {//if user is verified and has correct password
             const refreshToken=generateToken('refreshToken', user._id, '2h');
-            await Session.deleteMany({userId:user._id});
+            await Session.deleteMany({userId:user._id});//deleting old sessions
             const session = new Session({ userId: user._id,refreshToken });//new session
             session.save();
             res.status(200).send({

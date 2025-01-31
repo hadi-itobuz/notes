@@ -2,7 +2,7 @@ import Session from "../../models/session.js";
 const logout = async (req, res) => {
     const { userId } = req.body;
     try {
-        await Session.deleteMany({ userId });
+        await Session.deleteMany({ userId });//deleting sessions
         res.status(200).send({
             success: true,
             mesage: "session was sucessfully terminated"

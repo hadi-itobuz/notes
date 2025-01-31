@@ -1,4 +1,5 @@
 import generateToken from "../../helper/genrateToken.js";
+//validity of refresh token was checked in middleware
 const genrateAcessToken = (req, res) => {
     try {
         res.status(200).send({
