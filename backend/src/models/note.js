@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const notesSchema = new mongoose.Schema({
-    userId: {
+    userId: {//to connect with user
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
@@ -16,7 +16,7 @@ const notesSchema = new mongoose.Schema({
     createdOn: {
         type: Date,
         required: true,
-        default: Date.now
+        default: Date.now//current date and time
     },
     fileName: {
         type: String

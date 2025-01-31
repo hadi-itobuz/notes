@@ -2,7 +2,7 @@ import Note from "../../models/note.js";
 const addNote = async (req, res) => {
     const { userId, title, body } = req.body;
     try {
-        if (await Note.findOne({ userId, title })) {
+        if (await Note.findOne({ userId, title })) {//if note with same title already exists
             res.status(400).send({
                 success: false,
                 message: "Unable to create note:duplicate title"
@@ -16,7 +16,6 @@ const addNote = async (req, res) => {
                 noteId: note._id
             })
         }
-
     } catch (err) {
         console.log('err :>> ', err);
         res.status(400).send({

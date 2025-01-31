@@ -2,7 +2,7 @@ import Note from "../../models/note.js";
 const getAll = async (req, res) => {
     const userId = req.body.userId;
     try {
-        const notes = await Note.find({ userId: userId });
+        const notes = await Note.find({ userId: userId });//getting all notes pertaining to the user id
         res.status(200).send({
             success: true,
             message: "Notes retrived",

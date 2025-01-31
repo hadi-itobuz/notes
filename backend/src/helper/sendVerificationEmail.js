@@ -24,7 +24,6 @@ const sendEmail = (emailID, userId) => {
     }));
     const registerToken = generateToken('registrationToken', userId, '15m');
 
-    // console.log('token sent :>> ', token);
     const mailConfigurations = {
         from: 'hadi@itobuz.com',
         to: `hadi@itobuz.com`,//replace with ${emailID}
