@@ -30,7 +30,7 @@ const noteSchema = z.object({
 const validateData = (schema) => {//function to validate req based on schema
     return (req, res, next) => {
         try {
-            schema.parse(req.body);
+            schema.parse(req.body);//sucessful parse
             next();
         } catch (error) {
             if (error instanceof ZodError) {
