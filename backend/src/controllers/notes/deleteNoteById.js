@@ -14,7 +14,6 @@ const deleteById = async (req, res) => {
                 message: "Note not found"
             })
         }
-
     } catch (err) {
         console.log('err :>> ', err);
         res.status(500).send({
