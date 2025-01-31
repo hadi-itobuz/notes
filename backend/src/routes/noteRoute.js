@@ -6,7 +6,7 @@ import getNotes from "../controllers/notes/getNotes.js";//seaching sorting pagen
 import getAll from "../controllers/notes/getAllNotes.js";
 import getById from "../controllers/notes/getNoteById.js";
 import getSorted from "../controllers/notes/getSortedNotes.js";
-import searchNote from "../controllers/notes/searchNote.js";ß
+import searchNote from "../controllers/notes/searchNote.js";
 import getFile from "../controllers/notes/getFile.js";
 //update
 import editNote from "../controllers/notes/editNote.js";
