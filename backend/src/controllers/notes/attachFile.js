@@ -18,6 +18,7 @@ const attachFile =async (req, res) => {
         return res.status(400).send('No file uploaded.');
     }
     const note=await Note.findById(req.params.id);
+    console.log('req :>> ', req.file);
     note.fileName=req.file.filename;
     note.save();
     res.send(`File uploaded successfully: ${req.file.filename}`);
