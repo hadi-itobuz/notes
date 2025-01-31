@@ -13,6 +13,7 @@ const verifyCredential = async (req, res) => {
             await Session.deleteMany({userId:user._id});//deleting old sessions
             const session = new Session({ userId: user._id,refreshToken });//new session
             session.save();
+            
             res.status(200).send({
                 success: true,
                 message: "successfully logged in",
