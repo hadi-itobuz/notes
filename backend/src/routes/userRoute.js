@@ -7,12 +7,14 @@ import logout from '../controllers/user/logout.js';
 import { verifyAccessToken, verifyRefreshToken } from '../middleware/verifyToken.js';
 import genrateAcessToken from '../controllers/user/genrateAcessToken.js';
 import isLoggedIn from '../middleware/isLoggedIn.js';
+import changePassword from '../controllers/user/changePassword.js';
 
 const userRoute = express.Router();
 
 userRoute.post('/addUser', validateData(userRegistrationSchema), createUser);
 userRoute.get('/verify/:token', verifyRegistrationToken, verifyUser);
 userRoute.post('/login', validateData(userLoginSchema), verifyCredential);
-userRoute.patch('/logout', verifyAccessToken, logout)
-userRoute.get('/getAccessToken', verifyRefreshToken, isLoggedIn, genrateAcessToken)
+userRoute.patch('/logout', verifyAccessToken, logout);
+userRoute.get('/getAccessToken', verifyRefreshToken, isLoggedIn, genrateAcessToken);
+userRoute.put('/updatePassword',verifyAccessToken,isLoggedIn,changePassword);
 export default userRoute;
