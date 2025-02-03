@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./src/script.js",
-    "lint": "eslint ./src --fix"
+    "start": "nodemon ./src/script.js --exec 'npm run eslint'",
+    "eslint": "eslint ./src --fix"
   },
   "author": "hadi ahmed",
   "license": "ISC",
