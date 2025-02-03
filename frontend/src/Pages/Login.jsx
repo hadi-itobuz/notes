@@ -8,8 +8,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 const Login = () => {
     const navigate = useNavigate();
-    const [password, setPassword] = useState('');
-    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('User2@123new');
+    const [email, setEmail] = useState('user2@itobuz.com');
     const handleSubmit = (event) => {
         event.preventDefault();
         const myHeaders = new Headers();
@@ -29,9 +29,12 @@ const Login = () => {
 
         fetch("http://localhost:3000/user/login", requestOptions)
             .then((response) => response.json())
-            .then((result) => {
-                console.log('result :>> ', result);
-                if(result.success===true) {
+            .then((res) => {
+                console.log('result :>> ', res);
+                // let uniqueID = JSON.parse(localStorage.getItem("uid")) || 0;
+                localStorage.setItem('accessToken',res.accessToken);
+                localStorage.setItem('refreshToken',res.refreshToken);
+                if(res.success===true) {
                     navigate('home');
                 }
                 else console.log("Unable to login");
@@ -42,6 +45,8 @@ const Login = () => {
     return (
         <Card color="transparent" className="p-5" shadow={false}>
             <Typography variant="h4" color="blue-gray">
+            user2@itobuz.com
+            User2@123new
                 Login
             </Typography>
             <form className=" mt-8 mb-2 w-80 max-w-screen-lg sm:w-96" onSubmit={handleSubmit}>
