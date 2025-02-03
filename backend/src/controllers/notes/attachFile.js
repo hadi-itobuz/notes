@@ -14,22 +14,22 @@ const upload = multer({
     limits: { fileSize: 1000000 } // Limit file size to 1MB
 });
 
-const attachFile =async (req, res) => {
-    try{
+const attachFile = async (req, res) => {
+    try {
         if (!req.file) return res.status(400).send('No file uploaded.');
 
-        const note=await Note.findById(req.params.id);
-        note.fileName=req.file.filename;
+        const note = await Note.findById(req.params.id);
+        note.fileName = req.file.filename;
         note.save();
         res.status(200).send(`File uploaded successfully: ${req.file.filename}`);
-    }catch(err){
+    } catch (err) {
         console.log('err :>> ', err);
         res.status(500).send({
-            success:false,
-            messsage:"Unable to attach file"
+            success: false,
+            messsage: "Unable to attach file"
         })
     }
-    
+
 }
 
 export { attachFile, upload };

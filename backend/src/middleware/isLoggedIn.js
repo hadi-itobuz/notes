@@ -2,7 +2,7 @@ import Session from "../models/session.js";
 const isLoggedIn = async (req, res, next) => {
     try {
         const { userId } = req.body;
-        const session = await Session.findOne({userId});
+        const session = await Session.findOne({ userId });
         if (session) next();//if a session belonging to user exists
         else {
             res.status(404).send({

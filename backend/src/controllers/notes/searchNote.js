@@ -2,8 +2,8 @@ import Note from "../../models/note.js";
 const searchNote = async (req, res) => {
     try {
         const { userId } = req.body;
-        const searchText=req.query.searchText;
-        if(searchText){
+        const searchText = req.query.searchText;
+        if (searchText) {
             const notes = await Note.find({
                 userId,
                 '$or': [
@@ -16,11 +16,11 @@ const searchNote = async (req, res) => {
                 message: `${notes.length} notes found`,
                 notes
             });
-        }else res.status(500).send({
+        } else res.status(500).send({
             success: false,
             message: "Unable to search notes"
         })
-        
+
     } catch (err) {
         console.log('err :>> ', err);
 

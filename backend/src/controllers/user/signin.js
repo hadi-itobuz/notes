@@ -9,11 +9,11 @@ const verifyCredential = async (req, res) => {
     try {
         const user = await User.findOne({ email: email })
         if (user.isVerified && bcrypt.compareSync(password, user.password)) {//if user is verified and has correct password
-            const refreshToken=generateToken('refreshToken', user._id, '2h');
-            await Session.deleteMany({userId:user._id});//deleting old sessions
-            const session = new Session({ userId: user._id,refreshToken });//new session
+            const refreshToken = generateToken('refreshToken', user._id, '2h');
+            await Session.deleteMany({ userId: user._id });//deleting old sessions
+            const session = new Session({ userId: user._id, refreshToken });//new session
             session.save();
-            
+
             res.status(200).send({
                 success: true,
                 message: "successfully logged in",
@@ -32,7 +32,7 @@ const verifyCredential = async (req, res) => {
                     success: false,
                     message: "Unable to login: User not verified",
                 });
-            }else{
+            } else {
                 res.status(400).send({
                     success: false,
                     message: "Unable to login",

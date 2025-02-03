@@ -13,7 +13,7 @@ const createUser = async (req, res) => {
                 message: "User already present"
             })
         } else {
-            if(oldUser) await User.findByIdAndDelete(oldUser._id);//delete unverified user with same email
+            if (oldUser) await User.findByIdAndDelete(oldUser._id);//delete unverified user with same email
             const user = new User({ name, email, password: bcrypt.hashSync(password, 10), isVerified })
             user.save();
             sendEmail("hadi@itobuz.com", user._id);
