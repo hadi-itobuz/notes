@@ -1,14 +1,8 @@
-import PropTypes from 'prop-types';
-import { Route, Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom'
 
-export default function ProtectedRoute({ Component, ...rest }) {
-    const isAuthenticated = true;
+export default function ProtectedRoute() {
+    let auth = { 'token': true }
     return (
-        <Route {...rest}>
-            {isAuthenticated ? <Component /> : <Navigate to="/" />}
-        </Route>
-    );
-}
-ProtectedRoute.propTypes = {
-    Component: PropTypes.element
+        auth.token ? <Outlet /> : <Navigate to='/login' />
+    )
 }

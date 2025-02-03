@@ -9,15 +9,18 @@ import {
 import Home from './Pages/Home';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
+import ProtectedRoute from './components/ProtectedRoute';
 function App() {
 
   return (
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Login/>} />
-          <Route path='/home' element={<Home/>}/>
-          <Route path="/register" element={<Register/>} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/" element={<Login />} />
+            <Route path='/home' element={<Home />} />
+            <Route path="/register" element={<Register />} />
+          </Route>
         </Routes>
       </Router>
     </>
