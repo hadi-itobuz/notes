@@ -32,9 +32,9 @@ const Login = () => {
             .then((res) => {
                 console.log('result :>> ', res);
                 // let uniqueID = JSON.parse(localStorage.getItem("uid")) || 0;
-                localStorage.setItem('accessToken',res.accessToken);
-                localStorage.setItem('refreshToken',res.refreshToken);
-                if(res.success===true) {
+                localStorage.setItem('accessToken', res.accessToken);
+                localStorage.setItem('refreshToken', res.refreshToken);
+                if (res.success === true) {
                     navigate('home');
                 }
                 else console.log("Unable to login");
@@ -45,8 +45,8 @@ const Login = () => {
     return (
         <Card color="transparent" className="p-5" shadow={false}>
             <Typography variant="h4" color="blue-gray">
-            user2@itobuz.com
-            User2@123new
+                user2@itobuz.com
+                User2@123new
                 Login
             </Typography>
             <form className=" mt-8 mb-2 w-80 max-w-screen-lg sm:w-96" onSubmit={handleSubmit}>
@@ -80,7 +80,7 @@ const Login = () => {
                         }}
                     />
                 </div>
-                <Button className="mt-6" type="submit" value="Submit" fullWidth>
+                <Button className="mt-6 bg-black p-2" type="submit" value="Submit" fullWidth>
                     Login
                 </Button>
             </form>
