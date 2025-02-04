@@ -2,6 +2,7 @@ import {
     Input,
     Typography,
 } from "@material-tailwind/react";
+import PropTypes from "prop-types"
 const FormField = ({ fieldObj }) => {
     return (
         <>
@@ -21,4 +22,8 @@ const FormField = ({ fieldObj }) => {
         </>
     )
 }
+FormField.propTypes = {
+    fieldObj:PropTypes.object
+  }
+  
 export default FormField;
