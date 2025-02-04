@@ -26,7 +26,7 @@ const sendEmail = (emailID, userId) => {
 
     const mailConfigurations = {
         from: 'hadi@itobuz.com',
-        to: `hadi@itobuz.com`,//replace with ${emailID}
+        to: `${emailID}`,//replace with ${emailID}
         subject: `Email Verification: ${emailID}`,
         template: 'verificationEmail',
         context: {

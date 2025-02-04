@@ -16,7 +16,7 @@ const createUser = async (req, res) => {
             if (oldUser) await User.findByIdAndDelete(oldUser._id);//delete unverified user with same email
             const user = new User({ name, email, password: bcrypt.hashSync(password, 10), isVerified })
             user.save();
-            sendEmail("hadi@itobuz.com", user._id);
+            sendEmail(email, user._id);
             res.status(200).send({
                 success: true,
                 message: "User registred, Verification email sent",
