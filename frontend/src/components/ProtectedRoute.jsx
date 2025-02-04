@@ -15,7 +15,6 @@ const isValid = async () => {
         const response = await fetch("http://localhost:3000/user/isValid", requestOptions)
         auth = await response.json();
         auth = auth.success;
-        console.log('auth :>> ', auth);
         if (auth === true) return true;
         return false;
     } catch (err) {
@@ -28,14 +27,10 @@ const ProtectedRoute = () => {
     let [auth,setAuth] = useState(null);
 
     useEffect(() => {
-        console.log('Component mounted');
         const fetchData = async () => {
             setAuth(await isValid());
         };
         fetchData();
-        return () => {
-            console.log('Component unmounted');
-        };
     }, [auth]);
     // const auth=true;
 

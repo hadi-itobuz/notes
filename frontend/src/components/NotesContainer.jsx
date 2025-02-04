@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Note from "./Note";
 import NotesContainerHeader from "./NoteContainerHeader";
 const notes = [
@@ -51,11 +52,12 @@ const notes = [
     }
 ]
 const NotesContainer = () => {
+    const [searchField,setSearchField]=useState('');
     return (
 
         <div className="container p-3">
             <h1>NOTES...</h1>
-            <NotesContainerHeader />
+            <NotesContainerHeader searchField={searchField} setSearchField={setSearchField}  />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {notes.map(note => (<Note key={note._id} note={note} />))}
             </div>
