@@ -17,7 +17,6 @@ const verifyCredential = async (req, res) => {
             res.status(200).send({
                 success: true,
                 message: "successfully logged in",
-                id: user._id,
                 accessToken: generateToken('accessToken', user._id, '5m'),
                 refreshToken
             })

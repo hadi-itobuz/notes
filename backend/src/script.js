@@ -3,9 +3,10 @@ import 'dotenv/config';
 import connectToDb from "./config/connectToDb.js";
 import noteRoute from "./routes/noteRoute.js";
 import userRoute from "./routes/userRoute.js";
-
+import cors from "cors";
 const app = express()
 app.use(express.json());
+app.use(cors());
 
 connectToDb();//connectong to mongo db data base
 
