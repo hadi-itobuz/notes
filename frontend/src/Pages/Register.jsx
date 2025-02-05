@@ -24,7 +24,10 @@ const Register = () => {
 
         axios.request(config)
             .then((response) => {
-                console.log(JSON.stringify(response.data));
+                // console.log(JSON.stringify(response.data));
+                if(response.status===200){
+                    console.log('success :>> ');
+                }
             })
             .catch((error) => {
                 console.log(error);

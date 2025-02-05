@@ -6,7 +6,7 @@ import FormField from "./FormField";
 const Form = ({ fields, handleSubmit }) => {
     return (
         <Card color="transparent" className="p-5" shadow={false}>
-            <form className=" mt-8 mb-2 w-80 max-w-screen-lg sm:w-96" onSubmit={handleSubmit}>
+            <form className=" mt-8 mb-2 w-80 max-w-screen-lg sm:w-96" onSubmit={handleSubmit} >
                 <div className="mb-1 flex flex-col gap-6">
                     {fields.map((field) => <FormField key={field.name} fieldObj={field} />)}
                 </div>
