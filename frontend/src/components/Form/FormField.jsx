@@ -3,7 +3,7 @@ import {
     Typography,
 } from "@material-tailwind/react";
 import PropTypes from "prop-types"
-const FormField = ({ fieldObj }) => {
+const FormField = ({ fieldObj,register, errors }) => {
     return (
         <>
             <Typography variant="h6" color="blue-gray" className="-mb-3">
@@ -11,7 +11,7 @@ const FormField = ({ fieldObj }) => {
             </Typography>
             <Input
                 type={fieldObj.type}
-                value={fieldObj.val} onChange={(e) => fieldObj.setVal(e.target.value)}
+                defaultValue={fieldObj.val} {...register(`${fieldObj.name}`)}
                 size="lg"
                 placeholder="name@mail.com"
                 className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
@@ -19,11 +19,14 @@ const FormField = ({ fieldObj }) => {
                     className: "before:content-none after:content-none",
                 }}
             />
+            {/* {errors.fieldObj.name && <p>Erorr....</p>} */}
         </>
     )
 }
 FormField.propTypes = {
-    fieldObj:PropTypes.object
+    fieldObj:PropTypes.object,
+    register:PropTypes.func,
+    errors:PropTypes.object
   }
   
 export default FormField;

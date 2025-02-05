@@ -4,14 +4,14 @@ import FormField from "./FormField";
 import { useForm } from "react-hook-form";
 
 const Form = ({ fields, onSubmit }) => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
     return (
         <Card color="transparent" className="p-5" shadow={false}>
             <form className=" mt-8 mb-2 w-80 max-w-screen-lg sm:w-96" onSubmit={handleSubmit(onSubmit)} >
                 <div className="mb-1 flex flex-col gap-6">
-                    {fields.map((field) => <FormField key={field.name} fieldObj={field} />)}
+                    {fields.map((field) => <FormField key={field.name} fieldObj={field} register={register} errors={errors} />)}
                 </div>
-                <Button className="mt-6 bg-black p-2" type="submit" value="Submit" fullWidth>
+                <Button onClick={() => reset()} className="mt-6 bg-black p-2" type="submit" value="Submit" fullWidth>
                     Submit
                 </Button>
             </form>

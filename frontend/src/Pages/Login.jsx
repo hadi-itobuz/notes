@@ -1,16 +1,15 @@
 import axios from "axios";
-import { useState } from "react";
+// import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import Form from "../components/Form/Form";
 const Login = () => {
     // const navigate = useNavigate();
-    const [password, setPassword] = useState('User@123');
-    const [email, setEmail] = useState('user@itobuz.com');
-    const handleSubmit = (event) => {
-        event.preventDefault();
+    // const [password, setPassword] = useState('User@123');
+    // const [email, setEmail] = useState('user@itobuz.com');
+    const handleSubmit = (formData) => {
         let data = JSON.stringify({
-            "email": email,
-            "password": password
+            "email": formData.Email,
+            "password": formData.Password
         });
 
         let config = {
@@ -25,7 +24,6 @@ const Login = () => {
 
         axios.request(config)
             .then((response) => {
-                console.log(response.data);
                 localStorage.removeItem('accessToken');
                 localStorage.removeItem('refreshToken');
                 if (response.data.success === true) {
@@ -40,8 +38,8 @@ const Login = () => {
                 console.log(error);
             });
     };
-    const fields = [{ name: "Email", type: "email", val: email, setVal: setEmail },
-    { name: 'Password', type: "password", val: password, setVal: setPassword }
+    const fields = [{ name: "Email", type: "email",val:'user@itobuz.com'},
+    { name: 'Password', type: "password", val: 'User@123' }
     ]
 
     return (
