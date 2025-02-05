@@ -1,12 +1,8 @@
 import axios from "axios";
-// import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
 import Form from "../components/Form/Form";
 const Login = () => {
-    // const navigate = useNavigate();
-    // const [password, setPassword] = useState('User@123');
-    // const [email, setEmail] = useState('user@itobuz.com');
     const handleSubmit = (formData) => {
+        console.log('formData :>> ', formData);
         let data = JSON.stringify({
             "email": formData.Email,
             "password": formData.Password
@@ -38,7 +34,7 @@ const Login = () => {
                 console.log(error);
             });
     };
-    const fields = [{ name: "Email", type: "email",val:'user@itobuz.com'},
+    const fields = [{ name: "Email", type: "email", val: 'user@itobuz.com' },
     { name: 'Password', type: "password", val: 'User@123' }
     ]
 
