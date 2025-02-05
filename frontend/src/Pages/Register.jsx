@@ -38,7 +38,7 @@ const Register = () => {
     { name: 'Password', type: "password", val: password, setVal: setPassword }
     ]
     return (
-        <Form fields={fields} handleSubmit={handleSubmit} />
+        <Form fields={fields} onSubmit={handleSubmit} />
     );
 }
 export default Register;

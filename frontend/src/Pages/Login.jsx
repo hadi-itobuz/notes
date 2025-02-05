@@ -45,7 +45,7 @@ const Login = () => {
     ]
 
     return (
-        <Form fields={fields} handleSubmit={handleSubmit} />
+        <Form fields={fields} onSubmit={handleSubmit} />
     );
 }
 export default Login;
