@@ -7,7 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon ./src/script.js",
-    "eslint": "eslint ./src --fix"
+    "eslint": "eslint ./src --fix",
+    "seed":"node ./seed/index.js"
   },
   "author": "hadi ahmed",
   "license": "ISC",

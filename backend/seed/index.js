@@ -7,12 +7,13 @@ import Note from "../src/models/note.js";
 import Session from "../src/models/session.js";
 const main = async () => {
         await mongoose.connect(process.env.CONNECTION_STRING)
+        
         await User.deleteMany({});
         await Note.deleteMany({});
         await Session.deleteMany({});
 
-        await genrateUser(10);
-        await genrateNote(50);
+        await genrateUser(20);
+        await genrateNote(100);
         await mongoose.disconnect();
 
 }
