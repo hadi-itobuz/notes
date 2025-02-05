@@ -8,22 +8,21 @@ const NotesContainer = () => {
     const [notes, setNotes] = useState(null);
     const [searchOptions, setSearchOptions] = useState({
         pageNumber: 1,
-        notePerPage: 4,
+        notePerPage: 20,
+        sortBy: "title",
         order: 1,
         searchText: ""
     })
     const updateNotes = async () => {
-        console.log('Updating :>> ',);
-        // const res = await instance.get('/notes/getAll')
-        const res= await instance.post('/notes/',searchOptions)
-        console.log('res.data.notes :>> ', res);
+        const res = await instance.post('/notes/', searchOptions)
         setNotes(res.data.notes);
     }
     useEffect(() => {
-        setNotes(null);
-        return () => {
-            updateNotes()
-        }
+        updateNotes();
+        // setNotes(null);
+        // return () => {
+        //     updateNotes()
+        // }
     }, [searchOptions]);
 
     return (
@@ -37,20 +36,6 @@ const NotesContainer = () => {
         </div>
     )
 }
+
+
 export default NotesContainer;
-
-
-
-
-
-// let config = {
-//   data : data
-// };
-
-// axios.request(config)
-// .then((response) => {
-//   console.log(JSON.stringify(response.data));
-// })
-// .catch((error) => {
-//   console.log(error);
-// });

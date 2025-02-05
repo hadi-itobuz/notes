@@ -1,11 +1,21 @@
 import { useForm } from "react-hook-form";
-
-const NotesContainerHeader = () => {
+import PropTypes from 'prop-types';
+const NotesContainerHeader = ({searchOptions,setSearchOptions} ) => {
     const { register, handleSubmit, reset} = useForm();
 
     const onSubmit=(formData)=>{
-        console.log('sortBy :>> ',formData.sortBy);
-        console.log('searchText :>> ',formData.searchText);
+        const pageNumber=searchOptions.pageNumber;
+        const notePerPage=4;
+        const searchText=formData.searchText;
+        const sortBy=formData.sortBy.split(' ')[0];
+        const order= formData.sortBy.split(' ')[1]?-1:1;
+        setSearchOptions({
+            pageNumber,
+            notePerPage,
+            sortBy,
+            order,
+            searchText
+        })
         reset();
     }
     return (
@@ -34,6 +44,12 @@ const NotesContainerHeader = () => {
         </>
     )
 }
+
+NotesContainerHeader.propTypes = {
+    searchOptions: PropTypes.object.isRequired,
+    setSearchOptions: PropTypes.func.isRequired
+}
+
 export default NotesContainerHeader;
 // onChange={(e) => setEmail(e.target.value)}
 
