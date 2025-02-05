@@ -35,20 +35,23 @@ const verifyCredential = async (req, res) => {
                 } else {
                     res.status(400).send({
                         success: false,
-                        message: "Unable to login",
+                        message: "Unable to Login",
                     });
                 }
             }
-        }else{
+        } else {
             res.status(404).send({
-                success:false,
-                message:"User not Found"
+                success: false,
+                message: "User not Found"
             })
         }
 
     } catch (error) {
         console.log('err :>> ', error);
-        res.status(500).send("Unable to fetch user")
+        res.status(500).send({
+            success: false,
+            message: "Unable to Login, Try again Later"
+        })
     }
 }
 
