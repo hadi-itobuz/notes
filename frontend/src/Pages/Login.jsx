@@ -1,6 +1,8 @@
 import axios from "axios";
 import Form from "../components/Form/Form";
+import { useState } from "react";
 const Login = () => {
+    const [err,setErr]=useState(null);
     const handleSubmit = (formData) => {
         console.log('formData :>> ', formData);
         let data = JSON.stringify({
@@ -31,9 +33,12 @@ const Login = () => {
                 else console.log("Unable to login");
             })
             .catch((error) => {
-                console.log(error);
-            });
+                console.log('error :>> ', error);
+                console.log(' :>> ',error.response.data.message );
+                setErr(error.response.data.message)
+            }).finally(()=>console.log('err :>> ', err))
     };
+
     const fields = [{ name: "Email", type: "email", val: 'user@itobuz.com' },
     { name: 'Password', type: "password", val: 'User@123' }
     ]
