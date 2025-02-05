@@ -11,7 +11,6 @@ import Login from './Pages/Login';
 import Register from './Pages/Register';
 import ProtectedRoute from './components/ProtectedRoute';
 function App() {
-
   return (
     <>
       <Router>
