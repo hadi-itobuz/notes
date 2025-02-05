@@ -3,7 +3,7 @@ import {
     Typography,
 } from "@material-tailwind/react";
 import PropTypes from "prop-types"
-const FormField = ({ fieldObj,register, errors }) => {
+const FormField = ({ fieldObj,register }) => {
     return (
         <>
             <Typography variant="h6" color="blue-gray" className="-mb-3">
