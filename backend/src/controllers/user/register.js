@@ -8,7 +8,7 @@ const createUser = async (req, res) => {
         const isVerified = false;
         const oldUser = await User.findOne({ email: email });
         if (oldUser && oldUser.isVerified) {//if already verified account present with same email
-            res.status(400).send({
+            res.status(409).send({
                 success: false,
                 message: "User already present"
             })
