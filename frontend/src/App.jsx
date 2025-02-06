@@ -1,5 +1,4 @@
 import './App.css'
-// import React from 'react';
 import {
   BrowserRouter as Router,
   Routes,
@@ -12,7 +11,8 @@ import Login from './Pages/Login';
 import Register from './Pages/Register';
 import ProtectedRoute from './components/ProtectedRoute';
 import axios from 'axios';
-const isLoggedIn = async () => {
+
+const isLoggedIn = async () => {//function to check if user is logged in or not on reload, by requesting for access token using refresh token
   let config = {
     method: 'get',
     maxBodyLength: Infinity,
@@ -30,8 +30,8 @@ const isLoggedIn = async () => {
       console.log(error);
       return false;
     });
-
 }
+
 function App() {
   const [login, setLogin] = useState(isLoggedIn());
   return (

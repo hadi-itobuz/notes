@@ -19,7 +19,6 @@ const FormField = ({ fieldObj,register }) => {
                     className: "before:content-none after:content-none",
                 }}
             />
-            {/* {errors.fieldObj.name && <p>Erorr....</p>} */}
         </>
     )
 }

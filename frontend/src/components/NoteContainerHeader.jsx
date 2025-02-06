@@ -2,15 +2,17 @@ import { useForm } from "react-hook-form";
 import PropTypes from 'prop-types';
 const NotesContainerHeader = ({setSearchOptions} ) => {
     const { register, handleSubmit, reset} = useForm();
-
     const onSubmit=(formData)=>{
+        // extracting form data
         const pageNumber=1;
         const notePerPage=4;
         const searchText=formData.searchText;
         const sortBy=formData.sortBy.split(' ')[0];
         const order= formData.sortBy.split(' ')[1]?-1:1;
+        //setting form data
         setSearchOptions({pageNumber,notePerPage,sortBy,order,searchText
         })
+        //restting form
         reset();
     }
     return (

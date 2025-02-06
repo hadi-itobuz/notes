@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 const Login = ({ setLogin }) => {
     const notifyError = (message) => toast.error(message);
     const navigate = useNavigate();
@@ -36,19 +37,17 @@ const Login = ({ setLogin }) => {
                 else console.log("Unable to login");
             })
             .catch((error) => {
-                // notifyError(error.response.data.message)
-                if(error.response.data.details){
+                if (error.response.data.details)
                     error.response.data.details.forEach(error => {
                         notifyError(error.message);
                     });
-                }else{
-                    notifyError(error.response.data.message);
-                }
+                else notifyError(error.response.data.message);
             })
     };
 
-    const fields = [{ name: "Email", type: "email", val: 'user@itobuz.com' },
-    { name: 'Password', type: "password", val: 'User@123' }
+    const fields = [
+        { name: "Email", type: "email", val: 'user@itobuz.com' },
+        { name: 'Password', type: "password", val: 'User@123' }
     ]
 
     return (

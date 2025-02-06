@@ -3,7 +3,7 @@ const NotePagenaton = ({ searchOptions, setSearchOptions }) => {
     const { notePerPage, sortBy, order, searchText } = searchOptions;
     let { pageNumber } = searchOptions;
     const onClick = (num) => {
-        if (!(pageNumber === 1 && num===-1)){
+        if (!(pageNumber === 1 && num===-1)){//not making page number negative
             pageNumber += num;
             setSearchOptions({notePerPage, sortBy, order, searchText, pageNumber});
         }
@@ -11,10 +11,10 @@ const NotePagenaton = ({ searchOptions, setSearchOptions }) => {
     return (
 
         <div className="flex">
-            <button onClick={() => onClick(-1)} className="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 rounded-s hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+            <button onClick={() => onClick(-1)} className="flex items-center justify-center px-4 h-10 text-base font-medium  rounded-s bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white">
                 Prev
             </button>
-            <button onClick={() => onClick(1)} className="flex items-center justify-center px-4 h-10 text-base font-medium text-white bg-gray-800 border-0 border-s border-gray-700 rounded-e hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+            <button onClick={() => onClick(1)} className="flex items-center justify-center px-4 h-10 text-base font-medium border-0 border-s rounded-e  bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white">
                 Next
             </button>
         </div>

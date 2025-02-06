@@ -7,22 +7,22 @@ import NotePagenaton from "./NotePageination";
 
 const NotesContainer = () => {
     const [notes, setNotes] = useState(null);
-    const [searchOptions, setSearchOptions] = useState({
+    const [searchOptions, setSearchOptions] = useState({//default search options
         pageNumber: 1,
         notePerPage: 4,
         sortBy: "title",
         order: 1,
         searchText: ""
     })
-    const previousState = useRef(searchOptions)
+    const previousState = useRef(searchOptions);//storing last state->if current state is empty replacing
     useEffect(() => {
         const updateNotes = async () => {
             const res = await instance.post('/notes/', searchOptions)
-            if (res.data.notes.length > 0) {
-                previousState.current = searchOptions;//saving valid states
-                setNotes(res.data.notes);
+            if (res.data.notes.length > 0) {//if valid response
+                previousState.current = searchOptions;//saving valid state
+                setNotes(res.data.notes);//updating
             } else {
-                setSearchOptions(previousState.current);
+                setSearchOptions(previousState.current);//updating to previous state
             }
         }
         updateNotes();

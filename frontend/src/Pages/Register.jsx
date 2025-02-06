@@ -4,9 +4,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import Form from "../components/Form/Form";
 import { userRegistrationSchema } from "../helper/validation";
 const Register = () => {
+    // Toasts
     const notifySuccess = (message) => toast.success(message);
     const notifyError = (message) => toast.error(message);
     const notfyWarn = message => toast.warn(message);
+
     const handleSubmit = (formData) => {
         let data = {
             "name": formData.UserName,
@@ -28,8 +30,8 @@ const Register = () => {
             axios.request(config)
                 .then((response) => {
                     if (response.status === 200) {
-                        notifySuccess("User Registred successfully")
-                        notfyWarn("Please verify yourself an email has been sent to you")
+                        notifySuccess("User Registred successfully");
+                        notfyWarn("Please verify yourself an email has been sent to you");
                     }
                 })
                 .catch((error) => {
@@ -41,15 +43,16 @@ const Register = () => {
                 })
         }
         const valid = userRegistrationSchema.safeParse(data);
-        if (valid.success) sendRegistrationRequest();
+        if (valid.success) sendRegistrationRequest();//data validation
         else valid.error.errors.forEach(err => {
             notifyError(err.message);
         });
 
     };
-    const fields = [{ name: "UserName", type: "text", val: 'hadi' },
-    { name: "Email", type: "email", val: 'hadi@itobuz.com' },
-    { name: 'Password', type: "password", val: 'User@123' }
+    const fields = [
+        { name: "UserName", type: "text", val: 'hadi' },
+        { name: "Email", type: "email", val: 'hadi@itobuz.com' },
+        { name: 'Password', type: "password", val: 'User@123' }
     ]
     return (
         <>
