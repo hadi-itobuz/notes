@@ -5,7 +5,7 @@ const NotesContainerHeader = ({ setSearchOptions }) => {
 
     const onSubmit = (formData) => {
         const pageNumber = 1;
-        const notePerPage = 6;
+        const notePerPage = 4;
         const searchText = formData.searchText;
         const sortBy = formData.sortBy.split(' ')[0];
         const order = formData.sortBy.split(' ')[1] ? -1 : 1;
