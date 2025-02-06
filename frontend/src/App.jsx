@@ -36,7 +36,6 @@ function App() {
   const [login, setLogin] = useState(isLoggedIn());
   return (
     <>
-
       <Router>
         <Routes>
           <Route path="/" element={<Login setLogin={setLogin} />} />

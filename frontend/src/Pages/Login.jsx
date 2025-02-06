@@ -2,6 +2,7 @@ import axios from "axios";
 import Form from "../components/Form/Form";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types"
 const Login = ({setLogin}) => {
     const [err,setErr]=useState(null);
     const navigate=useNavigate();
@@ -50,5 +51,9 @@ const Login = ({setLogin}) => {
     return (
         <Form fields={fields} onSubmit={handleSubmit} />
     );
+}
+
+Login.propTypes = {
+    setLogin: PropTypes.func.isRequired
 }
 export default Login;
