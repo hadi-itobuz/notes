@@ -1,8 +1,10 @@
 import axios from "axios";
 import Form from "../components/Form/Form";
 import { useState } from "react";
-const Login = () => {
+import { useNavigate } from "react-router-dom";
+const Login = ({setLogin}) => {
     const [err,setErr]=useState(null);
+    const navigate=useNavigate();
     const handleSubmit = (formData) => {
         console.log('formData :>> ', formData);
         let data = JSON.stringify({
@@ -25,10 +27,12 @@ const Login = () => {
                 localStorage.removeItem('accessToken');
                 localStorage.removeItem('refreshToken');
                 if (response.data.success === true) {
+                    setLogin(true);
+                    console.log('login :>> ', true);
                     localStorage.setItem('accessToken', response.data.accessToken);
                     localStorage.setItem('refreshToken', response.data.refreshToken);
-                    // navigate('/home');
-                    window.location.href = '/home';
+                    navigate('/home')
+                    // window.location.href = '/home';
                 }
                 else console.log("Unable to login");
             })
