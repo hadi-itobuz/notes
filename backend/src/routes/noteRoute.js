@@ -23,7 +23,7 @@ const noteRoute = express.Router();
 //Create
 noteRoute.post('/add', verifyAccessToken, isLoggedIn, validateData(noteSchema), addNote);
 //R
-noteRoute.get('/', verifyAccessToken, isLoggedIn, getNotes);//this route can get,search,sort and paginate notesSS//pageNumber(>0), notePerPage(>0), sortBy(title,body,createdOn), order(+1 or -1), searchText
+noteRoute.post('/', verifyAccessToken, isLoggedIn, getNotes);//this route can get,search,sort and paginate notesSS//pageNumber(>0), notePerPage(>0), sortBy(title,body,createdOn), order(+1 or -1), searchText
 noteRoute.get('/getAll', verifyAccessToken, isLoggedIn, getAll); //get all notes pertaining to a user
 noteRoute.get('/search', verifyAccessToken, isLoggedIn, searchNote);
 noteRoute.post('/getSorted', verifyAccessToken, isLoggedIn, getSorted)

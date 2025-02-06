@@ -12,8 +12,8 @@ const main = async () => {
         await Note.deleteMany({});
         await Session.deleteMany({});
 
-        await genrateUser(20);
-        await genrateNote(100);
+        await genrateUser(10);
+        await genrateNote(200);
         await mongoose.disconnect();
 
 }
