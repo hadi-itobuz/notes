@@ -5,7 +5,7 @@ import Form from "../components/Form/Form";
 const Register = () => {
     const notifySuccess = (message) => toast.success(message);
     const notifyError = (message) => toast.error(message);
-    const notfyWarn=message=>toast.warn(message);
+    const notfyWarn = message => toast.warn(message);
     const handleSubmit = (formData) => {
         let data = JSON.stringify({
             "name": formData.UserName,
@@ -32,8 +32,11 @@ const Register = () => {
             })
             .catch((error) => {
                 console.log('error :>> ', error);
-                if(error.response.status===409) notifyError("User already exists, use alternate email ID");
-                else notifyError(error.response.data.message)
+                if (error.response.status === 409) notifyError("User already exists, use alternate email ID");
+                else if (error.response.status === 400)
+                    error.response.data.details.forEach(error => {
+                        notifyError(error.message);
+                    });
             })
 
     };

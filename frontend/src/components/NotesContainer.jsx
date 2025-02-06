@@ -29,7 +29,7 @@ const NotesContainer = () => {
     }, [searchOptions]);
 
     return (
-        <div className="container p-3">
+        <div className="container p-3 flex flex-col items-center">
             <h1>NOTES...</h1>
             <NotesContainerHeader setSearchOptions={setSearchOptions} />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2 py-5">
