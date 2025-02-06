@@ -1,21 +1,11 @@
-import { useEffect, useState } from 'react';
 import { Navigate, Outlet } from 'react-router-dom'
-const isValid = async () => {
-    return true;
-}
-const ProtectedRoute = () => {
-    let [auth,setAuth] = useState(null);
-
+import { useEffect } from 'react';
+const ProtectedRoute = ({login}) => {
     useEffect(() => {
-        const fetchData = async () => {
-            setAuth(await isValid());
-        };
-        fetchData();
-    }, [auth]);
-    if(auth === null) return (<h1>Loading....</h1>)
+        console.log('login :>> ', login);
+      }, [login]);
     return (
-        // console.log('auth :>> ', auth)
-        auth ? <Outlet /> : <Navigate to='/' />
+        login ? <Outlet /> : <Navigate to='/' />
     )
 }
 export default ProtectedRoute;
