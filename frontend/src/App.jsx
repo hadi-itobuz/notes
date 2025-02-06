@@ -12,18 +12,18 @@ import Login from './Pages/Login';
 import Register from './Pages/Register';
 import ProtectedRoute from './components/ProtectedRoute';
 import axios from 'axios';
-const isLoggedIn =async () => {
+const isLoggedIn = async () => {
   let config = {
     method: 'get',
     maxBodyLength: Infinity,
     url: 'http://localhost:3000/user/getAccessToken',
     headers: {
-      'Authorization': `Bearer ${localStorage.getItem('refreshToken')}` 
+      'Authorization': `Bearer ${localStorage.getItem('refreshToken')}`
     }
   };
   axios.request(config)
     .then((response) => {
-      localStorage.setItem('accessToken',response.data.accessToken);
+      localStorage.setItem('accessToken', response.data.accessToken);
       return true;
     })
     .catch((error) => {

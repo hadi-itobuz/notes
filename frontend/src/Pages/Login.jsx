@@ -1,13 +1,13 @@
 import axios from "axios";
 import Form from "../components/Form/Form";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import PropTypes from "prop-types"
-const Login = ({setLogin}) => {
-    const [err,setErr]=useState(null);
-    const navigate=useNavigate();
+import PropTypes from "prop-types";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+const Login = ({ setLogin }) => {
+    const notifyError = (message) => toast.error(message);
+    const navigate = useNavigate();
     const handleSubmit = (formData) => {
-        console.log('formData :>> ', formData);
         let data = JSON.stringify({
             "email": formData.Email,
             "password": formData.Password
@@ -28,20 +28,23 @@ const Login = ({setLogin}) => {
                 localStorage.removeItem('accessToken');
                 localStorage.removeItem('refreshToken');
                 if (response.data.success === true) {
-                    setLogin(true);
-                    console.log('login :>> ', true);
                     localStorage.setItem('accessToken', response.data.accessToken);
                     localStorage.setItem('refreshToken', response.data.refreshToken);
                     navigate('/home')
-                    // window.location.href = '/home';
+                    setLogin(true);
                 }
                 else console.log("Unable to login");
             })
             .catch((error) => {
-                console.log('error :>> ', error);
-                console.log(' :>> ',error.response.data.message );
-                setErr(error.response.data.message)
-            }).finally(()=>console.log('err :>> ', err))
+                // notifyError(error.response.data.message)
+                if(error.response.data.details){
+                    error.response.data.details.forEach(error => {
+                        notifyError(error.message);
+                    });
+                }else{
+                    notifyError(error.response.data.message);
+                }
+            })
     };
 
     const fields = [{ name: "Email", type: "email", val: 'user@itobuz.com' },
@@ -49,7 +52,10 @@ const Login = ({setLogin}) => {
     ]
 
     return (
-        <Form fields={fields} onSubmit={handleSubmit} />
+        <>
+            <Form fields={fields} onSubmit={handleSubmit} />
+            <ToastContainer theme="dark" />
+        </>
     );
 }
 

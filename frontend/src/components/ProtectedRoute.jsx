@@ -1,11 +1,9 @@
 import { Navigate, Outlet } from 'react-router-dom'
-import { useEffect } from 'react';
+// eslint-disable-next-line react/prop-types
 const ProtectedRoute = ({login}) => {
-    useEffect(() => {
-        console.log('login :>> ', login);
-      }, [login]);
     return (
         login ? <Outlet /> : <Navigate to='/' />
     )
 }
+
 export default ProtectedRoute;
