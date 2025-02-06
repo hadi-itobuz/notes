@@ -1,10 +1,11 @@
 import axios from "axios";
-import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Form from "../components/Form/Form";
-// import Message from "../components/Message";
 const Register = () => {
-    const [errorMessage,setErrorMessage] = useState(null);
-    const [success,setSuccess]=useState(false);
+    const notifySuccess = (message) => toast.success(message);
+    const notifyError = (message) => toast.error(message);
+    const notfyWarn=message=>toast.warn(message);
     const handleSubmit = (formData) => {
         let data = JSON.stringify({
             "name": formData.UserName,
@@ -24,15 +25,15 @@ const Register = () => {
 
         axios.request(config)
             .then((response) => {
-                if (response.status === 200) setSuccess(true);
+                if (response.status === 200) {
+                    notifySuccess("User Registred successfully")
+                    notfyWarn("Please verify yourself an email has been sent to you")
+                }
             })
             .catch((error) => {
                 console.log('error :>> ', error);
-                if(error.response.status===409) setErrorMessage("User already exists, use alternate email ID");
-                setSuccess(false)
-            }).finally(()=>{
-                console.log('errorMessage :>> ', errorMessage);
-                console.log('success :>> ', success);
+                if(error.response.status===409) notifyError("User already exists, use alternate email ID");
+                else notifyError(error.response.data.message)
             })
 
     };
@@ -43,8 +44,7 @@ const Register = () => {
     return (
         <>
             <Form fields={fields} onSubmit={handleSubmit} />
-            {/* {errorMessage && <Message message={errorMessage} color='red'/>} */}
-            {/* {success &&<><Message message="User Registred Successfully" role={"danger"}/> <Message message="Please Verify your email" role="warn" /></> } */}
+            <ToastContainer theme="dark" />
         </>
     );
 }

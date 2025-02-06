@@ -24,13 +24,11 @@ const NotesContainer = () => {
             }else{
                 setSearchOptions(previousState.current);
             }
-        
         }
         updateNotes();
     }, [searchOptions]);
 
     return (
-
         <div className="container p-3">
             <h1>NOTES...</h1>
             <NotesContainerHeader setSearchOptions={setSearchOptions} />

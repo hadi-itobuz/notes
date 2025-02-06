@@ -12,9 +12,7 @@ const ProtectedRoute = () => {
         };
         fetchData();
     }, [auth]);
-    if(auth === null) return (
-        <h1>Loading....</h1>
-    )
+    if(auth === null) return (<h1>Loading....</h1>)
     return (
         // console.log('auth :>> ', auth)
         auth ? <Outlet /> : <Navigate to='/' />

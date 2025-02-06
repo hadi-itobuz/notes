@@ -5,9 +5,7 @@ const NotePagenaton = ({ searchOptions, setSearchOptions }) => {
     const onClick = (num) => {
         pageNumber += num;
         if (pageNumber > 0)
-            setSearchOptions({
-                notePerPage, sortBy, order, searchText, pageNumber
-            });
+            setSearchOptions({notePerPage, sortBy, order, searchText, pageNumber});
     }
     return (
 
