@@ -1,36 +1,46 @@
 import { useState } from "react";
 import Note from "./Note";
 import NotesContainerHeader from "./NoteContainerHeader";
-import { useEffect } from "react";
+import { useEffect,useRef } from "react";
 import instance from "../../axiosConfig";
+import NotePagenaton from "./NotePageination";
 
 const NotesContainer = () => {
     const [notes, setNotes] = useState(null);
-    const updateNotes = async () => {
-        console.log('Updating :>> ', );
-        const res = await instance.get('/notes/getAll')
-        console.log('res.data.notes :>> ', res.data.notes);
-        setNotes(res.data.notes);
-    }
+    const [searchOptions, setSearchOptions] = useState({
+        pageNumber: 1,
+        notePerPage: 6,
+        sortBy: "title",
+        order: 1,
+        searchText: ""
+    })
+    const previousState=useRef(searchOptions)
     useEffect(() => {
-        setNotes(null);
-        console.log('Mount :>> ');
-        return () => {
-            console.log('dismount :>> ');
-            updateNotes()
+        const updateNotes = async () => {
+            const res = await instance.post('/notes/', searchOptions)
+            if(res.data.notes.length>0){
+                previousState.current=searchOptions;//saving valid states
+                setNotes(res.data.notes);
+            }else{
+                setSearchOptions(previousState.current);
+            }
+        
         }
-    },[]);
+        updateNotes();
+    }, [searchOptions]);
 
-    const [searchField, setSearchField] = useState('');
     return (
 
         <div className="container p-3">
             <h1>NOTES...</h1>
-            <NotesContainerHeader searchField={searchField} setSearchField={setSearchField} />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <NotesContainerHeader setSearchOptions={setSearchOptions} />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 py-5">
                 {(notes) ? notes.map(note => (<Note key={note._id} note={note} />)) : <h1>Loading.....</h1>}
             </div>
+            <NotePagenaton setSearchOptions={setSearchOptions} searchOptions={searchOptions}/>
         </div>
     )
 }
+
+
 export default NotesContainer;
