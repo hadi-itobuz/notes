@@ -2,7 +2,11 @@ import { useForm } from "react-hook-form";
 import axiosInstance from "../../../axiosConfig";
 import { useContext } from "react";
 import { setSearchOptionsContext } from "../NotesContainer";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const AddNoteForm = () => {
+    const notifySuccess = (message) => toast.success(message);
+    // const notifyError = (message) => toast.error(message);
     const setSearchOptions = useContext(setSearchOptionsContext);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
@@ -10,6 +14,7 @@ const AddNoteForm = () => {
         axiosInstance.post('/notes/add', data)
             .then(res => console.log('res :>> ', res))
             .then(() => {
+                notifySuccess("Note Added Successfully")
                 setSearchOptions({//default search options
                     pageNumber: 1,
                     notePerPage: 4,
@@ -22,11 +27,12 @@ const AddNoteForm = () => {
     }
 
     return (
+        <>
         <form className="p-4 md:p-5" onSubmit={handleSubmit(onSubmit)}>
             <div className="grid gap-4 mb-4">
                 <div className="col-span-1">
-                    <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-                    <input  {...register("title", { required: true })} type="text" id="name" className="text-sm rounded-lg focus:ring-primary-600 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Type product name" required={true} />
+                    <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                    <input  {...register("title", { required: true })} type="text" id="name" className="text-sm rounded-lg focus:ring-primary-600 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Type Note title..." required={true} />
                     {errors.title && <span className="p-2 text-red-600">* This field is required</span>}
 
                 </div>
@@ -41,6 +47,8 @@ const AddNoteForm = () => {
                 Add new Note
             </button>
         </form>
+        <ToastContainer theme="dark" />
+        </>
     )
 }
 export default AddNoteForm;
