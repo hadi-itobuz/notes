@@ -2,15 +2,15 @@ import PropTypes from 'prop-types';
 
 const Note = ({ note }) => {
     return (
-        <div className="p-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+        <div className="flex flex-col p-6 border w-fullh border-gray-200 rounded-lg shadow-sm bg-gray-800 dark:border-gray-700">
             {/* Title */}
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{note.title}</h5>
+            <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">{note.title}</h5>
             {/* Body */}
-            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{note.body}</p>
+            <p className="mb-3 h-28 overflow-scroll font-normal text-gray-200">{note.body}</p>
             {/* Footer: created on + edit button */}
-            <div className='flex justify-between align-baseline'>
-                <p className='dark:text-white'>{note.createdOn}</p>
-                <a href="#" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none bg-blue-600 hover:bg-blue-700 focus:ring-blue-800">
+            <p className='text-gray-400'>{note.createdOn}</p>
+            <div className='flex justify-self-stretch justify-between align-baseline'>
+                <a href="#" className="inline-flex items-center mt-2 px-6 py-2 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none bg-blue-600 hover:bg-blue-700 focus:ring-blue-800">
                     Edit
                 </a>
             </div>
