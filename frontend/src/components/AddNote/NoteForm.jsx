@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { setSearchOptionsContext } from "../NotesContainer";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-const AddNoteForm = () => {
+const NoteForm = () => {
     const notifySuccess = (message) => toast.success(message);
     const notifyError = (message) => toast.error(message);
     const setSearchOptions = useContext(setSearchOptionsContext);
@@ -59,4 +59,4 @@ const AddNoteForm = () => {
         </>
     )
 }
-export default AddNoteForm;
+export default NoteForm;

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AddNoteModal from "./AddNoteModal";
+import AddNoteModal from "./NoteModal";
 
 const AddNote = () => {
     const [visiblity, setVisibility] = useState('hidden');
