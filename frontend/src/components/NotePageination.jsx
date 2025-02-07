@@ -6,10 +6,10 @@ import 'react-toastify/dist/ReactToastify.css';
 const NotePagenaton = ({ searchOptions, setSearchOptions, notes }) => {
     useEffect(() => {
         if(notes.length===0 && pageNumber!==1){
-            console.log(' Last page:>> ');
             setSearchOptions({ notePerPage, sortBy, order, searchText, pageNumber:pageNumber-1 });
             notifyWarn("This is the last page")
         }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [notes]);
     const { notePerPage, sortBy, order, searchText } = searchOptions;
     let { pageNumber } = searchOptions;

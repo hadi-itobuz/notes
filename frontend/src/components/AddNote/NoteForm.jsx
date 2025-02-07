@@ -10,9 +10,7 @@ const NoteForm = () => {
     const setSearchOptions = useContext(setSearchOptionsContext);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
-        console.log(data);
         axiosInstance.post('/notes/add', data)
-            .then(res => console.log('res :>> ', res))
             .then(() => {
                 notifySuccess("Note Added Successfully")
                 setSearchOptions({//default search options
