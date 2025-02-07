@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import PropTypes from 'prop-types';
+import AddNote from "./AddNote/AddNote";
 const NotesContainerHeader = ({setSearchOptions} ) => {
     const { register, handleSubmit, reset} = useForm();
     const onSubmit=(formData)=>{
@@ -16,10 +17,10 @@ const NotesContainerHeader = ({setSearchOptions} ) => {
         reset();
     }
     return (
-        <>
-            <form className="mx-auto my-2" onSubmit={handleSubmit(onSubmit)}>
+        <div className="flex flex-col md:flex-row gap-2 container w-full">
+            <form className="mx-auto my-2 w-full" onSubmit={handleSubmit(onSubmit)}>
                 <div className="flex">
-                    <select id="sortBy" {...register("sortBy")} className="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center rounded-s-lg  bg-gray-700 hover:bg-gray-600 text-white border-gray-600" name="sortBy" >
+                    <select id="sortBy" {...register("sortBy")} className="shrink-0 z-10 inline-flex items-center py-2.5 text-sm font-medium text-center rounded-s-lg  bg-gray-700 hover:bg-gray-600 text-white border-gray-600" name="sortBy" >
                         <option value="title">Title</option>
                         <option value="title r">Title-Reverse</option>
                         <option value="createdOn">Date</option>
@@ -36,9 +37,9 @@ const NotesContainerHeader = ({setSearchOptions} ) => {
                     </div>
                 </div>
             </form>
+            <AddNote/>
 
-
-        </>
+        </div>
     )
 }
 

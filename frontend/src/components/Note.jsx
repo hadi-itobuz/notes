@@ -18,7 +18,7 @@ const Note = ({ note }) => {
     );
 
 }
-export default Note;
 Note.propTypes = {
     note: PropTypes.object,
 };
+export default Note;
