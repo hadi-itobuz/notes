@@ -19,7 +19,7 @@ const getNotes = async (req, res) => {
                     { 'title': { '$regex': `${searchText}`, '$options': 'i' } },//searching title
                     { 'body': { '$regex': `${searchText}`, '$options': 'i' } }//serching body
                 ]
-            }).skip(notePerPage * (pageNumber - 1)).limit(notePerPage).sort({ [sortBy]: order });//pagenation and sorting
+            }).skip(notePerPage * (pageNumber - 1)).limit(notePerPage).collation({locale: "en" }).sort({ [sortBy]: order });//pagenation and sorting
             // console.log('notes :>> ', notes);
             // console.log('req.body :>> ',req.body );
             res.status(200).send({
