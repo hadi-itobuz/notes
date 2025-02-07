@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import DeleteNote from './DeleteNote';
 
 const Note = ({ note }) => {
     const date=new Date(note.createdOn)
@@ -17,11 +18,8 @@ const Note = ({ note }) => {
                 <button className='px-5 py-2 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none bg-green-600 hover:bg-green-700 focus:ring-green-800'>
                     Upload
                 </button>
-                <button className='px-5 py-2 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none bg-red-500 hover:bg-red-700 focus:ring-red-800'>
-                    Delete
-                </button>
+                <DeleteNote noteId={note._id}/>
             </div>
-
         </div>
     );
 

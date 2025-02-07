@@ -1,6 +1,7 @@
 import Note from "../../models/note.js";
 const deleteById = async (req, res) => {
     const id = req.params.id;
+    const userId=req.body.userId;
     try {
         const note = await Note.findOneAndDelete({ _id: id, userId });
         if (note) {

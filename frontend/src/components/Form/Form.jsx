@@ -15,7 +15,7 @@ const Form = ({ fields, onSubmit }) => {
                 <div className="mb-1 flex flex-col gap-6"> {/*Mapin form fiels*/}
                     {fields.map((field) => <FormField key={field.name} fieldObj={field} register={register} errors={errors} />)}
                 </div>
-                <Button  className="mt-6 bg-black p-2" type="submit" value="Submit" fullWidth>
+                <Button  className="mt-6 bg-blue-700 p-2" type="submit" value="Submit" fullWidth>
                     Submit
                 </Button>
             </form>
