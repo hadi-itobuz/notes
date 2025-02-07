@@ -13,8 +13,8 @@ const AddNoteForm = () => {
                 setSearchOptions({//default search options
                     pageNumber: 1,
                     notePerPage: 4,
-                    sortBy: "title",
-                    order: 1,
+                    sortBy: "createdOn",
+                    order: -1,
                     searchText: ""
                 })
             })
