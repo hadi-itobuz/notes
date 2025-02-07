@@ -6,7 +6,7 @@ import PropTypes from "prop-types"
 const FormField = ({ fieldObj,register }) => {
     return (
         <>
-            <Typography variant="h6" color="blue-gray" className="-mb-3">
+            <Typography variant="h6" color="white" className="-mb-3">
                 {fieldObj.name}
             </Typography>
             <Input
@@ -14,7 +14,7 @@ const FormField = ({ fieldObj,register }) => {
                 defaultValue={fieldObj.val} {...register(`${fieldObj.name}`)}
                 size="lg"
                 placeholder="name@mail.com"
-                className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
+                className=" !border-t-blue-gray-200 focus:!border-t-gray-900 text-white p-3"
                 labelProps={{
                     className: "before:content-none after:content-none",
                 }}

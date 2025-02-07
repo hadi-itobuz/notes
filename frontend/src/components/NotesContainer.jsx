@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Note from "./Note";
+import Note from "./Note/Note";
 import NotesContainerHeader from "./NoteContainerHeader";
 import { useEffect, useRef, createContext } from "react";
 import axiosInstance from "../../axiosConfig";
@@ -42,7 +42,6 @@ const NotesContainer = () => {
                 <NotePagenaton setSearchOptions={setSearchOptions} searchOptions={searchOptions} />
             </div>
         </setSearchOptionsContext.Provider>
-
     )
 }
 
