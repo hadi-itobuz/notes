@@ -21,7 +21,7 @@ const NoteForm = ({ setVisibility, type }) => {
                 setSearchOptions({//default search options
                     pageNumber: 1,
                     notePerPage: 4,
-                    sortBy: "createdOn",
+                    sortBy: "modifiedOn",
                     order: -1,
                     searchText: ""
                 })
