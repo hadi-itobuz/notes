@@ -5,15 +5,17 @@ import { setSearchOptionsContext } from "../NotesContainer";
 import { ToastContainer, toast } from 'react-toastify';
 import PropTypes from 'prop-types'
 import 'react-toastify/dist/ReactToastify.css';
-const NoteForm = ({setVisibility}) => {
+
+
+const NoteForm = ({setVisibility,type}) => {
     const notifySuccess = (message) => toast.success(message);
     const notifyError = (message) => toast.error(message);
     const setSearchOptions = useContext(setSearchOptionsContext);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
-        axiosInstance.post('/notes/add', data)
+        axiosInstance.post(type.route, data)
             .then(() => {
-                notifySuccess("Note Added Successfully")
+                notifySuccess(`Note ${type.header}ed Successfully`)
                 setSearchOptions({//default search options
                     pageNumber: 1,
                     notePerPage: 4,
@@ -29,7 +31,7 @@ const NoteForm = ({setVisibility}) => {
                 else if (err.response.status === 400 && err.response.data.message)
                     notifyError(err.response.data.message);
                 else if (err.response.status === 500)
-                    notifyError("Unable to add note: Please try again later");
+                    notifyError(`Unable to ${type.header} note: Please try again later`);
                 else
                     notifyError("Unable to add note");
             })
@@ -43,13 +45,13 @@ const NoteForm = ({setVisibility}) => {
                 <div className="grid gap-4 mb-4">
                     <div className="col-span-1">
                         <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
-                        <input  {...register("title", { required: true })} type="text" id="name" className="text-sm rounded-lg focus:ring-primary-600 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Type Note title..." required={true} />
+                        <input defaultValue={type.defaultTitle}  {...register("title", { required: true })} type="text" id="name" className="text-sm rounded-lg focus:ring-primary-600 block w-full p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white focus:ring-primary-500 focus:border-primary-500" placeholder="Type Note title..." required={true} />
                         {errors.title && <span className="p-2 text-red-600">* This field is required</span>}
 
                     </div>
                     <div className="col-span-1">
-                        <label htmlFor="description" className="block mb-2 text-sm font-medium text-white">Product Description</label>
-                        <textarea {...register("body", { required: true })} id="description" rows="4" className="block p-2.5 w-full text-sm bg-gray-50 rounded-lg border  dark:bg-gray-600 border-gray-500 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Write product description here"></textarea>
+                        <label htmlFor="description" className="block mb-2 text-sm font-medium text-white">Body</label>
+                        <textarea defaultValue={type.defaultBody} {...register("body", { required: true })} id="description" rows="4" className="block p-2.5 w-full text-sm bg-gray-50 rounded-lg border  dark:bg-gray-600 border-gray-500 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Write product description here"></textarea>
                         {errors.body && <span className="p-2 text-red-600">This field is required</span>}
                     </div>
                 </div>
@@ -63,6 +65,7 @@ const NoteForm = ({setVisibility}) => {
     )
 }
 NoteForm.propTypes={
-    setVisibility: PropTypes.func.isRequired
+    setVisibility: PropTypes.func.isRequired,
+    type: PropTypes.object.isRequired
 }
 export default NoteForm;
