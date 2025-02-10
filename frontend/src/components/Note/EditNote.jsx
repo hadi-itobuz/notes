@@ -1,14 +1,14 @@
 import { useState } from "react";
 import NoteModal from "./NoteModal";
 import PropTypes from "prop-types"
-const EditNote = ({note}) => {
+const EditNote = ({ note }) => {
     const [visiblity, setVisibility] = useState('hidden');
     const onClick = () => {
         setVisibility('');
     }
-    const type={
-        header:"Edit",
-        route:`/notes/edit/${note._id}`,
+    const type = {
+        header: "Edit",
+        route: `/notes/edit/${note._id}`,
         defaultTitle: note.title,
         defaultBody: note.body
     }
@@ -18,12 +18,12 @@ const EditNote = ({note}) => {
                 Edit
             </button>
             <div className={visiblity}>
-                <NoteModal  setVisibility={setVisibility} type={type}/>
+                <NoteModal setVisibility={setVisibility} type={type} />
             </div>
         </>
     )
 }
-EditNote.propTypes={
+EditNote.propTypes = {
     note: PropTypes.object.isRequired
 }
 export default EditNote;

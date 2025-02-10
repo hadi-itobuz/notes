@@ -5,17 +5,17 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const NotePagenaton = ({ searchOptions, setSearchOptions, notes }) => {
     useEffect(() => {
-        if(notes.length===0 && pageNumber!==1){
-            setSearchOptions({ notePerPage, sortBy, order, searchText, pageNumber:pageNumber-1 });
+        if (notes.length === 0 && pageNumber !== 1) {
+            setSearchOptions({ notePerPage, sortBy, order, searchText, pageNumber: pageNumber - 1 });
             notifyWarn("This is the last page")
         }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      }, [notes]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [notes]);
     const { notePerPage, sortBy, order, searchText } = searchOptions;
     let { pageNumber } = searchOptions;
     const notifyWarn = message => toast.warn(message);
     const onClick = (num) => {
-        if(pageNumber === 1 && num === -1){
+        if (pageNumber === 1 && num === -1) {
             notifyWarn("No Previous Page")
         }
         else {//not making page number negative

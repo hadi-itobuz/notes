@@ -6,11 +6,11 @@ const AddNote = () => {
     const onClick = () => {
         setVisibility('');
     }
-    const type={
-        header:"Add",
-        route:"/notes/add",
-        defaultTitle:"",
-        defaultBody:""
+    const type = {
+        header: "Add",
+        route: "/notes/add",
+        defaultTitle: "",
+        defaultBody: ""
     }
     return (
         <>
@@ -18,7 +18,7 @@ const AddNote = () => {
                 Add Note
             </button>
             <div className={visiblity}>
-                <NoteModal  setVisibility={setVisibility} type={type}/>
+                <NoteModal setVisibility={setVisibility} type={type} />
             </div>
         </>
     )

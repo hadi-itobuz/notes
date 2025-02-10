@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import NoteForm from './NoteForm';
 const NoteModal = ({ setVisibility, type }) => {
-    return(
+    return (
         <div id="crud-modal" tabIndex="-1" className="overflow-y-auto overflow-x-hidden fixed left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full" >
             <div className="relative p-4 w-full max-w-md max-h-full">
                 <div className="relative rounded-lg shadow-sm bg-gray-700">

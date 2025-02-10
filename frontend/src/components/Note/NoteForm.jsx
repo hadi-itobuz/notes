@@ -7,17 +7,15 @@ import PropTypes from 'prop-types'
 import 'react-toastify/dist/ReactToastify.css';
 
 
-const NoteForm = ({setVisibility,type}) => {
+const NoteForm = ({ setVisibility, type }) => {
     const notifySuccess = (message) => toast.success(message);
     const notifyError = (message) => toast.error(message);
     const setSearchOptions = useContext(setSearchOptionsContext);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
-        console.log('data :>> ', data);
+        let method = (type.header === 'Edit') ? axiosInstance.put : axiosInstance.post;//setting custom method based on request
 
-        let method= (type.header==='Edit')?axiosInstance.put:axiosInstance.post;//setting custom method based on request
-
-        method(type.route ,JSON.stringify(data))
+        method(type.route, JSON.stringify(data))
             .then(() => {
                 notifySuccess(`Note ${type.header}ed Successfully`)
                 setSearchOptions({//default search options
@@ -30,7 +28,7 @@ const NoteForm = ({setVisibility,type}) => {
             })
             .catch(err => {
                 console.log('err :>> ', err);
-                if (err.response.status===400 && err.response.data.details)
+                if (err.response.status === 400 && err.response.data.details)
                     notifyError("Title is too long")
                 else if (err.response.status === 400 && err.response.data.message)
                     notifyError(err.response.data.message);
@@ -39,7 +37,7 @@ const NoteForm = ({setVisibility,type}) => {
                 else
                     notifyError("Unable to add note");
             })
-            .finally(()=>setVisibility('hidden'))
+            .finally(() => setVisibility('hidden'))
         reset();
     }
 
@@ -68,7 +66,7 @@ const NoteForm = ({setVisibility,type}) => {
         </>
     )
 }
-NoteForm.propTypes={
+NoteForm.propTypes = {
     setVisibility: PropTypes.func.isRequired,
     type: PropTypes.object.isRequired
 }

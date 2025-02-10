@@ -21,7 +21,7 @@ const NotesContainer = () => {
     useEffect(() => {
         const updateNotes = async () => {
             const res = await axiosInstance.post('/notes/', searchOptions)
-                setNotes(res.data.notes);//updating
+            setNotes(res.data.notes);//updating
         }
         updateNotes();
     }, [searchOptions]);
