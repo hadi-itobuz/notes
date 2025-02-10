@@ -6,7 +6,7 @@ const editNote = async (req, res) => {
     try {
         const note = await Note.findOne({ userId, title });//trying to find note with same title
         if (!note) {//if no note with same title
-            await Note.findByIdAndUpdate(id, { title, body }, { new: true });
+            await Note.findByIdAndUpdate(id, { title, body, createdOn: Date.now() }, { new: true });
             res.status(201).send({
                 success: true,
                 message: "Note edited"
