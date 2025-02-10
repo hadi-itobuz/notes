@@ -3,8 +3,9 @@ import axiosInstance from "../../../axiosConfig";
 import { useContext } from "react";
 import { setSearchOptionsContext } from "../NotesContainer";
 import { ToastContainer, toast } from 'react-toastify';
+import PropTypes from 'prop-types'
 import 'react-toastify/dist/ReactToastify.css';
-const NoteForm = () => {
+const NoteForm = ({setVisibility}) => {
     const notifySuccess = (message) => toast.success(message);
     const notifyError = (message) => toast.error(message);
     const setSearchOptions = useContext(setSearchOptionsContext);
@@ -21,6 +22,7 @@ const NoteForm = () => {
                     searchText: ""
                 })
             })
+            .then(()=>{setVisibility('hidden')})
             .catch(err => {
                 if (err.response.status === 400)
                     notifyError("Unable to add note: Title is too long");
@@ -56,5 +58,8 @@ const NoteForm = () => {
             <ToastContainer theme="dark" />
         </>
     )
+}
+NoteForm.propTypes={
+    setVisibility: PropTypes.func.isRequired
 }
 export default NoteForm;

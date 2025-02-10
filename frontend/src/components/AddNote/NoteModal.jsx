@@ -15,7 +15,7 @@ const NoteModal = ({ setVisibility }) => {
                             </svg>
                         </button>
                     </div>
-                    <NoteForm/>
+                    <NoteForm setVisibility={setVisibility} />
                 </div>
             </div>
         </div>
