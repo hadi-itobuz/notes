@@ -3,8 +3,8 @@ import axiosInstance from "../../../axiosConfig";
 import { useContext } from "react";
 import { setSearchOptionsContext } from "../NotesContainer";
 import { ToastContainer, toast } from 'react-toastify';
-import PropTypes from 'prop-types'
 import 'react-toastify/dist/ReactToastify.css';
+import PropTypes from 'prop-types'
 
 
 const NoteForm = ({ setVisibility, type }) => {
@@ -28,9 +28,9 @@ const NoteForm = ({ setVisibility, type }) => {
             })
             .catch(err => {
                 console.log('err :>> ', err);
-                if (err.response.status === 400 && err.response.data.details)
+                if (err.response.data.details)
                     notifyError("Title is too long")
-                else if (err.response.status === 400 && err.response.data.message)
+                else if (err.response.data.message)
                     notifyError(err.response.data.message);
                 else if (err.response.status === 500)
                     notifyError(`Unable to ${type.header} note: Please try again later`);
