@@ -18,6 +18,11 @@ const notesSchema = new mongoose.Schema({
         required: true,
         default: Date.now//current date and time
     },
+    modifiedOn: {
+        type: Date,
+        required: true,
+        default: Date.now
+    },
     fileName: {
         type: String
     }
