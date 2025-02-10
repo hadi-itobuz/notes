@@ -22,15 +22,18 @@ const NoteForm = ({setVisibility}) => {
                     searchText: ""
                 })
             })
-            .then(()=>{setVisibility('hidden')})
             .catch(err => {
-                if (err.response.status === 400)
-                    notifyError("Unable to add note: Title is too long");
+                console.log('err :>> ', err);
+                if (err.response.status===400 && err.response.data.details)
+                    notifyError("Title is too long")
+                else if (err.response.status === 400 && err.response.data.message)
+                    notifyError(err.response.data.message);
                 else if (err.response.status === 500)
                     notifyError("Unable to add note: Please try again later");
                 else
                     notifyError("Unable to add note");
             })
+            .finally(()=>setVisibility('hidden'))
         reset();
     }
 

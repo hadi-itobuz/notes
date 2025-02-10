@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import PropTypes from 'prop-types';
-import AddNote from "./AddNote/AddNote";
+import AddNote from "./Note/AddNote";
 const NotesContainerHeader = ({setSearchOptions} ) => {
     const { register, handleSubmit, reset} = useForm();
     const onSubmit=(formData)=>{
