@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import DeleteNote from './DeleteNote';
+import EditNote from './EditNote';
 
 const Note = ({ note }) => {
     const date=new Date(note.createdOn)
@@ -12,9 +13,7 @@ const Note = ({ note }) => {
             {/* Footer: created on + edit button */}
             <p className='text-gray-400'>{date.toLocaleTimeString()+" ,  "+date.toDateString()} </p>
             <div className='flex justify-between mt-3'>
-                <button className='px-6 py-2 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none bg-blue-600 hover:bg-blue-700 focus:ring-blue-800'>
-                    Edit
-                </button>
+                <EditNote note={note}/>
                 <button className='px-5 py-2 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none bg-green-600 hover:bg-green-700 focus:ring-green-800'>
                     Upload
                 </button>
