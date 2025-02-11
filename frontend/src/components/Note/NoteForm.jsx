@@ -8,8 +8,8 @@ import PropTypes from 'prop-types'
 
 
 const NoteForm = ({ setVisibility, type }) => {
-    const notifySuccess = (message) => toast.success(message);
-    const notifyError = (message) => toast.error(message);
+    // const notifySuccess = (message) => toast.success(message);
+    // const notifyError = (message) => toast.error(message);
     const setSearchOptions = useContext(setSearchOptionsContext);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
@@ -17,7 +17,7 @@ const NoteForm = ({ setVisibility, type }) => {
 
         method(type.route, JSON.stringify(data))
             .then(() => {
-                notifySuccess(`Note ${type.header}ed Successfully`)
+                toast.success(`Note ${type.header}ed Successfully`)
                 setSearchOptions({//default search options
                     pageNumber: 1,
                     notePerPage: 4,
@@ -25,19 +25,20 @@ const NoteForm = ({ setVisibility, type }) => {
                     order: -1,
                     searchText: ""
                 })
+                setVisibility("hidden")
             })
             .catch(err => {
-                console.log('err :>> ', err);
-                if (err.response.data.details)
-                    notifyError("Title is too long")
-                else if (err.response.data.message)
-                    notifyError(err.response.data.message);
+                let message;
+                console.log('err :>> ', err.response.data.message);
+                if (err.response.data.details) message = "Title is too long";
+                else if (err.response.data.message) message = err.response.data.message;
                 else if (err.response.status === 500)
-                    notifyError(`Unable to ${type.header} note: Please try again later`);
+                    message = `Unable to ${type.header} note: Please try again later`;
                 else
-                    notifyError("Unable to add note");
+                    message = "Unable to add note";
+                console.log('message :>> ', message);
+                toast.error(message)
             })
-            .finally(() => setVisibility('hidden'))
         reset();
     }
 
@@ -61,8 +62,8 @@ const NoteForm = ({ setVisibility, type }) => {
                     <svg className="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd"></path></svg>
                     {type.header} Note
                 </button>
+                <ToastContainer theme="dark"/>
             </form>
-            <ToastContainer autoClose={2000} theme="dark" />
         </>
     )
 }

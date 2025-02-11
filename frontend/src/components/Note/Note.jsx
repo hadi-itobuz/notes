@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import DeleteNote from './DeleteNote';
 import EditNote from './EditNote';
+import UploadFile from './UploadFile';
 
 const Note = ({ note }) => {
     const date = new Date(note.createdOn)
@@ -14,11 +15,9 @@ const Note = ({ note }) => {
             <p className='text-gray-400'>{date.toLocaleTimeString() + " ,  " + date.toDateString()} </p>
             <div className='flex justify-between mt-3'>
                 <EditNote note={note} />
-                <button className='px-5 py-2 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none bg-green-600 hover:bg-green-700 focus:ring-green-800'>
-                    Upload
-                </button>
                 <DeleteNote noteId={note._id} />
             </div>
+                <UploadFile id={note._id}/>
         </div>
     );
 
