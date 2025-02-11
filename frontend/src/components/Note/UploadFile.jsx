@@ -3,11 +3,21 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import FormData from 'form-data'
 import PropTypes from 'prop-types';
-
+function getExtension(file) {
+    const filename = file.name;
+    return filename.split('.')[1]
+}
 function UploadFile({ id }) {
     const { register, handleSubmit } = useForm();
     const uploadFile = (formData) => {
         let data = new FormData();
+        // console.log('getExtension(formData.file[0]) :>> ', getExtension(formData.file[0]));
+        const extension = getExtension(formData.file[0])
+        if (!['jpg', 'jpeg', 'png', 'gif', 'svg'].includes(extension)) {
+            console.log('Invalid file format :>> ');
+            return;
+        }
+
         data.append('filename', formData.file[0])
 
         let config = {

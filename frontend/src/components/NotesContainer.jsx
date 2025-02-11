@@ -3,7 +3,7 @@ import Note from "./Note/Note";
 import NotesContainerHeader from "./NoteContainerHeader";
 import { useEffect, createContext } from "react";
 import axiosInstance from "../../axiosConfig";
-import NotePagenaton from "./NotePageination";
+import NotePagination from "./NotePagination";
 
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -34,7 +34,7 @@ const NotesContainer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2 py-5 w-full">
                     {(notes) ? notes.map(note => (<Note key={note._id} note={note} />)) : <h1>Loading.....</h1>}
                 </div>
-                <NotePagenaton setSearchOptions={setSearchOptions} searchOptions={searchOptions} notes={notes} />
+                <NotePagination setSearchOptions={setSearchOptions} searchOptions={searchOptions} notes={notes} />
             </div>
         </setSearchOptionsContext.Provider>
     )
