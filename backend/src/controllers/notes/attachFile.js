@@ -26,7 +26,7 @@ const attachFile = async (req, res) => {
         console.log('err :>> ', err);
         res.status(500).send({
             success: false,
-            messsage: "unable to attach file"
+            message: "unable to attach file"
         })
     }
 
