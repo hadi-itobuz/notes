@@ -14,7 +14,8 @@ const EditNote = ({ note }) => {
     }
     return (
         <>
-            <button onClick={onClick} data-modal-target="crud-modal" data-modal-toggle="crud-modal" className="px-6 py-2 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none bg-blue-600 hover:bg-blue-700 focus:ring-blue-800" type="button">
+            <button onClick={onClick} data-modal-target="crud-modal" data-modal-toggle="crud-modal" 
+            className="px-6 py-2 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none bg-blue-600 hover:bg-blue-700 focus:ring-blue-800" type="button">
                 Edit
             </button>
             <div className={visiblity}>

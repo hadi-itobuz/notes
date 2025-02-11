@@ -17,7 +17,7 @@ const Note = ({ note }) => {
                 <EditNote note={note} />
                 <DeleteNote noteId={note._id} />
             </div>
-                <UploadFile id={note._id}/>
+            <UploadFile id={note._id} />
         </div>
     );
 

@@ -31,13 +31,15 @@ function UploadFile({ id }) {
     }
 
     return (
-        <div>
-            <div className="file-upload">
-                <input type="file" {...register("file")} />
-                <button onClick={handleSubmit(uploadFile)} className="upbutton">
-                    Upload
-                </button>
-            </div>
+        <div className="flex flex-col sm:flex-row gap-2 my-2">
+            <input
+                type="file" {...register("file")}
+                className="w-full text-gray-500 font-medium text-sm bg-gray-100 file:cursor-pointer cursor-pointer file:border-0 file:py-2 file:px-4 file:mr-4 file:bg-green-600 file:hover:bg-green-700 file:text-white rounded"
+            />
+            <button onClick={handleSubmit(uploadFile)}
+                className="max-w-40 px-6 py-2 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none bg-green-600 hover:bg-green-700 focus:ring-green-800">
+                Upload
+            </button>
         </div>
     );
 }
