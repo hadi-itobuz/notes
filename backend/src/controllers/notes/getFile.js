@@ -8,12 +8,18 @@ const getFile = async (req, res) => {
         const options = {
             root: path.join(__dirname, '../../../uploads')
         };
-        const fileName = note.fileName;//file name from note
-        res.sendFile(fileName, options, function (err) {
-            if (err) {
-                console.error('error sending file:', err);
-            }
-        });
+        if(note.fileName){
+            const fileName = note.fileName;//file name from note
+            res.sendFile(fileName, options, function (err) {
+                if (err) {
+                    console.error('error sending file:', err);
+                }
+            });
+        }else res.send({
+            success: false,
+            message: "No File found"
+        })
+        
     } catch (err) {
         console.log('err :>> ', err);
         res.status(500).send({

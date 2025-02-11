@@ -21,7 +21,7 @@ const editNote = async (req, res) => {
         else {
             res.status(400).send({
                 success: false,
-                message: "unable to delete: duplicate title"
+                message: "unable to edit note: duplicate title"
             })
         }
 
