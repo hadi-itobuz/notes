@@ -21,12 +21,12 @@ const attachFile = async (req, res) => {
         const note = await Note.findById(req.params.id);
         note.fileName = req.file.filename;
         note.save();
-        res.status(200).send(`File uploaded successfully: ${req.file.filename}`);
+        res.status(200).send(`file uploaded successfully: ${req.file.filename}`);
     } catch (err) {
         console.log('err :>> ', err);
         res.status(500).send({
             success: false,
-            messsage: "Unable to attach file"
+            message: "unable to attach file"
         })
     }
 

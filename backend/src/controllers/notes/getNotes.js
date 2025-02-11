@@ -32,7 +32,7 @@ const getNotes = async (req, res) => {
 
         res.status(500).send({
             success: false,
-            message: "Unable to sort message"
+            message: "unable to get notes"
         })
     }
 }

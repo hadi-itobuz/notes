@@ -5,14 +5,14 @@ const getAll = async (req, res) => {
         const notes = await Note.find({ userId: userId });//getting all notes pertaining to the user id
         res.status(200).send({
             success: true,
-            message: "Notes retrived",
+            message: "notes retrieved",
             notes
         })
     } catch (err) {
         console.log('err :>> ', err);
         res.status(500).send({
             success: false,
-            message: "Unable to get notes"
+            message: "unable to get notes"
         })
     }
 }

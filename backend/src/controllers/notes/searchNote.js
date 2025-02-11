@@ -18,7 +18,7 @@ const searchNote = async (req, res) => {
             });
         } else res.status(500).send({
             success: false,
-            message: "Unable to search notes"
+            message: "unable to search notes"
         })
 
     } catch (err) {
@@ -26,7 +26,7 @@ const searchNote = async (req, res) => {
 
         res.status(500).send({
             success: false,
-            message: "Unable to search notes"
+            message: "unable to search notes"
         })
     }
 }
