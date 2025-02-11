@@ -6,8 +6,8 @@ const getSorted = async (req, res) => {
         const fields = ["title", "body", "createdOn"];
         if (!page) page = 1;
         if (!sortBy) sortBy = "title";
-        if (page <= 0) res.status(400).send({ success: false, message: "Invalid page count" })
-        else if (!fields.includes(sortBy)) res.status(400).send({ success: false, message: "Invalid sortBy field" })
+        if (page <= 0) page=1;
+        else if (!fields.includes(sortBy)) res.status(400).send({ success: false, message: "invalid sortBy field" })
         else {
             const notes = await Note.find({ userId }, null).skip(page * 4 - 4).limit(4).sort({ [sortBy]: 1 });
             res.status(200).send({
@@ -20,7 +20,7 @@ const getSorted = async (req, res) => {
 
         res.status(500).send({
             success: false,
-            message: "Unable to sort message"
+            message: "unable to sort notes"
         })
     }
 }

@@ -11,14 +11,14 @@ const getById = async (req, res) => {
         } else {
             res.status(404).send({
                 success: false,
-                message: "Note not found"
+                message: "note not found"
             })
         }
     } catch (err) {
         console.log('err :>> ', err);
         res.status(500).send({
             success: false,
-            message: "Can't get note"
+            message: "can't get note"
         })
     }
 }

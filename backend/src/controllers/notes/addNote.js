@@ -5,14 +5,14 @@ const addNote = async (req, res) => {
         if (await Note.findOne({ userId, title })) {//if note with same title already exists
             res.status(400).send({
                 success: false,
-                message: "Unable to create note:duplicate title"
+                message: "unable to create note: duplicate title"
             })
         } else {
             const note = new Note({ userId, title, body });
             await note.save();
             res.status(201).send({
                 success: true,
-                message: "New note Created",
+                message: "new note Created",
                 noteId: note._id
             })
         }
@@ -20,7 +20,7 @@ const addNote = async (req, res) => {
         console.log('err :>> ', err);
         res.status(400).send({
             success: false,
-            message: "Unable to create note"
+            message: "unable to create note"
         })
     }
 }

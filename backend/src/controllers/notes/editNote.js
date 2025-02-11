@@ -9,19 +9,19 @@ const editNote = async (req, res) => {
             await Note.findByIdAndUpdate(id, { title, body, modifiedOn: Date.now() }, { new: true });
             res.status(201).send({
                 success: true,
-                message: "Note edited"
+                message: "note edited"
             })
         } else if (note.id === id) {//title clashes with itself
             await Note.findByIdAndUpdate(id, { title, body }, { new: true });
             res.status(201).send({
                 success: true,
-                message: "Note edited"
+                message: "note edited"
             })
         }
         else {
             res.status(400).send({
                 success: false,
-                message: "Unable to delete: duplicate title"
+                message: "unable to delete: duplicate title"
             })
         }
 
@@ -29,7 +29,7 @@ const editNote = async (req, res) => {
         console.log('err :>> ', err);
         res.status(400).send({
             success: false,
-            message: "Unable to edit note"
+            message: "unable to edit note"
         })
     }
 }

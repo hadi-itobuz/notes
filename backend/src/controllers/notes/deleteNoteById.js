@@ -7,19 +7,19 @@ const deleteById = async (req, res) => {
         if (note) {
             res.status(200).send({
                 success: true,
-                message: "Note deleted sucess fully"
+                message: "note deleted successfully"
             })
         } else {
             res.status(404).send({
                 success: false,
-                message: "Note not found"
+                message: "note not found"
             })
         }
     } catch (err) {
         console.log('err :>> ', err);
         res.status(500).send({
             success: false,
-            message: "Coudn't delete note"
+            message: "couldn't delete note"
         })
     }
 }
