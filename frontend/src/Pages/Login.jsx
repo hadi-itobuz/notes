@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import hottoast from "react-hot-toast";
 
 const Login = ({ setLogin }) => {
     const notifyError = (message) => toast.error(message);
@@ -33,6 +34,7 @@ const Login = ({ setLogin }) => {
                     localStorage.setItem('refreshToken', response.data.refreshToken);
                     navigate('/home')
                     setLogin(true);
+                    hottoast.success('Successfully logged in');
                 }
                 else console.log("Unable to login");
             })

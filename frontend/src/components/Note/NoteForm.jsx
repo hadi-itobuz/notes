@@ -2,8 +2,9 @@ import { useForm } from "react-hook-form";
 import axiosInstance from "../../../axiosConfig";
 import { useContext } from "react";
 import { setSearchOptionsContext } from "../NotesContainer";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+import toast from "react-hot-toast";
 import PropTypes from 'prop-types'
 
 
@@ -62,7 +63,7 @@ const NoteForm = ({ setVisibility, type }) => {
                     <svg className="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clipRule="evenodd"></path></svg>
                     {type.header} Note
                 </button>
-                <ToastContainer theme="dark"/>
+                {/* <ToastContainer theme="dark"/> */}
             </form>
         </>
     )

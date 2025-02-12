@@ -2,11 +2,15 @@ import PropTypes from 'prop-types';
 import axiosInstance from '../../../axiosConfig';
 import { setSearchOptionsContext } from '../NotesContainer';
 import { useContext } from 'react';
+import toast from 'react-hot-toast';
 const DeleteNote = ({ noteId }) => {
     const setSearchOptions = useContext(setSearchOptionsContext);
     const deleteNote = async () => {
-        axiosInstance.delete(`/notes/deleteId/${noteId}`).then(res => console.log('res :>> ', res))
-            .catch((err) => console.log('err :>> ', err))
+        axiosInstance.delete(`/notes/deleteId/${noteId}`).then(()=>toast.success("Note deleted"))
+            .catch((err) => {
+                console.log('err :>> ', err)
+                toast.error("Unable to delete note")
+            })
     }
     const refreshDOM = () => {
         setSearchOptions({//default search options

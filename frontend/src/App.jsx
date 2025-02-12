@@ -12,6 +12,7 @@ import Login from './Pages/Login';
 import Register from './Pages/Register';
 import ProtectedRoute from './components/ProtectedRoute';
 import axios from 'axios';
+import { Toaster } from 'react-hot-toast';
 
 const isLoggedIn = async () => {//function to check if user is logged in or not on reload, by requesting for access token using refresh token
   let config = {
@@ -47,8 +48,8 @@ function App() {
             <Route path='/home' element={<Home />} />
           </Route>
         </Routes>
-
       </Router>
+      <Toaster/>
     </>
   )
 }
