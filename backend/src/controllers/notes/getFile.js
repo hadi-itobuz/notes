@@ -15,7 +15,7 @@ const getFile = async (req, res) => {
                     console.error('error sending file:', err);
                 }
             });
-        }else res.send({
+        }else res.status(204).send({
             success: false,
             message: "No File found"
         })
