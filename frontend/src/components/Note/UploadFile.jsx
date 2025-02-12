@@ -11,18 +11,18 @@ function getExtension(file) {
     const filename = file.name;
     return filename.split('.')[1]
 }
-function UploadFile({ id }) {
+
+function UploadFile({ id, setUrl }) {
     const setSearchOptions = useContext(setSearchOptionsContext);
     const { register, handleSubmit } = useForm();
     const uploadFile = (formData) => {
-        let data = new FormData();
-        // console.log('getExtension(formData.file[0]) :>> ', getExtension(formData.file[0]));
         const extension = getExtension(formData.file[0])
         if (!['jpg', 'jpeg', 'png', 'gif', 'svg'].includes(extension)) {
             toast.error("Can't Upload: Invalid file format")
             return;
         }
-
+        
+        let data = new FormData();
         data.append('filename', formData.file[0])
 
         let config = {
@@ -40,6 +40,7 @@ function UploadFile({ id }) {
             .then(() => {
                 setSearchOptions({})
                 toast.success("File uploaded");
+                setUrl(`http://localhost:3000/notes/getFile/${id}`)
             })
             .catch((error) => {
                 toast.error("Couldn't upload file.")
@@ -62,7 +63,8 @@ function UploadFile({ id }) {
 }
 
 UploadFile.propTypes = {
-    id: PropTypes.string.isRequired
+    id: PropTypes.string.isRequired,
+    setUrl: PropTypes.func.isRequired
 }
 
 export default UploadFile;
