@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken"
 const verifyToken = (req, res, next, token, type) => {//this isn't a middleware
     jwt.verify(token, process.env.SECRET_KEY, function (err, decoded) {
         if (err) {
-            res.status(400).send({
+            res.status(401).send({
                 message: "Token verification failed, possibly the link is invalid or expired",
                 success: false
             });
