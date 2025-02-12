@@ -4,12 +4,12 @@ import NotesContainerHeader from "./NoteContainerHeader";
 import { useEffect, createContext } from "react";
 import axiosInstance from "../../axiosConfig";
 import NotePagination from "./NotePagination";
-
+import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const setSearchOptionsContext = createContext();
-
 const NotesContainer = () => {
+    const navigate=useNavigate();
     const [notes, setNotes] = useState([]);
     const [searchOptions, setSearchOptions] = useState({//default search options
         pageNumber: 1,
@@ -20,11 +20,14 @@ const NotesContainer = () => {
     })
     useEffect(() => {
         const updateNotes = async () => {
-            const res = await axiosInstance.post('/notes/', searchOptions)
-            setNotes(res.data.notes);//updating
+            axiosInstance.post('/notes/', searchOptions)
+            .then(res=>setNotes(res.data.notes))//updating
+            .catch(err=>{
+                if (err.response.status===401) navigate('/')
+            })
         }
         updateNotes();
-    }, [searchOptions]);
+    }, [searchOptions,navigate]);
 
     return (
         <setSearchOptionsContext.Provider value={setSearchOptions}>

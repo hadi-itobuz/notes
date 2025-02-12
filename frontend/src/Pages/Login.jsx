@@ -1,12 +1,11 @@
 import axios from "axios";
 import Form from "../components/Form/Form";
 import { useNavigate } from "react-router-dom";
-import PropTypes from "prop-types";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import hottoast from "react-hot-toast";
 
-const Login = ({ setLogin }) => {
+const Login = () => {
     const notifyError = (message) => toast.error(message);
     const navigate = useNavigate();
     const handleSubmit = (formData) => {
@@ -33,7 +32,6 @@ const Login = ({ setLogin }) => {
                     localStorage.setItem('accessToken', response.data.accessToken);
                     localStorage.setItem('refreshToken', response.data.refreshToken);
                     navigate('/home')
-                    setLogin(true);
                     hottoast.success('Successfully logged in');
                 }
                 else console.log("Unable to login");
@@ -60,7 +58,4 @@ const Login = ({ setLogin }) => {
     );
 }
 
-Login.propTypes = {
-    setLogin: PropTypes.func.isRequired
-}
 export default Login;

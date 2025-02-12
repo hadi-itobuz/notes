@@ -30,14 +30,12 @@ const NoteForm = ({ setVisibility, type }) => {
             })
             .catch(err => {
                 let message;
-                console.log('err :>> ', err.response.data.message);
                 if (err.response.data.details) message = "Title is too long";
                 else if (err.response.data.message) message = err.response.data.message;
                 else if (err.response.status === 500)
                     message = `Unable to ${type.header} note: Please try again later`;
                 else
                     message = "Unable to add note";
-                console.log('message :>> ', message);
                 toast.error(message)
             })
         reset();
