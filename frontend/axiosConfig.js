@@ -19,8 +19,6 @@ axiosInstance.interceptors.request.use(request => {
 axiosInstance.interceptors.response.use(
     response => response, // successful responses.
     async error => {
-        console.log('intercept :>> ');
-
         const originalRequest = error.config;
         if (error.response.status === 401 && !originalRequest._retry) {
             console.log('401 :>> ', 401);

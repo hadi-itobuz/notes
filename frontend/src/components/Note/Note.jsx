@@ -2,17 +2,23 @@ import PropTypes from 'prop-types';
 import DeleteNote from './DeleteNote';
 import EditNote from './EditNote';
 import UploadFile from './UploadFile';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axiosInstance from '../../../axiosConfig';
 const Note = ({ note }) => {
     const [url,setUrl]=useState(null)
     const date = new Date(note.createdOn);
-    
+    useEffect(()=>{
+        axiosInstance.get(`http://localhost:3000/notes/getFile/${note._id}`)
+        .then(()=>setUrl(`http://localhost:3000/notes/getFile/${note._id}`))
+        .catch(()=>setUrl(null))
+    },[note._id])
     return (
-        <div className="flex flex-col justify-between p-6 border overflow-scroll w-full border-gray-200 rounded-lg shadow-sm bg-gray-800 dark:border-gray-700 max-h-fit">
+        <div className="flex flex-col justify-between justify-self-stretch
+ p-6 border overflow-scroll w-full border-gray-200 rounded-lg shadow-sm bg-gray-800 dark:border-gray-700">
             <div>
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">{note.title}</h5>
                 <p className="mb-3 h-28 overflow-scroll font-normal text-gray-200">{note.body}</p>
-                <img className='text-white max-w-60' src={`${url}`} alt="No files attached" />
+                {url && <img className='text-white max-w-60' src={`${url}`} alt="No files attached" />}
             </div>
             <div>
                 <p className='text-gray-400'>{date.toLocaleTimeString() + " ,  " + date.toDateString()} </p>

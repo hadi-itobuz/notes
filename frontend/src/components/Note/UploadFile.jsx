@@ -16,6 +16,10 @@ function UploadFile({ id, setUrl }) {
     const setSearchOptions = useContext(setSearchOptionsContext);
     const { register, handleSubmit } = useForm();
     const uploadFile = (formData) => {
+        if (!formData.file[0]){
+            toast.error("Please attach a picture before uploading");
+            return;
+        }
         const extension = getExtension(formData.file[0])
         if (!['jpg', 'jpeg', 'png', 'gif', 'svg'].includes(extension)) {
             toast.error("Can't Upload: Invalid file format")
