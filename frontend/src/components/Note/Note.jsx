@@ -9,7 +9,9 @@ const Note = ({ note }) => {
     const date = new Date(note.createdOn);
     useEffect(()=>{
         axiosInstance.get(`http://localhost:3000/notes/getFile/${note._id}`)
-        .then(()=>setUrl(`http://localhost:3000/notes/getFile/${note._id}`))
+        .then((res)=>{
+            if(res.status===200) setUrl(`http://localhost:3000/notes/getFile/${note._id}`)
+        })
         .catch(()=>setUrl(null))
     },[note._id])
     return (
