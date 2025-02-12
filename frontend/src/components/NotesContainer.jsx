@@ -29,9 +29,8 @@ const NotesContainer = () => {
     return (
         <setSearchOptionsContext.Provider value={setSearchOptions}>
             <div className="container p-3 flex flex-col items-center">
-                <h1>NOTES...</h1>
                 <NotesContainerHeader setSearchOptions={setSearchOptions} />
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 py-5 w-full">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 my-5 w-full">
                     {(notes) ? notes.map(note => (<Note key={note._id} note={note} />)) : <h1>Loading.....</h1>}
                 </div>
                 <NotePagination setSearchOptions={setSearchOptions} searchOptions={searchOptions} notes={notes} />
