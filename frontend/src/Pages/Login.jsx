@@ -51,10 +51,11 @@ const Login = () => {
     ]
 
     return (
-        <>
+        <div className="flex flex-col items-center">
             <Form fields={fields} onSubmit={handleSubmit} />
             <ToastContainer theme="dark" />
-        </>
+            <button onClick={()=>navigate('/register')} className="text-blue-700 underline mx-auto">Don&apos;t have an account, Register</button>
+        </div>
     );
 }
 

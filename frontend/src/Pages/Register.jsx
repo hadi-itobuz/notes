@@ -3,11 +3,15 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Form from "../components/Form/Form";
 import { userRegistrationSchema } from "../helper/validation";
+import { useNavigate } from "react-router-dom";
 const Register = () => {
     // Toasts
     const notifySuccess = (message) => toast.success(message);
     const notifyError = (message) => toast.error(message);
-    const notfyWarn = message => toast.warn(message);
+    const notifyWarn = message => toast.warn(message);
+
+    const navigate = useNavigate();
+
 
     const handleSubmit = (formData) => {
         let data = {
@@ -30,8 +34,8 @@ const Register = () => {
             axios.request(config)
                 .then((response) => {
                     if (response.status === 200) {
-                        notifySuccess("User Registred successfully");
-                        notfyWarn("Please verify yourself an email has been sent to you");
+                        notifySuccess("User Registered successfully");
+                        notifyWarn("Please verify yourself an email has been sent to you");
                     }
                 })
                 .catch((error) => {
@@ -55,10 +59,12 @@ const Register = () => {
         { name: 'Password', type: "password", val: 'User@123' }
     ]
     return (
-        <>
+        <div className="flex flex-col items-center">
             <Form fields={fields} onSubmit={handleSubmit} />
             <ToastContainer theme="dark" />
-        </>
+            <button onClick={()=>navigate('/')} className="text-blue-700 underline mx-auto">Already have an account, Signin</button>
+
+        </div>
     );
 }
 export default Register;
