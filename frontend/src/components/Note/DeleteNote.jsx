@@ -35,7 +35,7 @@ const DeleteNote = ({ noteId }) => {
             <button onClick={() => setModal(!modal)} className='px-5 py-2 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none bg-red-500 hover:bg-red-700 focus:ring-red-800'>
                 Delete
             </button>
-            {modal && <ConfirmationModal noteId={noteId} setModal={setModal} onClick={deleteAndRender} />}
+            {modal && <ConfirmationModal noteId={noteId} setModal={setModal} onClick={deleteAndRender} message='Delete Note' />}
         </>
     )
 }
