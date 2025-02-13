@@ -23,7 +23,7 @@ const NotesContainer = () => {
             axiosInstance.post('/notes/', searchOptions)
             .then(res=>setNotes(res.data.notes))//updating
             .catch(err=>{
-                if (err.response.status===401) navigate('/')
+                if (err.response.status===401) navigate('/login')
             })
         }
         updateNotes();
@@ -33,7 +33,7 @@ const NotesContainer = () => {
         <setSearchOptionsContext.Provider value={setSearchOptions}>
             <div className="container p-3 flex flex-col items-center">
                 <NotesContainerHeader setSearchOptions={setSearchOptions} />
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 my-5 w-full">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 my-5 w-full">
                     {(notes) ? notes.map(note => (<Note key={note._id} note={note} />)) : <h1>Loading.....</h1>}
                 </div>
                 <NotePagination setSearchOptions={setSearchOptions} searchOptions={searchOptions} notes={notes} />

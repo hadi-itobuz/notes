@@ -45,7 +45,7 @@ axiosInstance.interceptors.response.use(
                 console.error('Token refresh failed:', refreshError);
                 localStorage.removeItem('accessToken');
                 localStorage.removeItem('refreshToken');
-                window.location.href = '/';
+                window.location.href = '/login';
                 return Promise.reject(refreshError);
             }
         }
