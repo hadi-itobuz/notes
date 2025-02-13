@@ -17,7 +17,7 @@ const Note = ({ note }) => {
 
     return (
         <div className="flex flex-col justify-between justify-self-stretch
- p-5 border overflow-scroll w-full border-gray-200 rounded-lg shadow-sm bg-gray-800 dark:border-gray-700">
+ p-5 border overflow-scroll w-full rounded-lg shadow-sm bg-gray-800 border-gray-700">
             <div>
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">{note.title}</h5>
                 <p className="mb-3 h-20 overflow-scroll font-normal text-gray-200">{note.body}</p>

@@ -8,7 +8,7 @@ const HomeHeader = () => {
             <nav className="border-gray-200 px-4 lg:px-6 py-2.5 bg-gray-800 flex justify-between items-center">
                 <h2 className="text-white">Home</h2>
                 <Link className="text-white underline" to="/home">Home</Link>
-                <Link className="text-white underline" to="/profile">User</Link>
+                <Link className="text-white underline" to="/profile">Profile</Link>
                 <LogoutBtn />
             </nav>
         </header>
