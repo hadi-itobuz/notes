@@ -1,11 +1,8 @@
-// import axiosInstance from "../../../axiosConfig";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import FormData from 'form-data'
 import PropTypes from 'prop-types';
 import toast from "react-hot-toast";
-import { useContext } from "react";
-import { setSearchOptionsContext } from "../NotesContainer";
 
 function getExtension(file) {
     const filename = file.name;
@@ -13,10 +10,9 @@ function getExtension(file) {
 }
 
 function UploadFile({ id, setUrl }) {
-    const setSearchOptions = useContext(setSearchOptionsContext);
     const { register, handleSubmit } = useForm();
     const uploadFile = (formData) => {
-        if (!formData.file[0]){
+        if (!formData.file[0]) {
             toast.error("Please attach a picture before uploading");
             return;
         }
@@ -25,7 +21,7 @@ function UploadFile({ id, setUrl }) {
             toast.error("Can't Upload: Invalid file format")
             return;
         }
-        
+
         let data = new FormData();
         data.append('filename', formData.file[0])
 
@@ -42,9 +38,11 @@ function UploadFile({ id, setUrl }) {
 
         axios.request(config)
             .then(() => {
-                setSearchOptions({})
+                setUrl(null);
                 toast.success("File uploaded");
-                setUrl(`http://localhost:3000/notes/getFile/${id}`)
+                setTimeout(() => {
+                    setUrl(`http://localhost:3000/notes/getFile/${id}`)
+                }, 100);
             })
             .catch((error) => {
                 toast.error("Couldn't upload file.")

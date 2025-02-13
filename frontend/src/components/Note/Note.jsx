@@ -5,15 +5,16 @@ import UploadFile from './UploadFile';
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../../axiosConfig';
 const Note = ({ note }) => {
-    const [url,setUrl]=useState(null)
+    const [url, setUrl] = useState(null)
     const date = new Date(note.createdOn);
-    useEffect(()=>{
+    useEffect(() => {
         axiosInstance.get(`http://localhost:3000/notes/getFile/${note._id}`)
-        .then((res)=>{
-            if(res.status===200) setUrl(`http://localhost:3000/notes/getFile/${note._id}`)
-        })
-        .catch(()=>setUrl(null))
-    },[note._id])
+            .then((res) => {
+                if (res.status === 200) setUrl(`http://localhost:3000/notes/getFile/${note._id}`)
+            })
+            .catch(() => setUrl(null))
+    }, [note._id, url])
+
     return (
         <div className="flex flex-col justify-between justify-self-stretch
  p-6 border overflow-scroll w-full border-gray-200 rounded-lg shadow-sm bg-gray-800 dark:border-gray-700">
