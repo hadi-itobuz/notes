@@ -12,6 +12,7 @@ import { Toaster } from 'react-hot-toast';
 import Verify from './Pages/Verify';
 import HomeHeader from './components/HomeHeader';
 import NotesContainer from './components/NotesContainer';
+import NotFound from './Pages/NotFound';
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
 
           <Route path='/' element={<HomeHeader/>} >
             <Route index path='home'  element={<NotesContainer />} />
-            <Route path='*' element={<>Not found</>} />
+            <Route path='*' element={<NotFound/>} />
           </Route>
 
           <Route path="/login" element={<Login />} />
