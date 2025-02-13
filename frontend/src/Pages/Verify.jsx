@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 const Verify = () => {
@@ -16,7 +16,7 @@ const Verify = () => {
                 toast.error(err.response.data.message);
                 navigate('/register')
             })
-    }, [token])
+    }, [token, navigate])
     return (<div className="text-4xl text-white text-center py-36">Loading.... </div>)
 }
 export default Verify;
