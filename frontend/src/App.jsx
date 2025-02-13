@@ -18,9 +18,11 @@ function App() {
       <Router>
         <ToastContainer />
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path='/home' element={<Home />} />
+          <Route path='/'element={<div className='text-white text-7xl'>Home</div>}  >
+            <Route index path='home'  element={<Home />} />
+          </Route>
           <Route path='/verify/:token' element={<Verify />} />
         </Routes>
       </Router>

@@ -62,7 +62,7 @@ const Register = () => {
         <div className="flex flex-col items-center">
             <Form fields={fields} onSubmit={handleSubmit} />
             <ToastContainer theme="dark" />
-            <button onClick={()=>navigate('/')} className="text-blue-700 underline mx-auto">Already have an account, Signin</button>
+            <button onClick={()=>navigate('/login')} className="text-blue-700 underline mx-auto">Already have an account, Signin</button>
 
         </div>
     );

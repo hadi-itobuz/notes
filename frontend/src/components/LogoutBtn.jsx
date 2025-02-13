@@ -11,7 +11,7 @@ const LogoutBtn = () => {
             .then(() => {
                 toast.success("Successfully logged out");
                 localStorage.clear();
-                navigate('/')
+                navigate('/login')
             })
             .catch(() => toast.error("couldn't logout"))
     }

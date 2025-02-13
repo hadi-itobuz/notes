@@ -10,7 +10,7 @@ const Verify = () => {
         axios.get('http://localhost:3000/user/verify/' + token)
             .then(() => {
                 toast.success("User verified successfully: Login");
-                navigate('/')
+                navigate('/login')
             })
             .catch((err) => {
                 toast.error(err.response.data.message);

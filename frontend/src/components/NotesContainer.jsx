@@ -23,7 +23,7 @@ const NotesContainer = () => {
             axiosInstance.post('/notes/', searchOptions)
             .then(res=>setNotes(res.data.notes))//updating
             .catch(err=>{
-                if (err.response.status===401) navigate('/')
+                if (err.response.status===401) navigate('/login')
             })
         }
         updateNotes();
