@@ -19,7 +19,7 @@ const createUser = async (req, res) => {
             sendEmail(email, user._id);
             res.status(200).send({
                 success: true,
-                message: "User registred, Verification email sent",
+                message: "User registered, Verification email sent",
             });
         }
     } catch (error) {
@@ -37,7 +37,7 @@ const verifyUser = async (req, res) => {
         { new: true }
     )
         .then(res.status(200).send({
-            message: "Email verification Successfull",
+            message: "Email verification Successful",
             success: true
         }))
         .catch(err => {
