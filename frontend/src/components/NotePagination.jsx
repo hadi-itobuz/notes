@@ -23,6 +23,7 @@ const NotePagination = ({ searchOptions, setSearchOptions, pageCount }) => {
                 <button onClick={() => onClick(-1)} className="flex items-center justify-center px-4 h-10 text-base font-medium  rounded-s bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white">
                     Prev
                 </button>
+                <div className='text-gray-400 bg-gray-600 pr-3 flex items-center'><p className='text-2xl text-white px-3'>{pageNumber}</p> of {pageCount}</div>
                 <button onClick={() => onClick(1)} className="flex items-center justify-center px-4 h-10 text-base font-medium border-0 border-s rounded-e  bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white">
                     Next
                 </button>
