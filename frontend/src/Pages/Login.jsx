@@ -37,10 +37,12 @@ const Login = () => {
                 else console.log("Unable to login");
             })
             .catch((error) => {
+                console.log('error :>> ', error);
                 if (error.response.data.details)
                     error.response.data.details.forEach(error => {
                         notifyError(error.message);
                     });
+                else if(error.status===429) notifyError("Too many attempts, try again after 5mins");
                 else notifyError(error.response.data.message);
             })
     };
