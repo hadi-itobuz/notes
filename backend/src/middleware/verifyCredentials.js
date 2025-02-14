@@ -8,18 +8,18 @@ const userRegistrationSchema = z.object({
         .refine((password) => /[a-z]/.test(password), { message: "Password should contain lower case" })
         .refine((password) => /[0-9]/.test(password), { message: "Password should contain number" })
         .refine((password) => /[!@#$%^&*]/.test(password), { message: "Password should contain special character", })
-});
+}).strict();
 
 const userLoginSchema = z.object({
     email: z.string().email("Invalid Email"),
     password: z.string().min(6),
-});
+}).strict();
 
 const noteSchema = z.object({
     userId: z.string(),
     title: z.string().max(100, "too long"),
     body: z.string()
-})
+}).strict();
 
 const validateData = (schema) => {//function to validate req based on schema
     return (req, res, next) => {

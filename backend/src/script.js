@@ -6,8 +6,8 @@ import userRoute from "./routes/userRoute.js";
 import { rateLimit } from "express-rate-limit";
 import cors from "cors";
 const limiter = rateLimit({
-    windowMs: 5*60 * 1000,
-    limit: 20,
+    windowMs: 5 * 50 * 1000,
+    limit: 15,
     standardHeaders: true,
     legacyHeaders: false,
 });
@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cors());
 // app.use(limiter);
 
-connectToDb();//connectong to mongo db data base
+connectToDb();//connecting to mongo db data base
 
 app.use('/notes', noteRoute);
 app.use('/user', limiter, userRoute)
