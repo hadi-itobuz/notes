@@ -20,12 +20,12 @@ const getNotes = async (req, res) => {
                     { 'body': { '$regex': `${searchText}`, '$options': 'i' } }//serching body
                 ]
             }).skip(notePerPage * (pageNumber - 1)).limit(notePerPage).collation({ locale: "en" }).sort({ [sortBy]: order });//pagenation and sorting
-            // console.log('notes :>> ', notes);
-            // console.log('req.body :>> ',req.body );
+            const noteCount= await Note.countDocuments({userId});
             res.status(200).send({
                 success: true,
-                notes
-            })
+                notes, noteCount,
+                pageCount : Math.ceil(noteCount/notePerPage)
+            });
         }
     } catch (err) {
         console.log('err :>> ', err);
@@ -33,7 +33,7 @@ const getNotes = async (req, res) => {
         res.status(500).send({
             success: false,
             message: "unable to get notes"
-        })
+        });
     }
 }
 export default getNotes;
