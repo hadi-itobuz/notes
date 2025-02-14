@@ -8,6 +8,7 @@ import { verifyAccessToken, verifyRefreshToken } from '../middleware/verifyToken
 import genrateAcessToken from '../controllers/user/genrateAcessToken.js';
 import isLoggedIn from '../middleware/isLoggedIn.js';
 import changePassword from '../controllers/user/changePassword.js';
+import getInfo from '../controllers/user/getInfo.js';
 
 const userRoute = express.Router();
 
@@ -17,4 +18,5 @@ userRoute.post('/login', validateData(userLoginSchema), verifyCredential);
 userRoute.get('/logout', verifyAccessToken, logout);
 userRoute.get('/getAccessToken', verifyRefreshToken, isLoggedIn, genrateAcessToken);
 userRoute.put('/updatePassword', verifyAccessToken, isLoggedIn, changePassword);
+userRoute.get('/info',verifyAccessToken, isLoggedIn,getInfo);
 export default userRoute;

@@ -13,6 +13,7 @@ import Verify from './Pages/Verify';
 import HomeHeader from './components/HomeHeader';
 import NotesContainer from './components/NotesContainer';
 import NotFound from './Pages/NotFound';
+import Profile from './Pages/Profile';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
 
           <Route path='/' element={<HomeHeader/>} >
             <Route index path='home'  element={<NotesContainer />} />
+            <Route path='profile' element={<Profile/>}/> 
             <Route path='*' element={<NotFound/>} />
           </Route>
 

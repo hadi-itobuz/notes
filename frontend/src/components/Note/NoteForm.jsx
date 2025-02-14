@@ -26,7 +26,7 @@ const NoteForm = ({ setVisibility, type }) => {
                     order: -1,
                     searchText: ""
                 })
-                setVisibility("hidden")
+                setVisibility(false)
             })
             .catch(err => {
                 let message;

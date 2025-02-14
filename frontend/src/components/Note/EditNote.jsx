@@ -2,9 +2,9 @@ import { useState } from "react";
 import NoteModal from "./NoteModal";
 import PropTypes from "prop-types"
 const EditNote = ({ note }) => {
-    const [visiblity, setVisibility] = useState('hidden');
+    const [visiblity, setVisibility] = useState(false);
     const onClick = () => {
-        setVisibility('');
+        setVisibility(true);
     }
     const type = {
         header: "Edit",
@@ -18,9 +18,9 @@ const EditNote = ({ note }) => {
             className="px-6 py-2 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none bg-blue-600 hover:bg-blue-700 focus:ring-blue-800" type="button">
                 Edit
             </button>
-            <div className={visiblity}>
-                <NoteModal setVisibility={setVisibility} type={type} />
-            </div>
+            {/* <div className={visiblity}> */}
+                {visiblity && <NoteModal setVisibility={setVisibility} type={type} />}
+            {/* </div> */}
         </>
     )
 }
