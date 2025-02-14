@@ -9,8 +9,9 @@ import { useNavigate } from "react-router-dom";
 // eslint-disable-next-line react-refresh/only-export-components
 export const setSearchOptionsContext = createContext();
 const NotesContainer = () => {
-    const navigate=useNavigate();
+    const navigate = useNavigate();
     const [notes, setNotes] = useState([]);
+    const [pageCount, setPageCount] = useState(1);
     const [searchOptions, setSearchOptions] = useState({//default search options
         pageNumber: 1,
         notePerPage: 4,
@@ -21,13 +22,16 @@ const NotesContainer = () => {
     useEffect(() => {
         const updateNotes = async () => {
             axiosInstance.post('/notes/', searchOptions)
-            .then(res=>setNotes(res.data.notes))//updating
-            .catch(err=>{
-                if (err.response.status===401) navigate('/login')
-            })
+                .then(res => {
+                    setNotes(res.data.notes);
+                    setPageCount(res.data.pageCount);
+                })//updating when search Options change
+                .catch(err => {
+                    if (err.response.status === 401) navigate('/login')
+                })
         }
         updateNotes();
-    }, [searchOptions,navigate]);
+    }, [searchOptions, navigate]);
 
     return (
         <setSearchOptionsContext.Provider value={setSearchOptions}>
@@ -36,7 +40,7 @@ const NotesContainer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2 my-5 w-full">
                     {(notes) ? notes.map(note => (<Note key={note._id} note={note} />)) : <h1>Loading.....</h1>}
                 </div>
-                <NotePagination setSearchOptions={setSearchOptions} searchOptions={searchOptions} notes={notes} />
+                <NotePagination setSearchOptions={setSearchOptions} searchOptions={searchOptions} pageCount={pageCount} />
             </div>
         </setSearchOptionsContext.Provider>
     )

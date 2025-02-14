@@ -1,26 +1,16 @@
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
-// import { toast, ToastContainer } from 'react-toastify';
-// import { ToastContainer } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
 import toast, { Toaster } from 'react-hot-toast';
 
-const NotePagination = ({ searchOptions, setSearchOptions, notes }) => {
+const NotePagination = ({ searchOptions, setSearchOptions, pageCount }) => {
     const notifyWarn = message => toast.error(message);
-    useEffect(() => {
-        if (notes.length === 0 && pageNumber !== 1) {
-            setSearchOptions({ notePerPage, sortBy, order, searchText, pageNumber: pageNumber - 1 });
-            notifyWarn("Last Page")
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [notes]);
-
     const { notePerPage, sortBy, order, searchText } = searchOptions;
     let { pageNumber } = searchOptions;
 
     const onClick = (num) => {
         if (pageNumber === 1 && num === -1) {
             notifyWarn("No previous page")
+        }else if(pageNumber===pageCount && num===+1){
+            notifyWarn("Last Page")
         }
         else {//not making page number negative
             pageNumber += num;
@@ -56,6 +46,6 @@ const NotePagination = ({ searchOptions, setSearchOptions, notes }) => {
 NotePagination.propTypes = {
     searchOptions: PropTypes.object.isRequired,
     setSearchOptions: PropTypes.func.isRequired,
-    notes: PropTypes.array.isRequired
+    pageCount: PropTypes.number.isRequired
 }
 export default NotePagination;
