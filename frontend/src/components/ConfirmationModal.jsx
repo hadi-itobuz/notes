@@ -1,4 +1,3 @@
-
 import PropTypes from 'prop-types';
 
 const ConfirmationModal = ({ noteId, setModal, onClick, message }) => {
@@ -27,10 +26,12 @@ const ConfirmationModal = ({ noteId, setModal, onClick, message }) => {
         </div>
     )
 }
+
 ConfirmationModal.propTypes = {
     noteId: PropTypes.string,
     setModal: PropTypes.func.isRequired,
     onClick: PropTypes.func.isRequired,
     message: PropTypes.string.isRequired,
 };
+
 export default ConfirmationModal;

@@ -12,7 +12,6 @@ const Register = () => {
 
     const navigate = useNavigate();
 
-
     const handleSubmit = (formData) => {
         let data = {
             "name": formData.UserName,
@@ -48,6 +47,7 @@ const Register = () => {
                     else notifyError("Something went wrong")
                 })
         }
+
         const valid = userRegistrationSchema.safeParse(data);
         if (valid.success) sendRegistrationRequest();//data validation
         else valid.error.errors.forEach(err => {

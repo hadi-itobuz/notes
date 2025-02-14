@@ -3,9 +3,12 @@ import axiosInstance from "../../axiosConfig";
 import toast from "react-hot-toast";
 import ConfirmationModal from './ConfirmationModal';
 import { useState } from "react";
+
 const LogoutBtn = () => {
+
     const [modal, setModal] = useState(false);
     const navigate = useNavigate();
+
     const logout = () => {
         axiosInstance.get('/user/logout')
             .then(() => {
@@ -15,6 +18,7 @@ const LogoutBtn = () => {
             })
             .catch(() => toast.error("couldn't logout"))
     }
+    
     return (
         <>
             <button onClick={()=>setModal(true)} type="button" className="focus:outline-none text-white focus:ring-4  font-medium rounded-full text-sm py-2 px-5  bg-red-600 hover:bg-red-700 focus:ring-red-900">

@@ -2,15 +2,12 @@ import { useForm } from "react-hook-form";
 import axiosInstance from "../../../axiosConfig";
 import { useContext } from "react";
 import { setSearchOptionsContext } from "../NotesContainer";
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
 import toast from "react-hot-toast";
 import PropTypes from 'prop-types'
 
 
 const NoteForm = ({ setVisibility, type }) => {
-    // const notifySuccess = (message) => toast.success(message);
-    // const notifyError = (message) => toast.error(message);
+    
     const setSearchOptions = useContext(setSearchOptionsContext);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
@@ -66,6 +63,7 @@ const NoteForm = ({ setVisibility, type }) => {
         </>
     )
 }
+
 NoteForm.propTypes = {
     setVisibility: PropTypes.func.isRequired,
     type: PropTypes.object.isRequired

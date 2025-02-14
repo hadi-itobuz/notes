@@ -6,7 +6,6 @@ import { useContext } from 'react';
 import toast from 'react-hot-toast';
 import axiosInstance from '../../../axiosConfig';
 
-
 const DeleteNote = ({ noteId }) => {
     const [modal, setModal] = useState(false);
     const setSearchOptions = useContext(setSearchOptionsContext);
@@ -30,6 +29,7 @@ const DeleteNote = ({ noteId }) => {
         }
         deleteNote().then(() => refreshDOM())
     }
+
     return (
         <>
             <button onClick={() => setModal(!modal)} className='px-5 py-2 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none bg-red-500 hover:bg-red-700 focus:ring-red-800'>
@@ -39,6 +39,7 @@ const DeleteNote = ({ noteId }) => {
         </>
     )
 }
+
 DeleteNote.propTypes = {
     noteId: PropTypes.string.isRequired,
 };

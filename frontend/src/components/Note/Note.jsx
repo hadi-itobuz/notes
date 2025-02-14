@@ -4,7 +4,9 @@ import EditNote from './EditNote';
 import UploadFile from './UploadFile';
 import { useEffect, useState } from 'react';
 import axiosInstance from '../../../axiosConfig';
+
 const Note = ({ note }) => {
+
     const [url, setUrl] = useState(null)
     const date = new Date(note.createdOn);
     useEffect(() => {
@@ -31,11 +33,11 @@ const Note = ({ note }) => {
                 </div>
                 <UploadFile id={note._id} setUrl={setUrl} />
             </div>
-
         </div>
     );
 
 }
+
 Note.propTypes = {
     note: PropTypes.object,
 };

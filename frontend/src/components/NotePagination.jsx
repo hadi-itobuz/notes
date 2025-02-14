@@ -44,6 +44,7 @@ const NotePagination = ({ searchOptions, setSearchOptions, pageCount }) => {
         </>
     )
 }
+
 NotePagination.propTypes = {
     searchOptions: PropTypes.object.isRequired,
     setSearchOptions: PropTypes.func.isRequired,

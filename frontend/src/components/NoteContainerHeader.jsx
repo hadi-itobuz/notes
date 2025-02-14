@@ -1,8 +1,11 @@
 import { useForm } from "react-hook-form";
 import PropTypes from 'prop-types';
 import AddNote from "./Note/AddNote";
+
 const NotesContainerHeader = ({ setSearchOptions }) => {
+
     const { register, handleSubmit, reset } = useForm();
+
     const onSubmit = (formData) => {
         // extracting form data
         const pageNumber = 1;
@@ -17,6 +20,7 @@ const NotesContainerHeader = ({ setSearchOptions }) => {
         //restting form
         reset();
     }
+
     return (
         <div className="flex flex-col md:flex-row gap-2 container w-full">
             <form className="mx-auto my-2 w-full" onSubmit={handleSubmit(onSubmit)}>
@@ -39,7 +43,6 @@ const NotesContainerHeader = ({ setSearchOptions }) => {
                 </div>
             </form>
             <AddNote />
-
         </div>
     )
 }

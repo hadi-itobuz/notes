@@ -7,7 +7,7 @@ import { rateLimit } from "express-rate-limit";
 import cors from "cors";
 const limiter = rateLimit({
     windowMs: 5*60 * 1000,
-    limit: 10,
+    limit: 20,
     standardHeaders: true,
     legacyHeaders: false,
 });

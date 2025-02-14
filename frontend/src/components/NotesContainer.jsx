@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const setSearchOptionsContext = createContext();
+
 const NotesContainer = () => {
     const navigate = useNavigate();
     const [notes, setNotes] = useState([]);
@@ -19,6 +20,7 @@ const NotesContainer = () => {
         order: 1,
         searchText: ""
     })
+    
     useEffect(() => {
         const updateNotes = async () => {
             axiosInstance.post('/notes/', searchOptions)
@@ -45,6 +47,5 @@ const NotesContainer = () => {
         </setSearchOptionsContext.Provider>
     )
 }
-
 
 export default NotesContainer;

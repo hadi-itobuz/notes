@@ -1,6 +1,7 @@
 import LogoutBtn from "./LogoutBtn";
 import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
+
 const HomeHeader = () => {
     return (
         <div className="flex flex-col justify-center items-center">
@@ -12,7 +13,7 @@ const HomeHeader = () => {
                 <LogoutBtn />
             </nav>
         </header>
-        <Outlet/>
+        <Outlet/> {/*To render nested routes  */}
         </div>
     )
 }
