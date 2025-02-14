@@ -9,7 +9,7 @@ const NotePagination = ({ searchOptions, setSearchOptions, pageCount }) => {
     const onClick = (num) => {
         if (pageNumber === 1 && num === -1) {
             notifyWarn("No previous page")
-        }else if(pageNumber===pageCount && num===+1){
+        }else if(pageNumber>=pageCount && num===+1){
             notifyWarn("Last Page")
         }
         else {//not making page number negative
