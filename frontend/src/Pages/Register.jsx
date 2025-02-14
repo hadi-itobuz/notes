@@ -44,6 +44,8 @@ const Register = () => {
                         error.response.data.details.forEach(error => {
                             notifyError(error.message);
                         });
+                    else if(error.status===429) notifyError("Too many attempts, try again after 5mins");
+                    else notifyError("Something went wrong")
                 })
         }
         const valid = userRegistrationSchema.safeParse(data);
