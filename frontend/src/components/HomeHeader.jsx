@@ -6,6 +6,7 @@ const HomeHeader = () => {
     return (
         <div className="flex flex-col justify-center items-center">
         <header className="w-full">
+            {/* NavBar */}
             <nav className="border-gray-200 px-4 lg:px-6 py-2.5 bg-gray-800 flex justify-between items-center">
                 <h2 className="text-2xl text-blue-200 font-bold">Notes App</h2>
                 <Link className="text-white underline" to="/home">Home</Link>

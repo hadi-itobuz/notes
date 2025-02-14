@@ -10,11 +10,11 @@ const LogoutBtn = () => {
     const navigate = useNavigate();
 
     const logout = () => {
-        axiosInstance.get('/user/logout')
+        axiosInstance.get('/user/logout')//logging out from backend
             .then(() => {
+                localStorage.clear();//clearing tokens from frontend
+                navigate('/login');//going to login
                 toast.success("Successfully logged out");
-                localStorage.clear();
-                navigate('/login')
             })
             .catch(() => toast.error("couldn't logout"))
     }

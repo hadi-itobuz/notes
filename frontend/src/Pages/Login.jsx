@@ -8,6 +8,7 @@ import hottoast from "react-hot-toast";
 const Login = () => {
     const notifyError = (message) => toast.error(message);
     const navigate = useNavigate();
+
     const handleSubmit = (formData) => {
         let data = JSON.stringify({
             "email": formData.Email,
@@ -26,15 +27,17 @@ const Login = () => {
 
         axios.request(config)
             .then((response) => {
+                //removing old tokens
                 localStorage.removeItem('accessToken');
                 localStorage.removeItem('refreshToken');
                 if (response.data.success === true) {
+                    // setting new tokens
                     localStorage.setItem('accessToken', response.data.accessToken);
                     localStorage.setItem('refreshToken', response.data.refreshToken);
-                    navigate('/home')
+                    navigate('/home'); //going to home page on successful login
                     hottoast.success('Successfully logged in');
                 }
-                else console.log("Unable to login");
+                else notifyError("Unable to login");
             })
             .catch((error) => {
                 console.log('error :>> ', error);
@@ -47,14 +50,14 @@ const Login = () => {
             })
     };
 
-    const fields = [
+    const fields = [//to generate form by mapping fields to components
         { name: "Email", type: "email", val: 'user@itobuz.com' },
         { name: 'Password', type: "password", val: 'User@123' }
     ]
 
     return (
         <div className="flex flex-col items-center">
-            <Form fields={fields} onSubmit={handleSubmit} />
+            <Form fields={fields} onSubmit={handleSubmit} />{/*will use fields to generate form */}
             <ToastContainer theme="dark" />
             <button onClick={()=>navigate('/register')} className="text-blue-700 underline mx-auto">Don&apos;t have an account, Register</button>
         </div>

@@ -6,15 +6,12 @@ import { useState } from "react";
 import PropTypes from "prop-types"
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-
 const FormField = ({ fieldObj, register }) => {
+
     const [type, setType] = useState(fieldObj.type);
-    const handleToggle = () => {
-        if (type === 'password') {
-            setType('text')
-        } else {
-            setType('password')
-        }
+    const handleToggle = () => {//toggle password visibility 
+        if (type === 'password')setType('text');
+        else setType('password');   
     }
 
     return (
@@ -23,7 +20,6 @@ const FormField = ({ fieldObj, register }) => {
                 {fieldObj.name}
             </Typography>
             <div className="flex">
-
                 <Input
                     type={type}
                     defaultValue={fieldObj.val} {...register(`${fieldObj.name}`, { required: true })}
@@ -34,6 +30,7 @@ const FormField = ({ fieldObj, register }) => {
                         className: "before:content-none after:content-none",
                     }}
                 />
+                {/* Showing icons only for password field */}
                 {(fieldObj.type === 'password') && <span className=" z-50 -ml-8 flex justify-around items-center" onClick={handleToggle}>
                     {(type==='password')?<FaEye color={"white"} />:<FaEyeSlash color={"white"} />}
                 </span>}

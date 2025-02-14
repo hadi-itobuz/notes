@@ -55,7 +55,7 @@ const Register = () => {
         });
 
     };
-    const fields = [
+    const fields = [//to generate form by mapping fields to components
         { name: "UserName", type: "text", val: 'hadi' },
         { name: "Email", type: "email", val: 'hadi@itobuz.com' },
         { name: 'Password', type: "password", val: 'User@123' }

@@ -6,10 +6,10 @@ import toast from "react-hot-toast";
 const Verify = () => {
     const params = useParams();
     const navigate = useNavigate();
-    const { token } = params;
+    const { token } = params;//getting token from email
 
     useEffect(() => {
-        axios.get('http://localhost:3000/user/verify/' + token)
+        axios.get('http://localhost:3000/user/verify/' + token)//sending token to backend
             .then(() => {
                 toast.success("User verified successfully: Login");
                 navigate('/login')

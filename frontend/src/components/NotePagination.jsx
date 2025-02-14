@@ -7,11 +7,10 @@ const NotePagination = ({ searchOptions, setSearchOptions, pageCount }) => {
     let { pageNumber } = searchOptions;
 
     const onClick = (num) => {
-        if (pageNumber === 1 && num === -1) {
-            notifyWarn("No previous page")
-        }else if(pageNumber>=pageCount && num===+1){
-            notifyWarn("Last Page")
-        }
+        if (pageNumber === 1 && num === -1) //going prev from first page
+            notifyWarn("No previous page");
+        else if(pageNumber>=pageCount && num===+1)//going next from last page
+            notifyWarn("Last Page");
         else {//not making page number negative
             pageNumber += num;
             setSearchOptions({ notePerPage, sortBy, order, searchText, pageNumber });
@@ -23,6 +22,7 @@ const NotePagination = ({ searchOptions, setSearchOptions, pageCount }) => {
                 <button onClick={() => onClick(-1)} className="flex items-center justify-center px-4 h-10 text-base font-medium  rounded-s bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white">
                     Prev
                 </button>
+                {/* PageNumber of PageCount */}
                 <div className='text-gray-400 bg-gray-600 pr-3 flex items-center'><p className='text-2xl text-white px-3'>{pageNumber}</p> of {pageCount}</div>
                 <button onClick={() => onClick(1)} className="flex items-center justify-center px-4 h-10 text-base font-medium border-0 border-s rounded-e  bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white">
                     Next

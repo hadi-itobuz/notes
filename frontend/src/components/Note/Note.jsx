@@ -9,12 +9,13 @@ const Note = ({ note }) => {
 
     const [url, setUrl] = useState(null)
     const date = new Date(note.createdOn);
+
     useEffect(() => {
         axiosInstance.get(`http://localhost:3000/notes/getFile/${note._id}`)
-            .then((res) => {
+            .then((res) => {//if there is picture
                 if (res.status === 200) setUrl(`http://localhost:3000/notes/getFile/${note._id}`)
             })
-            .catch(() => setUrl(null))
+            .catch(() => setUrl(null))//no uploaded file
     }, [note._id, url])
 
     return (

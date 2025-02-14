@@ -12,12 +12,12 @@ function getExtension(file) {
 function UploadFile({ id, setUrl }) {
     const { register, handleSubmit } = useForm();
     const uploadFile = (formData) => {
-        if (!formData.file[0]) {
+        if (!formData.file[0]) {//file is attached
             toast.error("Please attach a picture before uploading");
             return;
         }
         const extension = getExtension(formData.file[0])
-        if (!['jpg', 'jpeg', 'png', 'gif', 'svg'].includes(extension)) {
+        if (!['jpg', 'jpeg', 'png', 'gif', 'svg'].includes(extension)) {//file of valid format
             toast.error("Can't Upload: Invalid file format")
             return;
         }

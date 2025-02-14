@@ -9,15 +9,17 @@ import axiosInstance from '../../../axiosConfig';
 const DeleteNote = ({ noteId }) => {
     const [modal, setModal] = useState(false);
     const setSearchOptions = useContext(setSearchOptionsContext);
-    
+
     const deleteAndRender = (noteId) => {
         const deleteNote = async () => {
-            axiosInstance.delete(`/notes/deleteId/${noteId}`).then(() => toast.success("Note deleted"))
+            axiosInstance.delete(`/notes/deleteId/${noteId}`)
+                .then(() => toast.success("Note deleted"))
                 .catch((err) => {
                     console.log('err :>> ', err)
                     toast.error("Unable to delete note")
                 })
         }
+
         const refreshDOM = () => {
             setSearchOptions({//default search options
                 pageNumber: 1,
@@ -43,4 +45,5 @@ const DeleteNote = ({ noteId }) => {
 DeleteNote.propTypes = {
     noteId: PropTypes.string.isRequired,
 };
+
 export default DeleteNote;

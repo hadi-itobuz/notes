@@ -20,14 +20,14 @@ const NotesContainer = () => {
         order: 1,
         searchText: ""
     })
-    
+
     useEffect(() => {
         const updateNotes = async () => {
             axiosInstance.post('/notes/', searchOptions)
                 .then(res => {
                     setNotes(res.data.notes);
                     setPageCount(res.data.pageCount);
-                })//updating when search Options change
+                })//updating notes when search Options change
                 .catch(err => {
                     if (err.response.status === 401) navigate('/login')
                 })
@@ -39,7 +39,7 @@ const NotesContainer = () => {
         <setSearchOptionsContext.Provider value={setSearchOptions}>
             <div className="container p-3 flex flex-col items-center">
                 <NotesContainerHeader setSearchOptions={setSearchOptions} />
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 my-5 w-full">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 my-5 w-full">{/*Mapping Notes*/}
                     {(notes) ? notes.map(note => (<Note key={note._id} note={note} />)) : <h1>Loading.....</h1>}
                 </div>
                 <NotePagination setSearchOptions={setSearchOptions} searchOptions={searchOptions} pageCount={pageCount} />

@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 const Profile = () => {
     const [user, setUser] = useState({ name: "", email: "", noteCount: 0 })
     useEffect(() => {
-        axiosInstance.get('/user/info')
+        axiosInstance.get('/user/info')//getting and displaying user info
             .then(res => {
                 setUser(res.data.userInfo)
             })
