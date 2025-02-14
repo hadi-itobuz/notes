@@ -1,26 +1,16 @@
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
-// import { toast, ToastContainer } from 'react-toastify';
-// import { ToastContainer } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
 import toast, { Toaster } from 'react-hot-toast';
 
-const NotePagination = ({ searchOptions, setSearchOptions, notes }) => {
+const NotePagination = ({ searchOptions, setSearchOptions, pageCount }) => {
     const notifyWarn = message => toast.error(message);
-    useEffect(() => {
-        if (notes.length === 0 && pageNumber !== 1) {
-            setSearchOptions({ notePerPage, sortBy, order, searchText, pageNumber: pageNumber - 1 });
-            notifyWarn("Last Page")
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [notes]);
-
     const { notePerPage, sortBy, order, searchText } = searchOptions;
     let { pageNumber } = searchOptions;
 
     const onClick = (num) => {
         if (pageNumber === 1 && num === -1) {
             notifyWarn("No previous page")
+        }else if(pageNumber===pageCount && num===+1){
+            notifyWarn("Last Page")
         }
         else {//not making page number negative
             pageNumber += num;
@@ -33,6 +23,7 @@ const NotePagination = ({ searchOptions, setSearchOptions, notes }) => {
                 <button onClick={() => onClick(-1)} className="flex items-center justify-center px-4 h-10 text-base font-medium  rounded-s bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white">
                     Prev
                 </button>
+                <div className='text-gray-400 bg-gray-600 pr-3 flex items-center'><p className='text-2xl text-white px-3'>{pageNumber}</p> of {pageCount}</div>
                 <button onClick={() => onClick(1)} className="flex items-center justify-center px-4 h-10 text-base font-medium border-0 border-s rounded-e  bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white">
                     Next
                 </button>
@@ -56,6 +47,6 @@ const NotePagination = ({ searchOptions, setSearchOptions, notes }) => {
 NotePagination.propTypes = {
     searchOptions: PropTypes.object.isRequired,
     setSearchOptions: PropTypes.func.isRequired,
-    notes: PropTypes.array.isRequired
+    pageCount: PropTypes.number.isRequired
 }
 export default NotePagination;
