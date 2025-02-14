@@ -22,10 +22,11 @@ function App() {
         <ToastContainer />
         <Routes>
 
-          <Route path='/' element={<HomeHeader/>} >
-            <Route index path='home'  element={<NotesContainer />} />
-            <Route path='profile' element={<Profile/>}/> 
-            <Route path='*' element={<NotFound/>} />
+          <Route path='/' element={<HomeHeader />} >
+            <Route index element={<NotesContainer />} />
+            <Route path='home' element={<NotesContainer />} />
+            <Route path='profile' element={<Profile />} />
+            <Route path='*' element={<NotFound />} />
           </Route>
 
           <Route path="/login" element={<Login />} />
